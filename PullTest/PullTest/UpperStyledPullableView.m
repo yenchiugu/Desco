@@ -48,6 +48,8 @@
       
       _gmGridView.mainSuperView = self;
     }
+  
+  _animatedCell = NULL;
     return self;
 }
 //////////////////////////////////////////////////////////////
@@ -151,14 +153,14 @@
   
   //[[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
   
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,size.height,size.width,20)];//cell.contentView.bounds];
+    //UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,size.height,size.width,20)];//cell.contentView.bounds];
     //label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    label.text = @"test";
-    label.textAlignment = UITextAlignmentCenter;
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor blackColor];
-    label.font = [UIFont boldSystemFontOfSize:20];
-    [cell.contentView addSubview:label];
+    //label.text = @"test";
+    //label.textAlignment = UITextAlignmentCenter;
+    //label.backgroundColor = [UIColor clearColor];
+    //label.textColor = [UIColor blackColor];
+    //label.font = [UIFont boldSystemFontOfSize:20];
+    //[cell.contentView addSubview:label];
   
   return cell;
 }
@@ -170,5 +172,54 @@
     // Drawing code
 }
 */
+
+- (void)draggingEvent:(CGPoint) pt sourceView:(UIView *)srcView {
+  CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
+  NSLog(@"converted: [%f,%f]",converted_p.x,converted_p.y);
+  UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];
+  int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
+  
+  NSLog(@"positoin:%d",position);
+  NSLog(@"target:%@",target);
+
+  if (position!=-1) {
+    //CGPoint converted_p2 =[self convertPoint:converted_p toView:target];
+
+    //UIView *target2=[target hitTest:converted_p2 withEvent:nil];
+    //NSLog(@"target2:%@",target2);
+    //int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
+    GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
+    if (_animatedCell) {
+      [UIView animateWithDuration:0 delay:0
+                          options:UIViewAnimationOptionBeginFromCurrentState
+                       animations:(void (^)(void)) ^ {
+                         _animatedCell.transform=CGAffineTransformIdentity;}
+                       completion:nil
+       //^(BOOL finished) {
+       //  cell.transform=CGAffineTransformIdentity;
+       // }
+       ];
+      _animatedCell=NULL;
+    }
+    if (cell) {
+      [UIView animateWithDuration:0 delay:0
+                          options:UIViewAnimationOptionBeginFromCurrentState
+                       animations:(void (^)(void)) ^ {
+                         cell.transform=CGAffineTransformMakeScale(1.1, 1.1);}
+                       completion:nil
+                       //^(BOOL finished) {
+                       //  cell.transform=CGAffineTransformIdentity;
+                      // }
+       ];
+      [_gmGridView bringSubviewToFront:cell];
+      _animatedCell = cell;
+    }
+
+      }
+  
+}
+- (void)droppedEvent:(CGPoint) pt sourceView:(UIView *)srcView {
+  
+}
 
 @end

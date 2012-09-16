@@ -8,7 +8,7 @@
 
 #import "PullableView.h"
 #import "GMGridView.h"
-@interface UpperStyledPullableView : PullableView<GMGridViewDataSource>  {
+@interface UpperStyledPullableView : PullableView<GMGridViewDataSource,SKDragEvent>  {
   NSString *_user_img_path1;
   NSString *_user_img_path2;
   NSString *_user_img_path3;
@@ -20,6 +20,7 @@
   NSString *_user_img_path9;
   NSString *_user_img_path10;
     __gm_weak GMGridView *_gmGridView;
+  GMGridViewCell *_animatedCell;
 }
 
 @end

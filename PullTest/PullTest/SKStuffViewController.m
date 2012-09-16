@@ -9,6 +9,7 @@
 #import "SKStuffViewController.h"
 #import "GMGridView.h"
 #import "GMGridViewLayoutStrategies.h"
+#import "UpperStyledPullableView.h"
 
 @interface SKStuffViewController () <GMGridViewDataSource,GMGridViewSortingDelegate,GMGridViewTransformationDelegate> {
   __gm_weak GMGridView *_gmGridView;
@@ -58,6 +59,11 @@
   UIView *view1 = self.parentViewController.view;
   UIView *view2 = self.parentViewController.parentViewController.view;
   UIView *view3 = self.parentViewController.parentViewController.parentViewController.view;
+  
+  UIView *upper_view = [view2 viewWithTag:2377 ];
+  if (upper_view) {
+    [_gmGridView setSkDragDelegate:(UpperStyledPullableView*)upper_view];
+  }
 //  UIView *view4 = self.view.superview.superview.superview.superview;
 
   _gmGridView.mainSuperView =view2;

@@ -135,6 +135,9 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
 @implementation GMGridView
 
 @synthesize sortingDelegate = _sortingDelegate, dataSource = _dataSource, transformDelegate = _transformDelegate, actionDelegate = _actionDelegate;
+
+@synthesize skDragDelegate = _skDragDelegate; // <--
+
 @synthesize mainSuperView = _mainSuperView;
 @synthesize layoutStrategy = _layoutStrategy;
 @synthesize itemSpacing = _itemSpacing;
@@ -776,6 +779,14 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
 
 - (void)sortingMoveDidContinueToPoint:(CGPoint)point
 {
+  NSLog(@"move [%f,%f]",point.x,point.y);
+  [self.skDragDelegate draggingEvent:point sourceView:self];
+  UIView *upper_view = [self.mainSuperView viewWithTag:2377 ];
+  if (upper_view) {
+    //CGPoint converted_p =[self convertPoint:point toView:upper_view];
+    //NSLog(@"converted: [%f,%f]",converted_p.x,converted_p.y);
+    
+  }
     int position = [self.layoutStrategy itemPositionFromLocation:point];
     int tag = position + kTagOffset;
     

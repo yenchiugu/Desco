@@ -53,7 +53,7 @@
   
   //[upper_pullable_view addSubview:user_list_view_controllor.view];
   upperView = upper_pullable_view;
-  
+  [upperView setTag:2377]; // <----
   [self.view addSubview:upper_pullable_view];
 
 
