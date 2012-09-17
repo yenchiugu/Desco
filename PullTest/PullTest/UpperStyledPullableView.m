@@ -19,15 +19,15 @@
       imgView.frame = CGRectMake(0, 0, frame.size.width, 200);
       [self addSubview:imgView];
       
-        _user_img_path1 = [[NSBundle mainBundle]pathForResource:@"user1" ofType:@"jpg"];
-      _user_img_path2 = [[NSBundle mainBundle]pathForResource:@"user2" ofType:@"jpg"];
-      _user_img_path3 = [[NSBundle mainBundle]pathForResource:@"user3" ofType:@"jpg"];
-      _user_img_path4 = [[NSBundle mainBundle]pathForResource:@"user4" ofType:@"jpg"];
-      _user_img_path5 = [[NSBundle mainBundle]pathForResource:@"user5" ofType:@"jpg"];
-      _user_img_path6 = [[NSBundle mainBundle]pathForResource:@"user6" ofType:@"jpg"];
-      _user_img_path7 = [[NSBundle mainBundle]pathForResource:@"user7" ofType:@"jpg"];
-      _user_img_path8 = [[NSBundle mainBundle]pathForResource:@"user8" ofType:@"jpg"];
-      _user_img_path9 = [[NSBundle mainBundle]pathForResource:@"user9" ofType:@"jpg"];
+      _user_img_path01 = [[NSBundle mainBundle]pathForResource:@"user01" ofType:@"jpg"];
+      _user_img_path02 = [[NSBundle mainBundle]pathForResource:@"user02" ofType:@"jpg"];
+      _user_img_path03 = [[NSBundle mainBundle]pathForResource:@"user03" ofType:@"jpg"];
+      _user_img_path04 = [[NSBundle mainBundle]pathForResource:@"user04" ofType:@"jpg"];
+      _user_img_path05 = [[NSBundle mainBundle]pathForResource:@"user05" ofType:@"jpg"];
+      _user_img_path06 = [[NSBundle mainBundle]pathForResource:@"user06" ofType:@"jpg"];
+      _user_img_path07 = [[NSBundle mainBundle]pathForResource:@"user07" ofType:@"jpg"];
+      _user_img_path08 = [[NSBundle mainBundle]pathForResource:@"user08" ofType:@"jpg"];
+      _user_img_path09 = [[NSBundle mainBundle]pathForResource:@"user09" ofType:@"jpg"];
       _user_img_path10 = [[NSBundle mainBundle]pathForResource:@"user10" ofType:@"jpg"];
       
       GMGridView *gmGridView2 = [[GMGridView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 160)];
@@ -108,31 +108,31 @@
     
     NSString *tmp_img_path;
     if (index==0) {
-      tmp_img_path = _user_img_path1;
+      tmp_img_path = _user_img_path01;
     }
     else if (index==1) {
-      tmp_img_path = _user_img_path2;
+      tmp_img_path = _user_img_path02;
     }
     else if (index==2) {
-      tmp_img_path = _user_img_path3;
+      tmp_img_path = _user_img_path03;
     }
     else if (index==3) {
-      tmp_img_path = _user_img_path4;
+      tmp_img_path = _user_img_path04;
     }
     else if (index==4) {
-      tmp_img_path = _user_img_path5;
+      tmp_img_path = _user_img_path05;
     }
     else if (index==5) {
-      tmp_img_path = _user_img_path6;
+      tmp_img_path = _user_img_path06;
     }
     else if (index==6) {
-      tmp_img_path = _user_img_path7;
+      tmp_img_path = _user_img_path07;
     }
     else if (index==7) {
-      tmp_img_path = _user_img_path8;
+      tmp_img_path = _user_img_path08;
     }
     else if (index==8) {
-      tmp_img_path = _user_img_path9;
+      tmp_img_path = _user_img_path09;
     }
     else if (index==9) {
       tmp_img_path = _user_img_path10;
