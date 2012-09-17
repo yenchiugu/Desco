@@ -1,4 +1,6 @@
+*.DS_Store
 
 *.xcbkptlist
-
-PullTest/PullTest.xcodeproj/xcuserdata/samku.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
+PullTest/GMGridView/GMGridView.xcodeproj/xcuserdata/*
+PullTest/PullTest.xcodeproj/project.xcworkspace/xcuserdata/*
+PullTest/PullTest.xcodeproj/xcuserdata/*
