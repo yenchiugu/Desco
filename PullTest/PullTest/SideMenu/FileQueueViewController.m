@@ -28,7 +28,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view = [[UIView alloc] init];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"menu_file_queue_1.png"]];
 }
 
 - (void)viewDidUnload
