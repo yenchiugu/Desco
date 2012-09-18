@@ -16,6 +16,8 @@
     SEL _action;
 }
 
+@property(readonly, nonatomic) char *letter;
+
 - (id) initWithFrame:(CGRect)frame andTarget:(id)target action:(SEL)action;
 
 @end

@@ -15,7 +15,6 @@
 
 @interface SKViewController : UIViewController <PullableViewDelegate, NGTabBarControllerDelegate>
 {
-    UIPopoverController *popover;
 }
 @property (strong) UpperStyledPullableView *upperView;
 @property (strong) StyledPullableView *bottomView;

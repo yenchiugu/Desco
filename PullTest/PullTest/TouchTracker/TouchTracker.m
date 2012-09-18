@@ -8,6 +8,8 @@
 
 @implementation TouchTracker
 
+@synthesize letter;
+
 - (id) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

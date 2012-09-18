@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5006A58B160900E200151551 /* gestureLocationShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 5006A589160900E200151551 /* gestureLocationShare.png */; };
+		5006A58C160900E200151551 /* gestureQRCodeShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 5006A58A160900E200151551 /* gestureQRCodeShare.png */; };
 		508326381607185500140AA9 /* user01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5083262E1607185500140AA9 /* user01.jpg */; };
 		508326391607185500140AA9 /* user02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5083262F1607185500140AA9 /* user02.jpg */; };
 		5083263A1607185500140AA9 /* user03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 508326301607185500140AA9 /* user03.jpg */; };
@@ -83,6 +85,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5006A589160900E200151551 /* gestureLocationShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gestureLocationShare.png; sourceTree = "<group>"; };
+		5006A58A160900E200151551 /* gestureQRCodeShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gestureQRCodeShare.png; sourceTree = "<group>"; };
 		5083262E1607185500140AA9 /* user01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user01.jpg; sourceTree = "<group>"; };
 		5083262F1607185500140AA9 /* user02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user02.jpg; sourceTree = "<group>"; };
 		508326301607185500140AA9 /* user03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user03.jpg; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				5083264216073DC500140AA9 /* menu_file_queue_1.png */,
+				5006A589160900E200151551 /* gestureLocationShare.png */,
+				5006A58A160900E200151551 /* gestureQRCodeShare.png */,
 				5083262E1607185500140AA9 /* user01.jpg */,
 				5083262F1607185500140AA9 /* user02.jpg */,
 				508326301607185500140AA9 /* user03.jpg */,
@@ -471,6 +477,8 @@
 				508326401607185500140AA9 /* user09.jpg in Resources */,
 				508326411607185500140AA9 /* user10.jpg in Resources */,
 				5083264316073DC500140AA9 /* menu_file_queue_1.png in Resources */,
+				5006A58B160900E200151551 /* gestureLocationShare.png in Resources */,
+				5006A58C160900E200151551 /* gestureQRCodeShare.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
