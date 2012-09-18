@@ -140,7 +140,8 @@
     }
     
     UIViewController *controller = [[FileQueueViewController alloc] init];
-    controller.contentSizeForViewInPopover = CGSizeMake(320.0f, 480.0f);
+    //controller.contentSizeForViewInPopover = CGSizeMake(320.0f, 480.0f);
+    controller.contentSizeForViewInPopover = CGSizeMake(240.0f, 480.0f);
     popover = [[UIPopoverController alloc] initWithContentViewController:controller];
     //[popover presentPopoverFromBarButtonItem:self permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
     [popover presentPopoverFromRect:button.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
