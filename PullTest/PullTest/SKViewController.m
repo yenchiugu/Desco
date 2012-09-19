@@ -22,6 +22,7 @@
     UIPopoverController *fileQueuePopover;
     UIView *sharingMenu;
     UIView *friendAddingMenu;
+    UIView *chatBoard;
 }
 
 @end
@@ -41,9 +42,16 @@
     CGFloat my_width  = self.view.bounds.size.width;
     CGFloat my_height = self.view.bounds.size.height;
 
+    // setup background
     //self.view = [[TouchTracker alloc] initWithFrame:self.view.frame];
     self.view = [[TouchTracker alloc] initWithFrame:self.view.frame andTarget:self action:@selector(showGestureMenu:)];
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"desco_bg.png"]];
+    
+    // setup chat board
+    chatBoard = [[UIView alloc] initWithFrame:self.view.bounds];
+    chatBoard.alpha = 0.0f;
+    chatBoard.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"chat_board.png"]];
+    [self.view addSubview:chatBoard];
 
     // Upper Pullable View
     UpperStyledPullableView * upper_pullable_view = [[UpperStyledPullableView alloc]
@@ -135,7 +143,6 @@
     sharingMenu = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 600+30, 300+20)];
     sharingMenu.center = self.view.center;
     //sharingMenu.backgroundColor = [UIColor whiteColor];
-    //sharingMenu.hidden = YES;
     sharingMenu.alpha = 0;
     UIButton *locationShareButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *qrCodeShareButton   = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -154,12 +161,10 @@
 {
     TouchTracker *tracker = (TouchTracker *) sender;
     if (tracker.letter[0] == 'S') {
-        //sharingMenu.hidden = NO;
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:1.0f];
         sharingMenu.alpha = 1;
         [UIView commitAnimations];
-        NSLog(@"showSharingView!!!");
     } else if (tracker.letter[0] == 'O') {
         NSLog(@"showFriendAddingView!!!");
     }
@@ -184,7 +189,11 @@
   
 - (void)showChatBoard:(id)sender
 {
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"chat_board.png"]];
+    CGFloat newAlpha = (chatBoard.alpha > 0.9f) ? 0.0f : 1.0f;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.0f];
+    chatBoard.alpha = newAlpha;
+    [UIView commitAnimations];
 }
 
 - (void)viewDidUnload
