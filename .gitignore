@@ -4,3 +4,5 @@
 PullTest/GMGridView/GMGridView.xcodeproj/xcuserdata/*
 PullTest/PullTest.xcodeproj/project.xcworkspace/xcuserdata/*
 PullTest/PullTest.xcodeproj/xcuserdata/*
+
+*.xcuserstate
