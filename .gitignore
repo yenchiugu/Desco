@@ -12,3 +12,5 @@ PullTest/PullTest.xcodeproj/project.xcworkspace/xcuserdata/samku.xcuserdatad/Use
 PullTest/PullTest.xcodeproj/project.xcworkspace/xcuserdata/samku.xcuserdatad/UserInterfaceState.xcuserstate
 
 *.xcbkptlist
+
+PullTest/PullTest.xcodeproj/xcuserdata/samku.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
