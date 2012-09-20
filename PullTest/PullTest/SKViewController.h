@@ -12,11 +12,13 @@
 #import "UpperStyledPullableView.h"
 #import "NGTabBarController/NGTabBarController.h"
 #import "NGTabBarController/NGTabBarControllerDelegate.h"
+#import "QuestionSendViewController.h"
 
-@interface SKViewController : UIViewController <PullableViewDelegate, NGTabBarControllerDelegate>
+@interface SKViewController : UIViewController <PullableViewDelegate, NGTabBarControllerDelegate,QuestionSendDelegate>
 {
 }
 @property (strong) UpperStyledPullableView *upperView;
 @property (strong) StyledPullableView *bottomView;
 @property (strong) NGTabBarController *tabBarController;
+@property (strong) QuestionSendViewController *questionSendViewController;
 @end

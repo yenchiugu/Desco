@@ -9,7 +9,26 @@
 #import "UpperStyledPullableView.h"
 
 #import "GMGridViewLayoutStrategies.h"
+#import "MJPopupViewController/UIViewController+MJPopupViewController.h"
+#import "QuestionSendViewController.h"
+
+#import "SKViewController.h"
 @implementation UpperStyledPullableView
+
+- (UIViewController*)viewController
+{
+  for (UIView* next = [self superview]; next; next = next.superview)
+  {
+    UIResponder* nextResponder = [next nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+    {
+      return (UIViewController*)nextResponder;
+    }
+  }
+  
+  return nil;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -189,7 +208,7 @@
     //NSLog(@"target2:%@",target2);
     //int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
     GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
-    if (_animatedCell) {
+    if (_animatedCell!=cell) {
       [UIView animateWithDuration:0 delay:0
                           options:UIViewAnimationOptionBeginFromCurrentState
                        animations:(void (^)(void)) ^ {
@@ -202,10 +221,10 @@
       _animatedCell=NULL;
     }
     if (cell) {
-      [UIView animateWithDuration:0 delay:0
+      [UIView animateWithDuration:0.1 delay:0
                           options:UIViewAnimationOptionBeginFromCurrentState
                        animations:(void (^)(void)) ^ {
-                         cell.transform=CGAffineTransformMakeScale(1.1, 1.1);}
+                         cell.transform=CGAffineTransformMakeScale(1.2, 1.2);}
                        completion:nil
                        //^(BOOL finished) {
                        //  cell.transform=CGAffineTransformIdentity;
@@ -219,7 +238,35 @@
   
 }
 - (void)droppedEvent:(CGPoint) pt sourceView:(UIView *)srcView {
+  CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
+  NSLog(@"converted: [%f,%f]",converted_p.x,converted_p.y);
+  UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];
+  int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
   
+  NSLog(@"positoin:%d",position);
+  NSLog(@"target:%@",target);
+  
+  if (position!=-1) {
+
+    GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
+
+    
+    
+    SKViewController *mainViewControllor = (SKViewController*)[self viewController];
+    [mainViewControllor presentPopupViewController:mainViewControllor.questionSendViewController animationType:MJPopupViewAnimationSlideBottomTop];
+    
+
+  }
+  
+  if (_animatedCell) {
+    [UIView animateWithDuration:0 delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:(void (^)(void)) ^ {
+                       _animatedCell.transform=CGAffineTransformIdentity;}
+                     completion:nil
+     ];
+    _animatedCell = NULL;
+  }
 }
 
 @end

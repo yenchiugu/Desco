@@ -744,7 +744,7 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
 - (void)sortingMoveDidStopAtPoint:(CGPoint)point
 {
     [_sortMovingItem shake:NO];
-    
+    [self.skDragDelegate droppedEvent:point sourceView:self];
     _sortMovingItem.tag = _sortFuturePosition + kTagOffset;
     
     CGRect frameInScroll = [self.mainSuperView convertRect:_sortMovingItem.frame toView:self];

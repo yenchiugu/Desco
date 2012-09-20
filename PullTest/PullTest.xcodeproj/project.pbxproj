@@ -43,6 +43,11 @@
 		660D965D15FD90FE00721B31 /* Email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 660D965815FD90FE00721B31 /* Email@2x.png */; };
 		660D965E15FD90FE00721B31 /* EmailSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 660D965A15FD90FE00721B31 /* EmailSelected.png */; };
 		660D965F15FD90FE00721B31 /* EmailSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 660D965B15FD90FE00721B31 /* EmailSelected@2x.png */; };
+		667EF9C1160B4901003CA809 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 667EF9BE160B4901003CA809 /* MJPopupBackgroundView.m */; };
+		667EF9C2160B4901003CA809 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 667EF9C0160B4901003CA809 /* UIViewController+MJPopupViewController.m */; };
+		667EF9C6160B4E42003CA809 /* green-ok-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 667EF9C4160B4E42003CA809 /* green-ok-icon.png */; };
+		667EF9C7160B4E42003CA809 /* red-cross-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 667EF9C5160B4E42003CA809 /* red-cross-icon.png */; };
+		667EF9CA160B57D9003CA809 /* QuestionSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 667EF9C9160B57D9003CA809 /* QuestionSendViewController.m */; };
 		66A3F9DC160361EA002CF22B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A3F9DB160361EA002CF22B /* QuartzCore.framework */; };
 		66A3F9DE1603633A002CF22B /* Document.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A3F9DD1603633A002CF22B /* Document.png */; };
 		66A434431605C7C1009A97C5 /* chat_board.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A4343E1605C7C1009A97C5 /* chat_board.png */; };
@@ -137,6 +142,14 @@
 		660D965815FD90FE00721B31 /* Email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Email@2x.png"; sourceTree = "<group>"; };
 		660D965A15FD90FE00721B31 /* EmailSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmailSelected.png; sourceTree = "<group>"; };
 		660D965B15FD90FE00721B31 /* EmailSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EmailSelected@2x.png"; sourceTree = "<group>"; };
+		667EF9BD160B4901003CA809 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJPopupBackgroundView.h; path = MJPopupViewController/MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		667EF9BE160B4901003CA809 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJPopupBackgroundView.m; path = MJPopupViewController/MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		667EF9BF160B4901003CA809 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MJPopupViewController.h"; path = "MJPopupViewController/UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		667EF9C0160B4901003CA809 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MJPopupViewController.m"; path = "MJPopupViewController/UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		667EF9C4160B4E42003CA809 /* green-ok-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-ok-icon.png"; sourceTree = "<group>"; };
+		667EF9C5160B4E42003CA809 /* red-cross-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-cross-icon.png"; sourceTree = "<group>"; };
+		667EF9C8160B57D9003CA809 /* QuestionSendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionSendViewController.h; sourceTree = "<group>"; };
+		667EF9C9160B57D9003CA809 /* QuestionSendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionSendViewController.m; sourceTree = "<group>"; };
 		66A3F9DB160361EA002CF22B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		66A3F9DD1603633A002CF22B /* Document.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Document.png; sourceTree = "<group>"; };
 		66A4343E1605C7C1009A97C5 /* chat_board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_board.png; sourceTree = "<group>"; };
@@ -215,6 +228,7 @@
 		6603889C15FC50E7007EE91B /* PullTest */ = {
 			isa = PBXGroup;
 			children = (
+				667EF9C3160B49C2003CA809 /* MJPopup */,
 				66A434601605C81A009A97C5 /* TouchTracker */,
 				66A434571605C7DD009A97C5 /* SideMenu */,
 				66EC99921604C60700572EAE /* SKUserListViewController.h */,
@@ -234,6 +248,8 @@
 				660388AC15FC50E7007EE91B /* SKViewController.m */,
 				66AAC7C11604683500EFAB3E /* SKStuffViewController.h */,
 				66AAC7C21604683500EFAB3E /* SKStuffViewController.m */,
+				667EF9C8160B57D9003CA809 /* QuestionSendViewController.h */,
+				667EF9C9160B57D9003CA809 /* QuestionSendViewController.m */,
 				6603889D15FC50E7007EE91B /* Supporting Files */,
 			);
 			path = PullTest;
@@ -274,6 +290,8 @@
 		660D964B15FC76DE00721B31 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				667EF9C4160B4E42003CA809 /* green-ok-icon.png */,
+				667EF9C5160B4E42003CA809 /* red-cross-icon.png */,
 				5083264216073DC500140AA9 /* menu_file_queue_1.png */,
 				5006A589160900E200151551 /* gestureLocationShare.png */,
 				5006A58A160900E200151551 /* gestureQRCodeShare.png */,
@@ -343,6 +361,17 @@
 				660D965B15FD90FE00721B31 /* EmailSelected@2x.png */,
 			);
 			path = EmailSelected;
+			sourceTree = "<group>";
+		};
+		667EF9C3160B49C2003CA809 /* MJPopup */ = {
+			isa = PBXGroup;
+			children = (
+				667EF9BD160B4901003CA809 /* MJPopupBackgroundView.h */,
+				667EF9BE160B4901003CA809 /* MJPopupBackgroundView.m */,
+				667EF9BF160B4901003CA809 /* UIViewController+MJPopupViewController.h */,
+				667EF9C0160B4901003CA809 /* UIViewController+MJPopupViewController.m */,
+			);
+			name = MJPopup;
 			sourceTree = "<group>";
 		};
 		66A434571605C7DD009A97C5 /* SideMenu */ = {
@@ -479,6 +508,8 @@
 				5083264316073DC500140AA9 /* menu_file_queue_1.png in Resources */,
 				5006A58B160900E200151551 /* gestureLocationShare.png in Resources */,
 				5006A58C160900E200151551 /* gestureQRCodeShare.png in Resources */,
+				667EF9C6160B4E42003CA809 /* green-ok-icon.png in Resources */,
+				667EF9C7160B4E42003CA809 /* red-cross-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +536,9 @@
 				66A4345F1605C7DD009A97C5 /* FileQueueViewController.m in Sources */,
 				66A434651605C81A009A97C5 /* GeometryUtilities.m in Sources */,
 				66A434661605C81A009A97C5 /* TouchTracker.m in Sources */,
+				667EF9C1160B4901003CA809 /* MJPopupBackgroundView.m in Sources */,
+				667EF9C2160B4901003CA809 /* UIViewController+MJPopupViewController.m in Sources */,
+				667EF9CA160B57D9003CA809 /* QuestionSendViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

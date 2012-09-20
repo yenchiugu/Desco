@@ -16,6 +16,8 @@
 #import "TouchTracker/TouchTracker.h"
 #import "SideMenu/FileQueueViewController.h"
 
+#import "MJPopupViewController/UIViewController+MJPopupViewController.h"
+#import "QuestionSendViewController.h"
 @interface SKViewController ()
 {
     FileQueueViewController *fileQueueMenu;
@@ -23,6 +25,7 @@
     UIView *sharingMenu;
     UIView *friendAddingMenu;
     UIView *chatBoard;
+
 }
 
 @end
@@ -33,7 +36,7 @@
 @synthesize upperView;
 @synthesize bottomView;
 @synthesize tabBarController;
-
+@synthesize questionSendViewController;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -155,6 +158,14 @@
     [sharingMenu addSubview:locationShareButton];
     [sharingMenu addSubview:qrCodeShareButton];
     [self.view addSubview:sharingMenu];
+  
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+  questionSendViewController = (QuestionSendViewController*)
+    [storyboard instantiateViewControllerWithIdentifier:@"QuestionSendViewControllor"];
+  //UIViewController *mainViewControllor = [self viewController];
+  
+  questionSendViewController.delegate = self;
+  [questionSendViewController.view setFrame:CGRectMake(0, 0, 256, 128)];
 }
 
 - (void)showGestureMenu:(id)sender
@@ -226,5 +237,14 @@ sizeOfItemForViewController:(UIViewController *)viewController
   }
 }
 
+- (void)ClickSendYesBtn:(UIViewController*) uiview {
+  [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
+  
+}
+
+- (void)ClickSendNoBtn:(UIViewController*) uiview {
+  [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
+  
+}
 
 @end
