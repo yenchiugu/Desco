@@ -12,7 +12,7 @@
 
 @interface ChatBoardView ()
 {
-    NSArray *images;
+    NSArray *image_paths;
     NSInteger currentIndex;
 }
 @end
@@ -25,7 +25,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        images = [NSArray arrayWithObjects:
+        image_paths = [NSArray arrayWithObjects:
                  @"chat board_act3-1.png",
                  @"chat board_act3-2.png",
                  @"chat board_act4-1.png",
@@ -37,7 +37,7 @@
                  nil];
         currentIndex = 0;
         self.alpha = 0.0f;
-        self.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:[images objectAtIndex:currentIndex]]];
+        self.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:[image_paths objectAtIndex:currentIndex]]];
     
         chatInput = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 500, 100)];
         chatInput.center = CGPointMake(self.center.x, self.center.y * 1.3f);
@@ -53,8 +53,8 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    currentIndex = (currentIndex + 1) % [images count];
-    self.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:[images objectAtIndex:currentIndex]]];
+    currentIndex = (currentIndex + 1) % [image_paths count];
+    self.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:[image_paths objectAtIndex:currentIndex]]];
 }
 
 @end

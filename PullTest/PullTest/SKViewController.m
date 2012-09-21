@@ -25,7 +25,7 @@
     FileQueueViewController *fileQueueMenu;
     UIPopoverController *fileQueuePopover;
     UIView *sharingMenu;
-    UIView *friendAddingMenu;
+    UITableView *friendAddingMenu;
     ChatBoardView *chatBoard;
 }
 
@@ -130,16 +130,31 @@
   
     [pullable_view addSubview:tabBarController.view];
     
-    // setup side buttons
+    [self setupSideButtons];
+    [self setupSharingMenu];
+    [self setupFriendAddingMenu];
+  
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    questionSendViewController = (QuestionSendViewController*)
+    [storyboard instantiateViewControllerWithIdentifier:@"QuestionSendViewControllor"];
+    //UIViewController *mainViewControllor = [self viewController];
+  
+    questionSendViewController.delegate = self;
+    [questionSendViewController.view setFrame:CGRectMake(0, 0, 256, 128)];
+}
+
+- (void)setupSideButtons
+{
+    CGSize mySize = self.view.bounds.size;
     CGFloat buttonSize = 40.0f;
     CGFloat spaceSize = buttonSize + 10.0f;
     //UIBarButtonItem *fileQueueButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"side_file_queue.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(popupSideMenu:)];
     UIButton *fileQueueButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     UIButton *MessageButton   = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     UIButton *SettingsButton  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    fileQueueButton.frame = CGRectMake(my_width - spaceSize, my_height / 3.0f , buttonSize, buttonSize);
-    MessageButton.frame   = CGRectMake(my_width - spaceSize, my_height / 3.0f + spaceSize, buttonSize, buttonSize);
-    SettingsButton.frame  = CGRectMake(my_width - spaceSize, my_height / 3.0f + spaceSize * 2, buttonSize, buttonSize);
+    fileQueueButton.frame = CGRectMake(mySize.width - spaceSize, mySize.height / 3.0f , buttonSize, buttonSize);
+    MessageButton.frame   = CGRectMake(mySize.width - spaceSize, mySize.height / 3.0f + spaceSize, buttonSize, buttonSize);
+    SettingsButton.frame  = CGRectMake(mySize.width - spaceSize, mySize.height / 3.0f + spaceSize * 2, buttonSize, buttonSize);
     [fileQueueButton setImage:[UIImage imageNamed:@"side_file_queue.png"] forState:UIControlStateNormal];
     [MessageButton   setImage:[UIImage imageNamed:@"side_message.png"]    forState:UIControlStateNormal];
     [SettingsButton  setImage:[UIImage imageNamed:@"side_settings.png"]   forState:UIControlStateNormal];
@@ -149,8 +164,10 @@
     [self.view addSubview:fileQueueButton];
     [self.view addSubview:MessageButton];
     [self.view addSubview:SettingsButton];
-    
-    // setup sharing menu
+}
+
+- (void)setupSharingMenu
+{
     sharingMenu = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 600+30, 422+20)];
     sharingMenu.center = self.view.center;
     //sharingMenu.backgroundColor = [UIColor whiteColor];
@@ -164,25 +181,20 @@
     locationSearchButton.frame = CGRectMake(247, 320, 126, 102);
     locationShareButton.backgroundColor = [UIColor whiteColor];
     qrCodeShareButton.backgroundColor   = [UIColor whiteColor];
-  locationSearchButton.backgroundColor = [UIColor whiteColor];
+    locationSearchButton.backgroundColor = [UIColor whiteColor];
     [locationShareButton setImage:[UIImage imageNamed:@"gestureLocationShare.png"] forState:UIControlStateNormal];
     [qrCodeShareButton   setImage:[UIImage imageNamed:@"gestureQRCodeShare.png"]   forState:UIControlStateNormal];
-  [locationSearchButton setImage:[UIImage imageNamed:@"SearchLocation-01.png"] forState:UIControlStateNormal];
-  [locationSearchButton   addTarget:self action:@selector(clickLocationSearchBtn:)      forControlEvents:UIControlEventTouchUpInside];
-
-
+    [locationSearchButton setImage:[UIImage imageNamed:@"SearchLocation-01.png"] forState:UIControlStateNormal];
+    [locationSearchButton   addTarget:self action:@selector(clickLocationSearchBtn:)      forControlEvents:UIControlEventTouchUpInside];
+    
     [sharingMenu addSubview:locationShareButton];
     [sharingMenu addSubview:qrCodeShareButton];
-  [sharingMenu addSubview:locationSearchButton];
+    [sharingMenu addSubview:locationSearchButton];
     [self.view addSubview:sharingMenu];
-  
-  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-  questionSendViewController = (QuestionSendViewController*)
-    [storyboard instantiateViewControllerWithIdentifier:@"QuestionSendViewControllor"];
-  //UIViewController *mainViewControllor = [self viewController];
-  
-  questionSendViewController.delegate = self;
-  [questionSendViewController.view setFrame:CGRectMake(0, 0, 256, 128)];
+}
+
+- (void)setupFriendAddingMenu
+{
 }
 
 - (void)showGestureMenu:(id)sender
