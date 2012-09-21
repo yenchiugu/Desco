@@ -20,6 +20,7 @@
 		508326401607185500140AA9 /* user09.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 508326361607185500140AA9 /* user09.jpg */; };
 		508326411607185500140AA9 /* user10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 508326371607185500140AA9 /* user10.jpg */; };
 		5083264316073DC500140AA9 /* menu_file_queue_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5083264216073DC500140AA9 /* menu_file_queue_1.png */; };
+		509C0A18160CEE6B00FDE603 /* ChatBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 509C0A17160CEE6B00FDE603 /* ChatBoardView.m */; };
 		6603889715FC50E7007EE91B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6603889615FC50E7007EE91B /* UIKit.framework */; };
 		6603889915FC50E7007EE91B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6603889815FC50E7007EE91B /* Foundation.framework */; };
 		6603889B15FC50E7007EE91B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6603889A15FC50E7007EE91B /* CoreGraphics.framework */; };
@@ -119,6 +120,8 @@
 		508326361607185500140AA9 /* user09.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user09.jpg; sourceTree = "<group>"; };
 		508326371607185500140AA9 /* user10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user10.jpg; sourceTree = "<group>"; };
 		5083264216073DC500140AA9 /* menu_file_queue_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_file_queue_1.png; sourceTree = "<group>"; };
+		509C0A16160CEE6B00FDE603 /* ChatBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBoardView.h; sourceTree = "<group>"; };
+		509C0A17160CEE6B00FDE603 /* ChatBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBoardView.m; sourceTree = "<group>"; };
 		6603889215FC50E7007EE91B /* Desco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6603889615FC50E7007EE91B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6603889815FC50E7007EE91B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -439,6 +442,8 @@
 			children = (
 				66A434581605C7DD009A97C5 /* FileQueueViewController.h */,
 				66A434591605C7DD009A97C5 /* FileQueueViewController.m */,
+				509C0A16160CEE6B00FDE603 /* ChatBoardView.h */,
+				509C0A17160CEE6B00FDE603 /* ChatBoardView.m */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
@@ -636,6 +641,7 @@
 				66B6ECCB160CBC4500B81D55 /* QrCodeShareViewController.m in Sources */,
 				66B6ECD0160CC2B800B81D55 /* LocationSearchViewController.m in Sources */,
 				66B6ECD3160CC76800B81D55 /* LocationSearchFilePin.m in Sources */,
+				509C0A18160CEE6B00FDE603 /* ChatBoardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

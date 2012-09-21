@@ -9,12 +9,14 @@
 @implementation TouchTracker
 
 @synthesize letter;
+@synthesize enabled;
 
 - (id) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.multipleTouchEnabled = NO;
+        self.enabled = YES;
     }
     return self;
 }
@@ -26,12 +28,16 @@
         self.multipleTouchEnabled = NO;
         _target = target;
         _action = action;
+        self.enabled = YES;
     }
     return self;
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (!self.enabled) {
+        return;
+    }
     path = [UIBezierPath bezierPath];
     path.lineWidth = TRACE_WIDTH;
     
@@ -47,6 +53,9 @@
 
 - (void) touchesMoved:(NSSet *) touches withEvent:(UIEvent *) event
 {
+    if (!self.enabled) {
+        return;
+    }
     UITouch *touch = [touches anyObject];
     [path addLineToPoint:[touch locationInView:self]];
     NSArray *points = pointsFromBezierPath(path);
@@ -60,6 +69,9 @@
 
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (!self.enabled) {
+        return;
+    }
     UITouch *touch = [touches anyObject];
     [path addLineToPoint:[touch locationInView:self]];
     NSArray *points = pointsFromBezierPath(path);

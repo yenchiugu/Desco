@@ -15,17 +15,19 @@
 
 #import "TouchTracker/TouchTracker.h"
 #import "SideMenu/FileQueueViewController.h"
+#import "SideMenu/ChatBoardView.h"
 
 #import "MJPopupViewController/UIViewController+MJPopupViewController.h"
 #import "QuestionSendViewController.h"
 @interface SKViewController ()
 {
+    TouchTracker *touchTracker;
     FileQueueViewController *fileQueueMenu;
     UIPopoverController *fileQueuePopover;
     UIView *sharingMenu;
     UIView *friendAddingMenu;
-    UIView *chatBoard;
-
+    ChatBoardView *chatBoard;
+    UITextView *chatTextInput;
 }
 
 @end
@@ -55,13 +57,17 @@
 
     // setup background
     //self.view = [[TouchTracker alloc] initWithFrame:self.view.frame];
-    self.view = [[TouchTracker alloc] initWithFrame:self.view.frame andTarget:self action:@selector(showGestureMenu:)];
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"desco_bg.png"]];
+    touchTracker = [[TouchTracker alloc] initWithFrame:self.view.frame andTarget:self action:@selector(showGestureMenu:)];
+    touchTracker.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"desco_bg.png"]];
+    self.view = touchTracker;
     
     // setup chat board
-    chatBoard = [[UIView alloc] initWithFrame:self.view.bounds];
+    chatBoard = [[ChatBoardView alloc] initWithFrame:self.view.bounds];
     chatBoard.alpha = 0.0f;
     chatBoard.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"chat_board.png"]];
+    chatTextInput = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 500, 100)];
+    chatTextInput.center = CGPointMake(my_width / 2, my_height * 3 / 2);
+    [chatBoard addSubview:chatTextInput];
     [self.view addSubview:chatBoard];
 
     // Upper Pullable View
@@ -161,7 +167,7 @@
     locationShareButton.frame = CGRectMake(10, 10, 300, 300);
     qrCodeShareButton.frame   = CGRectMake(320, 10, 300, 300);
     // 126x102
-    locationSearchButton.frame = CGRectMake(247, 320, 126,102);
+    locationSearchButton.frame = CGRectMake(247, 320, 126, 102);
     locationShareButton.backgroundColor = [UIColor whiteColor];
     qrCodeShareButton.backgroundColor   = [UIColor whiteColor];
   locationSearchButton.backgroundColor = [UIColor whiteColor];
@@ -217,9 +223,11 @@
   
 - (void)showChatBoard:(id)sender
 {
-    CGFloat newAlpha = (chatBoard.alpha > 0.9f) ? 0.0f : 1.0f;
+    bool is_showing = chatBoard.alpha < 0.5f;
+    touchTracker.enabled = !is_showing;
+    CGFloat newAlpha = is_showing ? 1.0f : 0.0f;
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.0f];
+    [UIView setAnimationDuration:0.5f];
     chatBoard.alpha = newAlpha;
     [UIView commitAnimations];
 }
