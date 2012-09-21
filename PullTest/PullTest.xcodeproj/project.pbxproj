@@ -74,6 +74,8 @@
 		66B6ECCD160CC11300B81D55 /* SearchLocation-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B6ECCC160CC11300B81D55 /* SearchLocation-01.png */; };
 		66B6ECD0160CC2B800B81D55 /* LocationSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECCF160CC2B800B81D55 /* LocationSearchViewController.m */; };
 		66B6ECD3160CC76800B81D55 /* LocationSearchFilePin.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECD2160CC76800B81D55 /* LocationSearchFilePin.m */; };
+		66B6ECD5160CD37600B81D55 /* app icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B6ECD4160CD37600B81D55 /* app icon.png */; };
+		66B6ECD7160CD39300B81D55 /* app icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B6ECD6160CD39300B81D55 /* app icon.png */; };
 		66EC997416047DF400572EAE /* mybarbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EC997316047DF400572EAE /* mybarbar.png */; };
 		66EC997A16047F1E00572EAE /* mybarbarbk.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EC997916047F1E00572EAE /* mybarbarbk.png */; };
 		66EC997C1604806200572EAE /* Desco2.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EC997B1604806200572EAE /* Desco2.png */; };
@@ -117,7 +119,7 @@
 		508326361607185500140AA9 /* user09.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user09.jpg; sourceTree = "<group>"; };
 		508326371607185500140AA9 /* user10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user10.jpg; sourceTree = "<group>"; };
 		5083264216073DC500140AA9 /* menu_file_queue_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_file_queue_1.png; sourceTree = "<group>"; };
-		6603889215FC50E7007EE91B /* PullTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PullTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6603889215FC50E7007EE91B /* Desco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6603889615FC50E7007EE91B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6603889815FC50E7007EE91B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6603889A15FC50E7007EE91B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -206,6 +208,8 @@
 		66B6ECCF160CC2B800B81D55 /* LocationSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchViewController.m; sourceTree = "<group>"; };
 		66B6ECD1160CC76800B81D55 /* LocationSearchFilePin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchFilePin.h; sourceTree = "<group>"; };
 		66B6ECD2160CC76800B81D55 /* LocationSearchFilePin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchFilePin.m; sourceTree = "<group>"; };
+		66B6ECD4160CD37600B81D55 /* app icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app icon.png"; sourceTree = "<group>"; };
+		66B6ECD6160CD39300B81D55 /* app icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app icon.png"; sourceTree = "<group>"; };
 		66EC997316047DF400572EAE /* mybarbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mybarbar.png; sourceTree = "<group>"; };
 		66EC997916047F1E00572EAE /* mybarbarbk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mybarbarbk.png; sourceTree = "<group>"; };
 		66EC997B1604806200572EAE /* Desco2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Desco2.png; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 		6603888715FC50E7007EE91B = {
 			isa = PBXGroup;
 			children = (
+				66B6ECD6160CD39300B81D55 /* app icon.png */,
 				66B6ECC6160CB87500B81D55 /* QRCodeGenerator.h */,
 				66B6ECC7160CB87500B81D55 /* QRCodeGenerator.m */,
 				66B6ECB0160CB86B00B81D55 /* libqrencode */,
@@ -253,7 +258,7 @@
 		6603889315FC50E7007EE91B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6603889215FC50E7007EE91B /* PullTest.app */,
+				6603889215FC50E7007EE91B /* Desco.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 		660D964B15FC76DE00721B31 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				66B6ECD4160CD37600B81D55 /* app icon.png */,
 				66B6ECCC160CC11300B81D55 /* SearchLocation-01.png */,
 				667EF9C4160B4E42003CA809 /* green-ok-icon.png */,
 				667EF9C5160B4E42003CA809 /* red-cross-icon.png */,
@@ -496,7 +502,7 @@
 			);
 			name = PullTest;
 			productName = PullTest;
-			productReference = 6603889215FC50E7007EE91B /* PullTest.app */;
+			productReference = 6603889215FC50E7007EE91B /* Desco.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -587,6 +593,8 @@
 				667EF9C6160B4E42003CA809 /* green-ok-icon.png in Resources */,
 				667EF9C7160B4E42003CA809 /* red-cross-icon.png in Resources */,
 				66B6ECCD160CC11300B81D55 /* SearchLocation-01.png in Resources */,
+				66B6ECD5160CD37600B81D55 /* app icon.png in Resources */,
+				66B6ECD7160CD39300B81D55 /* app icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,7 +729,7 @@
 				HEADER_SEARCH_PATHS = "GMGridView/**";
 				INFOPLIST_FILE = "PullTest/PullTest-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Desco;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -736,7 +744,7 @@
 				HEADER_SEARCH_PATHS = "GMGridView/**";
 				INFOPLIST_FILE = "PullTest/PullTest-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Desco;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
