@@ -4,3 +4,13 @@
 PullTest/GMGridView/GMGridView.xcodeproj/xcuserdata/*
 PullTest/PullTest.xcodeproj/project.xcworkspace/xcuserdata/*
 PullTest/PullTest.xcodeproj/xcuserdata/*
+
+*.xcuserstate
+
+PullTest/PullTest.xcodeproj/project.xcworkspace/xcuserdata/samku.xcuserdatad/UserInterfaceState.xcuserstate
+
+PullTest/PullTest.xcodeproj/project.xcworkspace/xcuserdata/samku.xcuserdatad/UserInterfaceState.xcuserstate
+
+*.xcbkptlist
+
+PullTest/PullTest.xcodeproj/xcuserdata/samku.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
