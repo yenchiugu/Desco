@@ -63,8 +63,6 @@
     
     // setup chat board
     chatBoard = [[ChatBoardView alloc] initWithFrame:self.view.bounds];
-    chatBoard.alpha = 0.0f;
-    chatBoard.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"chat_board.png"]];
     chatTextInput = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 500, 100)];
     chatTextInput.center = CGPointMake(my_width / 2, my_height * 3 / 2);
     [chatBoard addSubview:chatTextInput];

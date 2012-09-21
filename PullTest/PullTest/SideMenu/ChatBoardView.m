@@ -8,24 +8,40 @@
 
 #import "ChatBoardView.h"
 
+@interface ChatBoardView ()
+{
+    NSArray *images;
+    NSInteger currentIndex;
+}
+@end
+
 @implementation ChatBoardView
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"chat_board.png"]];
+        images = [NSArray arrayWithObjects:
+                 @"chat board_act3-1.png",
+                 @"chat board_act3-2.png",
+                 @"chat board_act4-1.png",
+                 @"chat board_act4-2.png",
+                 @"chat board_act4-3.png",
+                 @"chat board_act5-1.png",
+                 @"chat board_act5-2.png",
+                 @"chat board_act5-3.png",
+                 nil];
+        currentIndex = 0;
+        self.alpha = 0.0f;
+        self.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:[images objectAtIndex:currentIndex]]];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    // Drawing code
+    currentIndex = (currentIndex + 1) % [images count];
+    self.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:[images objectAtIndex:currentIndex]]];
 }
-*/
 
 @end
