@@ -6,6 +6,8 @@
 //  Copyright (c) 2012年 Sam Ku. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "ChatBoardView.h"
 
 @interface ChatBoardView ()
@@ -16,6 +18,8 @@
 @end
 
 @implementation ChatBoardView
+
+@synthesize chatInput = _chatInput;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -34,6 +38,15 @@
         currentIndex = 0;
         self.alpha = 0.0f;
         self.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:[images objectAtIndex:currentIndex]]];
+    
+        chatInput = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 500, 100)];
+        chatInput.center = CGPointMake(self.center.x, self.center.y * 1.3f);
+        chatInput.alpha = 0.7f;
+        [[chatInput layer] setCornerRadius:20];
+        [[chatInput layer] setBorderWidth:4.0f];
+        [[chatInput layer] setBorderColor:[[UIColor colorWithRed:0.2f green:0.3f blue:0.8f alpha:1] CGColor]];
+        [chatInput setFont:[UIFont boldSystemFontOfSize:26.0f]];
+        [self addSubview:chatInput];
     }
     return self;
 }

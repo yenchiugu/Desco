@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ChatBoardView : UIView
-
+{
+    UITextView *chatInput;
+}
+@property (strong, nonatomic) UITextView *chatInput;
 @end
