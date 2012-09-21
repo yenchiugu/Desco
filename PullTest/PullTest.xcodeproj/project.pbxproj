@@ -60,6 +60,20 @@
 		66A434661605C81A009A97C5 /* TouchTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A434641605C81A009A97C5 /* TouchTracker.m */; };
 		66AAC7C31604683500EFAB3E /* SKStuffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AAC7C21604683500EFAB3E /* SKStuffViewController.m */; };
 		66AAC7C61604698700EFAB3E /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AAC7C01604648400EFAB3E /* libGMGridView.a */; };
+		66B6ECA8160C991800B81D55 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B6ECA7160C991800B81D55 /* MapKit.framework */; };
+		66B6ECAB160C9F6B00B81D55 /* LocationShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECAA160C9F6B00B81D55 /* LocationShareViewController.m */; };
+		66B6ECBF160CB86B00B81D55 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECB1160CB86B00B81D55 /* bitstream.c */; };
+		66B6ECC0160CB86B00B81D55 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECB3160CB86B00B81D55 /* mask.c */; };
+		66B6ECC1160CB86B00B81D55 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECB5160CB86B00B81D55 /* qrencode.c */; };
+		66B6ECC2160CB86B00B81D55 /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECB7160CB86B00B81D55 /* qrinput.c */; };
+		66B6ECC3160CB86B00B81D55 /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECB9160CB86B00B81D55 /* qrspec.c */; };
+		66B6ECC4160CB86B00B81D55 /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECBB160CB86B00B81D55 /* rscode.c */; };
+		66B6ECC5160CB86B00B81D55 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECBD160CB86B00B81D55 /* split.c */; };
+		66B6ECC8160CB87500B81D55 /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECC7160CB87500B81D55 /* QRCodeGenerator.m */; };
+		66B6ECCB160CBC4500B81D55 /* QrCodeShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECCA160CBC4500B81D55 /* QrCodeShareViewController.m */; };
+		66B6ECCD160CC11300B81D55 /* SearchLocation-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B6ECCC160CC11300B81D55 /* SearchLocation-01.png */; };
+		66B6ECD0160CC2B800B81D55 /* LocationSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECCF160CC2B800B81D55 /* LocationSearchViewController.m */; };
+		66B6ECD3160CC76800B81D55 /* LocationSearchFilePin.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECD2160CC76800B81D55 /* LocationSearchFilePin.m */; };
 		66EC997416047DF400572EAE /* mybarbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EC997316047DF400572EAE /* mybarbar.png */; };
 		66EC997A16047F1E00572EAE /* mybarbarbk.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EC997916047F1E00572EAE /* mybarbarbk.png */; };
 		66EC997C1604806200572EAE /* Desco2.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EC997B1604806200572EAE /* Desco2.png */; };
@@ -166,6 +180,32 @@
 		66AAC7B81604648400EFAB3E /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
 		66AAC7C11604683500EFAB3E /* SKStuffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKStuffViewController.h; sourceTree = "<group>"; };
 		66AAC7C21604683500EFAB3E /* SKStuffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKStuffViewController.m; sourceTree = "<group>"; };
+		66B6ECA7160C991800B81D55 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		66B6ECA9160C9F6B00B81D55 /* LocationShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationShareViewController.h; sourceTree = "<group>"; };
+		66B6ECAA160C9F6B00B81D55 /* LocationShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationShareViewController.m; sourceTree = "<group>"; };
+		66B6ECB1160CB86B00B81D55 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
+		66B6ECB2160CB86B00B81D55 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
+		66B6ECB3160CB86B00B81D55 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
+		66B6ECB4160CB86B00B81D55 /* mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
+		66B6ECB5160CB86B00B81D55 /* qrencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrencode.c; sourceTree = "<group>"; };
+		66B6ECB6160CB86B00B81D55 /* qrencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode.h; sourceTree = "<group>"; };
+		66B6ECB7160CB86B00B81D55 /* qrinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrinput.c; sourceTree = "<group>"; };
+		66B6ECB8160CB86B00B81D55 /* qrinput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
+		66B6ECB9160CB86B00B81D55 /* qrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrspec.c; sourceTree = "<group>"; };
+		66B6ECBA160CB86B00B81D55 /* qrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrspec.h; sourceTree = "<group>"; };
+		66B6ECBB160CB86B00B81D55 /* rscode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rscode.c; sourceTree = "<group>"; };
+		66B6ECBC160CB86B00B81D55 /* rscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rscode.h; sourceTree = "<group>"; };
+		66B6ECBD160CB86B00B81D55 /* split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = split.c; sourceTree = "<group>"; };
+		66B6ECBE160CB86B00B81D55 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
+		66B6ECC6160CB87500B81D55 /* QRCodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QRCodeGenerator.h; path = PullTest/QRCodeGenerator.h; sourceTree = "<group>"; };
+		66B6ECC7160CB87500B81D55 /* QRCodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QRCodeGenerator.m; path = PullTest/QRCodeGenerator.m; sourceTree = "<group>"; };
+		66B6ECC9160CBC4500B81D55 /* QrCodeShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QrCodeShareViewController.h; sourceTree = "<group>"; };
+		66B6ECCA160CBC4500B81D55 /* QrCodeShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QrCodeShareViewController.m; sourceTree = "<group>"; };
+		66B6ECCC160CC11300B81D55 /* SearchLocation-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchLocation-01.png"; sourceTree = "<group>"; };
+		66B6ECCE160CC2B800B81D55 /* LocationSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchViewController.h; sourceTree = "<group>"; };
+		66B6ECCF160CC2B800B81D55 /* LocationSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchViewController.m; sourceTree = "<group>"; };
+		66B6ECD1160CC76800B81D55 /* LocationSearchFilePin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchFilePin.h; sourceTree = "<group>"; };
+		66B6ECD2160CC76800B81D55 /* LocationSearchFilePin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchFilePin.m; sourceTree = "<group>"; };
 		66EC997316047DF400572EAE /* mybarbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mybarbar.png; sourceTree = "<group>"; };
 		66EC997916047F1E00572EAE /* mybarbarbk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mybarbarbk.png; sourceTree = "<group>"; };
 		66EC997B1604806200572EAE /* Desco2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Desco2.png; sourceTree = "<group>"; };
@@ -185,6 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66B6ECA8160C991800B81D55 /* MapKit.framework in Frameworks */,
 				66AAC7C61604698700EFAB3E /* libGMGridView.a in Frameworks */,
 				66A3F9DC160361EA002CF22B /* QuartzCore.framework in Frameworks */,
 				6603889715FC50E7007EE91B /* UIKit.framework in Frameworks */,
@@ -199,6 +240,10 @@
 		6603888715FC50E7007EE91B = {
 			isa = PBXGroup;
 			children = (
+				66B6ECC6160CB87500B81D55 /* QRCodeGenerator.h */,
+				66B6ECC7160CB87500B81D55 /* QRCodeGenerator.m */,
+				66B6ECB0160CB86B00B81D55 /* libqrencode */,
+				66B6ECA7160C991800B81D55 /* MapKit.framework */,
 				6603889C15FC50E7007EE91B /* PullTest */,
 				6603889515FC50E7007EE91B /* Frameworks */,
 				6603889315FC50E7007EE91B /* Products */,
@@ -244,12 +289,20 @@
 				660388A515FC50E7007EE91B /* SKAppDelegate.h */,
 				660388A615FC50E7007EE91B /* SKAppDelegate.m */,
 				660388A815FC50E7007EE91B /* MainStoryboard.storyboard */,
+				66B6ECCE160CC2B800B81D55 /* LocationSearchViewController.h */,
+				66B6ECCF160CC2B800B81D55 /* LocationSearchViewController.m */,
+				66B6ECD1160CC76800B81D55 /* LocationSearchFilePin.h */,
+				66B6ECD2160CC76800B81D55 /* LocationSearchFilePin.m */,
 				660388AB15FC50E7007EE91B /* SKViewController.h */,
 				660388AC15FC50E7007EE91B /* SKViewController.m */,
 				66AAC7C11604683500EFAB3E /* SKStuffViewController.h */,
 				66AAC7C21604683500EFAB3E /* SKStuffViewController.m */,
 				667EF9C8160B57D9003CA809 /* QuestionSendViewController.h */,
 				667EF9C9160B57D9003CA809 /* QuestionSendViewController.m */,
+				66B6ECA9160C9F6B00B81D55 /* LocationShareViewController.h */,
+				66B6ECAA160C9F6B00B81D55 /* LocationShareViewController.m */,
+				66B6ECC9160CBC4500B81D55 /* QrCodeShareViewController.h */,
+				66B6ECCA160CBC4500B81D55 /* QrCodeShareViewController.m */,
 				6603889D15FC50E7007EE91B /* Supporting Files */,
 			);
 			path = PullTest;
@@ -290,6 +343,7 @@
 		660D964B15FC76DE00721B31 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				66B6ECCC160CC11300B81D55 /* SearchLocation-01.png */,
 				667EF9C4160B4E42003CA809 /* green-ok-icon.png */,
 				667EF9C5160B4E42003CA809 /* red-cross-icon.png */,
 				5083264216073DC500140AA9 /* menu_file_queue_1.png */,
@@ -402,6 +456,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		66B6ECB0160CB86B00B81D55 /* libqrencode */ = {
+			isa = PBXGroup;
+			children = (
+				66B6ECB1160CB86B00B81D55 /* bitstream.c */,
+				66B6ECB2160CB86B00B81D55 /* bitstream.h */,
+				66B6ECB3160CB86B00B81D55 /* mask.c */,
+				66B6ECB4160CB86B00B81D55 /* mask.h */,
+				66B6ECB5160CB86B00B81D55 /* qrencode.c */,
+				66B6ECB6160CB86B00B81D55 /* qrencode.h */,
+				66B6ECB7160CB86B00B81D55 /* qrinput.c */,
+				66B6ECB8160CB86B00B81D55 /* qrinput.h */,
+				66B6ECB9160CB86B00B81D55 /* qrspec.c */,
+				66B6ECBA160CB86B00B81D55 /* qrspec.h */,
+				66B6ECBB160CB86B00B81D55 /* rscode.c */,
+				66B6ECBC160CB86B00B81D55 /* rscode.h */,
+				66B6ECBD160CB86B00B81D55 /* split.c */,
+				66B6ECBE160CB86B00B81D55 /* split.h */,
+			);
+			name = libqrencode;
+			path = PullTest/libqrencode;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -510,6 +586,7 @@
 				5006A58C160900E200151551 /* gestureQRCodeShare.png in Resources */,
 				667EF9C6160B4E42003CA809 /* green-ok-icon.png in Resources */,
 				667EF9C7160B4E42003CA809 /* red-cross-icon.png in Resources */,
+				66B6ECCD160CC11300B81D55 /* SearchLocation-01.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +616,18 @@
 				667EF9C1160B4901003CA809 /* MJPopupBackgroundView.m in Sources */,
 				667EF9C2160B4901003CA809 /* UIViewController+MJPopupViewController.m in Sources */,
 				667EF9CA160B57D9003CA809 /* QuestionSendViewController.m in Sources */,
+				66B6ECAB160C9F6B00B81D55 /* LocationShareViewController.m in Sources */,
+				66B6ECBF160CB86B00B81D55 /* bitstream.c in Sources */,
+				66B6ECC0160CB86B00B81D55 /* mask.c in Sources */,
+				66B6ECC1160CB86B00B81D55 /* qrencode.c in Sources */,
+				66B6ECC2160CB86B00B81D55 /* qrinput.c in Sources */,
+				66B6ECC3160CB86B00B81D55 /* qrspec.c in Sources */,
+				66B6ECC4160CB86B00B81D55 /* rscode.c in Sources */,
+				66B6ECC5160CB86B00B81D55 /* split.c in Sources */,
+				66B6ECC8160CB87500B81D55 /* QRCodeGenerator.m in Sources */,
+				66B6ECCB160CBC4500B81D55 /* QrCodeShareViewController.m in Sources */,
+				66B6ECD0160CC2B800B81D55 /* LocationSearchViewController.m in Sources */,
+				66B6ECD3160CC76800B81D55 /* LocationSearchFilePin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

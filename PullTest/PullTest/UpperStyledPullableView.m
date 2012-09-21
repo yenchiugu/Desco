@@ -195,11 +195,11 @@
 - (void)draggingEvent:(CGPoint) pt sourceView:(UIView *)srcView {
   CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
   NSLog(@"converted: [%f,%f]",converted_p.x,converted_p.y);
-  UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];
+  //UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];
   int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
   
   NSLog(@"positoin:%d",position);
-  NSLog(@"target:%@",target);
+  //NSLog(@"target:%@",target);
 
   if (position!=-1) {
     //CGPoint converted_p2 =[self convertPoint:converted_p toView:target];
@@ -238,6 +238,45 @@
   
 }
 - (void)droppedEvent:(CGPoint) pt sourceView:(UIView *)srcView {
+  
+  SKViewController *mainViewControllor = (SKViewController*)[self viewController];
+  CGPoint localtion_pt = [srcView convertPoint:pt toView:mainViewControllor.locationShareButton];
+  BOOL dropped_to_location = [mainViewControllor.locationShareButton pointInside:localtion_pt withEvent:nil];
+  NSLog(@"pointInside [location]:%d",dropped_to_location);
+  
+  if (dropped_to_location) {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    [mainViewControllor setLocationViewController: (LocationShareViewController*)
+     [storyboard instantiateViewControllerWithIdentifier:@"LocationShareViewController"]];
+    [mainViewControllor.locationViewController.view setFrame:CGRectMake(0, 0, 500, 570)];
+    //[mainViewControllor.locationViewController showCurrentLocation];
+    [mainViewControllor.locationViewController setMainView:mainViewControllor];
+    [mainViewControllor.locationViewController setDelegate:mainViewControllor];
+    [mainViewControllor presentPopupViewController:mainViewControllor.locationViewController animationType:MJPopupViewAnimationSlideBottomTop];
+    
+
+    return;
+  }
+  
+  CGPoint qrcode_pt = [srcView convertPoint:pt toView:mainViewControllor.qrCodeShareButton];
+  BOOL dropped_to_qrcode = [mainViewControllor.qrCodeShareButton pointInside:qrcode_pt withEvent:nil];
+  NSLog(@"pointInside [location]:%d",dropped_to_qrcode);
+  
+  if (dropped_to_qrcode) {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    [mainViewControllor setQrCodeViewController: (QrCodeShareViewController*)
+     [storyboard instantiateViewControllerWithIdentifier:@"QrCodeShareViewController"]];
+    [mainViewControllor.qrCodeViewController.view setFrame:CGRectMake(0, 0, 500, 570)];
+
+    //[mainViewControllor.qrCodeViewController setMainView:mainViewControllor];
+    [mainViewControllor.qrCodeViewController setDelegate:mainViewControllor];
+    [mainViewControllor presentPopupViewController:mainViewControllor.qrCodeViewController animationType:MJPopupViewAnimationSlideBottomTop];
+    
+    
+    return;
+  }
+  
+  
   CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
   NSLog(@"converted: [%f,%f]",converted_p.x,converted_p.y);
   UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];

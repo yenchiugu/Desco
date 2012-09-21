@@ -37,6 +37,14 @@
 @synthesize bottomView;
 @synthesize tabBarController;
 @synthesize questionSendViewController;
+@synthesize locationShareButton;
+@synthesize qrCodeShareButton;
+@synthesize locationViewController;
+@synthesize qrCodeViewController;
+@synthesize locationSearchViewController;
+//@synthesize mapView;
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -143,20 +151,29 @@
     [self.view addSubview:SettingsButton];
     
     // setup sharing menu
-    sharingMenu = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 600+30, 300+20)];
+    sharingMenu = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 600+30, 422+20)];
     sharingMenu.center = self.view.center;
     //sharingMenu.backgroundColor = [UIColor whiteColor];
     sharingMenu.alpha = 0;
-    UIButton *locationShareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIButton *qrCodeShareButton   = [UIButton buttonWithType:UIButtonTypeCustom];
+    locationShareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    qrCodeShareButton   = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *locationSearchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     locationShareButton.frame = CGRectMake(10, 10, 300, 300);
     qrCodeShareButton.frame   = CGRectMake(320, 10, 300, 300);
+    // 126x102
+    locationSearchButton.frame = CGRectMake(247, 320, 126,102);
     locationShareButton.backgroundColor = [UIColor whiteColor];
     qrCodeShareButton.backgroundColor   = [UIColor whiteColor];
+  locationSearchButton.backgroundColor = [UIColor whiteColor];
     [locationShareButton setImage:[UIImage imageNamed:@"gestureLocationShare.png"] forState:UIControlStateNormal];
     [qrCodeShareButton   setImage:[UIImage imageNamed:@"gestureQRCodeShare.png"]   forState:UIControlStateNormal];
+  [locationSearchButton setImage:[UIImage imageNamed:@"SearchLocation-01.png"] forState:UIControlStateNormal];
+  [locationSearchButton   addTarget:self action:@selector(clickLocationSearchBtn:)      forControlEvents:UIControlEventTouchUpInside];
+
+
     [sharingMenu addSubview:locationShareButton];
     [sharingMenu addSubview:qrCodeShareButton];
+  [sharingMenu addSubview:locationSearchButton];
     [self.view addSubview:sharingMenu];
   
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
@@ -207,6 +224,20 @@
     [UIView commitAnimations];
 }
 
+- (void)clickLocationSearchBtn:(id)sender
+{
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+  [self setLocationSearchViewController:(LocationSearchViewController *) 
+   [storyboard instantiateViewControllerWithIdentifier:@"LocationSearchViewController"]];
+  
+  [self.locationSearchViewController.view setFrame:CGRectMake(0, 0, 500, 570)];
+  
+  //[mainViewControllor.qrCodeViewController setMainView:mainViewControllor];
+  [self.locationSearchViewController setDelegate:self];
+  [self presentPopupViewController:self.locationSearchViewController animationType:MJPopupViewAnimationSlideBottomTop];
+}
+
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -247,4 +278,39 @@ sizeOfItemForViewController:(UIViewController *)viewController
   
 }
 
+- (void)ClickShareNowBtn:(UIViewController*) uiview {
+  
+  [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:0.1f];
+  sharingMenu.alpha = 0;
+  [UIView commitAnimations];
+  [self setLocationViewController:nil];
+}
+
+- (void)ClickCancelBtn:(UIViewController*) uiview {
+  [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:0.1f];
+  sharingMenu.alpha = 0;
+  [UIView commitAnimations];
+  [self setLocationViewController:nil];
+}
+
+- (void)ClickDesktopDescoBtn:(UIViewController*) uiview {
+  [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:0.1f];
+  sharingMenu.alpha = 0;
+  [UIView commitAnimations];
+}
+
+- (void)ClickSaveBtn:(UIViewController*) uiview {
+  [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:0.1f];
+  sharingMenu.alpha = 0;
+  [UIView commitAnimations];
+  [self setLocationSearchViewController:nil];
+}
 @end
