@@ -85,6 +85,9 @@
 		66B6ECD3160CC76800B81D55 /* LocationSearchFilePin.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6ECD2160CC76800B81D55 /* LocationSearchFilePin.m */; };
 		66B6ECD5160CD37600B81D55 /* app icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B6ECD4160CD37600B81D55 /* app icon.png */; };
 		66B6ECD7160CD39300B81D55 /* app icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B6ECD6160CD39300B81D55 /* app icon.png */; };
+		66B6ECDB160D731E00B81D55 /* Jpg.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B6ECD8160D731E00B81D55 /* Jpg.png */; };
+		66B6ECDC160D731E00B81D55 /* Reader.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B6ECD9160D731E00B81D55 /* Reader.png */; };
+		66B6ECDD160D731E00B81D55 /* Word.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B6ECDA160D731E00B81D55 /* Word.png */; };
 		66EC997416047DF400572EAE /* mybarbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EC997316047DF400572EAE /* mybarbar.png */; };
 		66EC997A16047F1E00572EAE /* mybarbarbk.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EC997916047F1E00572EAE /* mybarbarbk.png */; };
 		66EC997C1604806200572EAE /* Desco2.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EC997B1604806200572EAE /* Desco2.png */; };
@@ -230,6 +233,9 @@
 		66B6ECD2160CC76800B81D55 /* LocationSearchFilePin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchFilePin.m; sourceTree = "<group>"; };
 		66B6ECD4160CD37600B81D55 /* app icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app icon.png"; sourceTree = "<group>"; };
 		66B6ECD6160CD39300B81D55 /* app icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app icon.png"; sourceTree = "<group>"; };
+		66B6ECD8160D731E00B81D55 /* Jpg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jpg.png; sourceTree = "<group>"; };
+		66B6ECD9160D731E00B81D55 /* Reader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Reader.png; sourceTree = "<group>"; };
+		66B6ECDA160D731E00B81D55 /* Word.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Word.png; sourceTree = "<group>"; };
 		66EC997316047DF400572EAE /* mybarbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mybarbar.png; sourceTree = "<group>"; };
 		66EC997916047F1E00572EAE /* mybarbarbk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mybarbarbk.png; sourceTree = "<group>"; };
 		66EC997B1604806200572EAE /* Desco2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Desco2.png; sourceTree = "<group>"; };
@@ -393,7 +399,13 @@
 		660D964B15FC76DE00721B31 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				50B54AF5160CFA2F00281350 /* chat */,
+=======
+				66B6ECD8160D731E00B81D55 /* Jpg.png */,
+				66B6ECD9160D731E00B81D55 /* Reader.png */,
+				66B6ECDA160D731E00B81D55 /* Word.png */,
+>>>>>>> start to modify file list
 				66B6ECD4160CD37600B81D55 /* app icon.png */,
 				66B6ECCC160CC11300B81D55 /* SearchLocation-01.png */,
 				667EF9C4160B4E42003CA809 /* green-ok-icon.png */,
@@ -643,6 +655,7 @@
 				66B6ECCD160CC11300B81D55 /* SearchLocation-01.png in Resources */,
 				66B6ECD5160CD37600B81D55 /* app icon.png in Resources */,
 				66B6ECD7160CD39300B81D55 /* app icon.png in Resources */,
+<<<<<<< HEAD
 				50B54AFE160CFA2F00281350 /* chat board_act3-1.png in Resources */,
 				50B54AFF160CFA2F00281350 /* chat board_act3-2.png in Resources */,
 				50B54B00160CFA2F00281350 /* chat board_act4-1.png in Resources */,
@@ -651,6 +664,11 @@
 				50B54B03160CFA2F00281350 /* chat board_act5-1.png in Resources */,
 				50B54B04160CFA2F00281350 /* chat board_act5-2.png in Resources */,
 				50B54B05160CFA2F00281350 /* chat board_act5-3.png in Resources */,
+=======
+				66B6ECDB160D731E00B81D55 /* Jpg.png in Resources */,
+				66B6ECDC160D731E00B81D55 /* Reader.png in Resources */,
+				66B6ECDD160D731E00B81D55 /* Word.png in Resources */,
+>>>>>>> start to modify file list
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

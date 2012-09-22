@@ -33,7 +33,10 @@
 {
   [super loadView];
  
-  _doc_img_path = [[NSBundle mainBundle]pathForResource:@"pp" ofType:@"png"];
+  _doc_img_path = [[NSBundle mainBundle]pathForResource:@"Word" ofType:@"png"];
+  _pdf_img_path = [[NSBundle mainBundle]pathForResource:@"Reader" ofType:@"png"];
+  _jpg_img_path = [[NSBundle mainBundle]pathForResource:@"Jpg" ofType:@"png"];
+
   
   GMGridView *gmGridView2 = [[GMGridView alloc] initWithFrame:self.view.bounds];
   gmGridView2.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -108,7 +111,7 @@
 
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
 {
-  return 50;
+  return 1;
 }
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -136,8 +139,12 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    imageView.image = [UIImage imageWithContentsOfFile:_doc_img_path];
     
+    if (index==0) {
+      imageView.image = [UIImage imageWithContentsOfFile:_jpg_img_path];
+      
+    }
+        
     [view addSubview:imageView];
     //view.backgroundColor =[UIColor greenColor];
     //view.layer.masksToBounds = NO;
@@ -154,7 +161,11 @@
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,size.height,size.width,20)];//cell.contentView.bounds];
   //label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  label.text = @"test";
+  NSString *str=@"";
+  if (index==0) {
+    str=@"民宿1_80...";
+  }
+  label.text = str;
   label.textAlignment = UITextAlignmentCenter;
   label.backgroundColor = [UIColor clearColor];
   label.textColor = [UIColor blackColor];
