@@ -155,6 +155,7 @@
     MessageButton.frame   = CGRectMake(mySize.width - spaceSize, mySize.height / 3.0f + spaceSize, buttonSize, buttonSize);
     SettingsButton.frame  = CGRectMake(mySize.width - spaceSize, mySize.height / 3.0f + spaceSize * 2, buttonSize, buttonSize);
     [fileQueueButton setImage:[UIImage imageNamed:@"side_file_queue.png"] forState:UIControlStateNormal];
+//    [MessageButton   setImage:[UIImage imageNamed:@"side_message_light.png"]    forState:UIControlStateNormal];
     [MessageButton   setImage:[UIImage imageNamed:@"side_message.png"]    forState:UIControlStateNormal];
     [SettingsButton  setImage:[UIImage imageNamed:@"side_settings.png"]   forState:UIControlStateNormal];
     [fileQueueButton addTarget:self action:@selector(popupFileQueueMenu:) forControlEvents:UIControlEventTouchUpInside];
@@ -228,6 +229,8 @@
   
 - (void)showChatBoard:(id)sender
 {
+    UIButton *button = (UIButton *)sender;
+    [button setImage:[UIImage imageNamed:@"side_message.png"] forState:UIControlStateNormal];
     bool is_showing = chatBoard.alpha < 0.5f;
     touchTracker.enabled = !is_showing;
     CGFloat newAlpha = is_showing ? 1.0f : 0.0f;
