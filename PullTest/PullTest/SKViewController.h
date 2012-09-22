@@ -16,8 +16,11 @@
 #import "LocationShareViewController.h"
 #import "QrCodeShareViewController.h"
 #import "LocationSearchViewController.h"
+#import "FriendRequestViewController.h"
+
 @interface SKViewController : UIViewController <PullableViewDelegate, NGTabBarControllerDelegate,QuestionSendDelegate,LocationShareDelegate,
-QrCodeShareDelegate,LocationSearchDelegate>
+
+QrCodeShareDelegate,LocationSearchDelegate,FriendRequestDelegate>
 {
 }
 @property (strong) UpperStyledPullableView *upperView;
@@ -29,4 +32,6 @@ QrCodeShareDelegate,LocationSearchDelegate>
 @property (strong) UIButton *qrCodeShareButton;
 @property (strong) QrCodeShareViewController *qrCodeViewController;
 @property (strong) LocationSearchViewController *locationSearchViewController;
+@property (strong) FriendRequestViewController *friendRequestViewController;
+
 @end

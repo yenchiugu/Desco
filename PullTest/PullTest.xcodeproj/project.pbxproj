@@ -56,6 +56,7 @@
 		660D965F15FD90FE00721B31 /* EmailSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 660D965B15FD90FE00721B31 /* EmailSelected@2x.png */; };
 		664DA145160D78FA00CC507D /* MKV.png in Resources */ = {isa = PBXBuildFile; fileRef = 664DA144160D78FA00CC507D /* MKV.png */; };
 		664DA147160D79E300CC507D /* MPG.png in Resources */ = {isa = PBXBuildFile; fileRef = 664DA146160D79E300CC507D /* MPG.png */; };
+		664DA153160D86A000CC507D /* FriendRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664DA152160D86A000CC507D /* FriendRequestViewController.m */; };
 		667EF9C1160B4901003CA809 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 667EF9BE160B4901003CA809 /* MJPopupBackgroundView.m */; };
 		667EF9C2160B4901003CA809 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 667EF9C0160B4901003CA809 /* UIViewController+MJPopupViewController.m */; };
 		667EF9C6160B4E42003CA809 /* green-ok-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 667EF9C4160B4E42003CA809 /* green-ok-icon.png */; };
@@ -188,6 +189,8 @@
 		660D965B15FD90FE00721B31 /* EmailSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EmailSelected@2x.png"; sourceTree = "<group>"; };
 		664DA144160D78FA00CC507D /* MKV.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MKV.png; sourceTree = "<group>"; };
 		664DA146160D79E300CC507D /* MPG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPG.png; sourceTree = "<group>"; };
+		664DA151160D86A000CC507D /* FriendRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestViewController.h; sourceTree = "<group>"; };
+		664DA152160D86A000CC507D /* FriendRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestViewController.m; sourceTree = "<group>"; };
 		667EF9BD160B4901003CA809 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJPopupBackgroundView.h; path = MJPopupViewController/MJPopupBackgroundView.h; sourceTree = "<group>"; };
 		667EF9BE160B4901003CA809 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJPopupBackgroundView.m; path = MJPopupViewController/MJPopupBackgroundView.m; sourceTree = "<group>"; };
 		667EF9BF160B4901003CA809 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MJPopupViewController.h"; path = "MJPopupViewController/UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
@@ -365,6 +368,8 @@
 				66B6ECAA160C9F6B00B81D55 /* LocationShareViewController.m */,
 				66B6ECC9160CBC4500B81D55 /* QrCodeShareViewController.h */,
 				66B6ECCA160CBC4500B81D55 /* QrCodeShareViewController.m */,
+				664DA151160D86A000CC507D /* FriendRequestViewController.h */,
+				664DA152160D86A000CC507D /* FriendRequestViewController.m */,
 				6603889D15FC50E7007EE91B /* Supporting Files */,
 			);
 			path = PullTest;
@@ -717,6 +722,7 @@
 				66B6ECD3160CC76800B81D55 /* LocationSearchFilePin.m in Sources */,
 				509C0A18160CEE6B00FDE603 /* ChatBoardView.m in Sources */,
 				50B54B09160D1B6B00281350 /* AvatarMenuViewController.m in Sources */,
+				664DA153160D86A000CC507D /* FriendRequestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

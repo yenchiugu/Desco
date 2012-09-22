@@ -19,6 +19,8 @@
 
 #import "MJPopupViewController/UIViewController+MJPopupViewController.h"
 #import "QuestionSendViewController.h"
+#import "FriendRequestViewController.h"
+
 @interface SKViewController ()
 {
     TouchTracker *touchTracker;
@@ -42,6 +44,7 @@
 @synthesize locationViewController;
 @synthesize qrCodeViewController;
 @synthesize locationSearchViewController;
+@synthesize friendRequestViewController;
 //@synthesize mapView;
 
 
@@ -206,7 +209,31 @@
         sharingMenu.alpha = 1;
         [UIView commitAnimations];
     } else if (tracker.letter[0] == 'O') {
+<<<<<<< HEAD
         //
+=======
+      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+      [self setFriendRequestViewController:(FriendRequestViewController *)
+                                          [storyboard instantiateViewControllerWithIdentifier:@"FriendRequestViewController"]];
+      
+      static int people = 1;
+      [self.friendRequestViewController.view setFrame:CGRectMake(0, 0, 500, 496)];
+
+      if (people==1) {
+        [self.friendRequestViewController.imgView setImage:[UIImage imageNamed:@"user02.jpg"]];
+        [self.friendRequestViewController.friendLable setText:@"SY"];
+        people =2;
+      } else {
+        [self.friendRequestViewController.imgView setImage:[UIImage imageNamed:@"user01.jpg"]];
+                [self.friendRequestViewController.friendLable setText:@"Ace"];
+        people = 1;
+      }
+      
+      //[mainViewControllor.qrCodeViewController setMainView:mainViewControllor];
+      [self.friendRequestViewController setDelegate:self];
+      [self presentPopupViewController:self.friendRequestViewController animationType:MJPopupViewAnimationSlideBottomTop];
+       // NSLog(@"showFriendAddingView!!!");
+>>>>>>> friend request
     }
 }
   
@@ -328,5 +355,11 @@ sizeOfItemForViewController:(UIViewController *)viewController
   sharingMenu.alpha = 0;
   [UIView commitAnimations];
   [self setLocationSearchViewController:nil];
+}
+
+- (void)ClickAcceptBtn:(UIViewController*) uiview {
+  [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
+
+  [self setFriendRequestViewController:nil];
 }
 @end
