@@ -29,6 +29,7 @@
 		50B54B03160CFA2F00281350 /* chat board_act5-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 50B54AFB160CFA2F00281350 /* chat board_act5-1.png */; };
 		50B54B04160CFA2F00281350 /* chat board_act5-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 50B54AFC160CFA2F00281350 /* chat board_act5-2.png */; };
 		50B54B05160CFA2F00281350 /* chat board_act5-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 50B54AFD160CFA2F00281350 /* chat board_act5-3.png */; };
+		50B54B09160D1B6B00281350 /* AvatarMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B54B08160D1B6B00281350 /* AvatarMenuViewController.m */; };
 		6603889715FC50E7007EE91B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6603889615FC50E7007EE91B /* UIKit.framework */; };
 		6603889915FC50E7007EE91B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6603889815FC50E7007EE91B /* Foundation.framework */; };
 		6603889B15FC50E7007EE91B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6603889A15FC50E7007EE91B /* CoreGraphics.framework */; };
@@ -137,6 +138,8 @@
 		50B54AFB160CFA2F00281350 /* chat board_act5-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat board_act5-1.png"; sourceTree = "<group>"; };
 		50B54AFC160CFA2F00281350 /* chat board_act5-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat board_act5-2.png"; sourceTree = "<group>"; };
 		50B54AFD160CFA2F00281350 /* chat board_act5-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat board_act5-3.png"; sourceTree = "<group>"; };
+		50B54B07160D1B6B00281350 /* AvatarMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarMenuViewController.h; path = TopMenu/AvatarMenuViewController.h; sourceTree = "<group>"; };
+		50B54B08160D1B6B00281350 /* AvatarMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarMenuViewController.m; path = TopMenu/AvatarMenuViewController.m; sourceTree = "<group>"; };
 		6603889215FC50E7007EE91B /* Desco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6603889615FC50E7007EE91B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6603889815FC50E7007EE91B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -273,6 +276,15 @@
 			path = chat;
 			sourceTree = "<group>";
 		};
+		50B54B06160D1AE600281350 /* TopPopupMenu */ = {
+			isa = PBXGroup;
+			children = (
+				50B54B07160D1B6B00281350 /* AvatarMenuViewController.h */,
+				50B54B08160D1B6B00281350 /* AvatarMenuViewController.m */,
+			);
+			name = TopPopupMenu;
+			sourceTree = "<group>";
+		};
 		6603888715FC50E7007EE91B = {
 			isa = PBXGroup;
 			children = (
@@ -313,7 +325,8 @@
 			children = (
 				667EF9C3160B49C2003CA809 /* MJPopup */,
 				66A434601605C81A009A97C5 /* TouchTracker */,
-				66A434571605C7DD009A97C5 /* SideMenu */,
+				50B54B06160D1AE600281350 /* TopPopupMenu */,
+				66A434571605C7DD009A97C5 /* SidePopupMenu */,
 				66EC99921604C60700572EAE /* SKUserListViewController.h */,
 				66EC99931604C60700572EAE /* SKUserListViewController.m */,
 				660D963615FC75CF00721B31 /* NGTabBarController */,
@@ -467,7 +480,7 @@
 			name = MJPopup;
 			sourceTree = "<group>";
 		};
-		66A434571605C7DD009A97C5 /* SideMenu */ = {
+		66A434571605C7DD009A97C5 /* SidePopupMenu */ = {
 			isa = PBXGroup;
 			children = (
 				66A434581605C7DD009A97C5 /* FileQueueViewController.h */,
@@ -475,6 +488,7 @@
 				509C0A16160CEE6B00FDE603 /* ChatBoardView.h */,
 				509C0A17160CEE6B00FDE603 /* ChatBoardView.m */,
 			);
+			name = SidePopupMenu;
 			path = SideMenu;
 			sourceTree = "<group>";
 		};
@@ -679,6 +693,7 @@
 				66B6ECD0160CC2B800B81D55 /* LocationSearchViewController.m in Sources */,
 				66B6ECD3160CC76800B81D55 /* LocationSearchFilePin.m in Sources */,
 				509C0A18160CEE6B00FDE603 /* ChatBoardView.m in Sources */,
+				50B54B09160D1B6B00281350 /* AvatarMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

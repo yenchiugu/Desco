@@ -13,12 +13,14 @@
 #import "QuestionSendViewController.h"
 
 #import "SKViewController.h"
+#import "TopMenu/AvatarMenuViewController.h"
 
 @interface UpperStyledPullableView ()
 {
     NSArray *user_image_paths;
     __gm_weak GMGridView *_gmGridView;
     GMGridViewCell *_animatedCell;
+    UIPopoverController *avatarPopover;
 }
 @end
 
@@ -60,23 +62,24 @@
                            [[NSBundle mainBundle]pathForResource:@"user10" ofType:@"jpg"],
                             nil];
         
-      GMGridView *gmGridView2 = [[GMGridView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 160)];
-      gmGridView2.autoresizingMask = UIViewAutoresizingFlexibleWidth;// | UIViewAutoresizingFlexibleHeight;
-      gmGridView2.style = GMGridViewStylePush;
-      gmGridView2.itemSpacing = 5;
-      gmGridView2.minEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-      gmGridView2.centerGrid = YES;
-      gmGridView2.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutHorizontal];
-      [self addSubview:gmGridView2];
-      _gmGridView = gmGridView2;
+        GMGridView *gmGridView2 = [[GMGridView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 160)];
+        gmGridView2.autoresizingMask = UIViewAutoresizingFlexibleWidth;// | UIViewAutoresizingFlexibleHeight;
+        gmGridView2.style = GMGridViewStylePush;
+        gmGridView2.itemSpacing = 5;
+        gmGridView2.minEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+        gmGridView2.centerGrid = YES;
+        gmGridView2.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutHorizontal];
+        [self addSubview:gmGridView2];
+        _gmGridView = gmGridView2;
       
-      [self computeViewFrames];
+        [self computeViewFrames];
       
-      //_gmGridView.sortingDelegate = self;
-      //_gmGridView.transformDelegate = self;
-      _gmGridView.dataSource = self;
-      
-      _gmGridView.mainSuperView = self;
+        //_gmGridView.sortingDelegate = self;
+        //_gmGridView.transformDelegate = self;
+        
+        _gmGridView.dataSource = self;
+        _gmGridView.mainSuperView = self;
+        _gmGridView.actionDelegate = self;
     }
   
   _animatedCell = NULL;
@@ -124,7 +127,7 @@
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
 {
-  CGSize size = [self GMGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+    CGSize size = [self GMGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
   
 //  GMGridViewCell *cell = [gridView dequeueReusableCell];
     GMGridViewCell *cell = NULL;
@@ -165,14 +168,24 @@
   
   return cell;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+
+- (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
-    // Drawing code
+    GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
+   
+    if (avatarPopover == nil) {
+        AvatarMenuViewController *controller = [[AvatarMenuViewController alloc] init];
+        controller.contentSizeForViewInPopover = CGSizeMake(240.0f, 480.0f);
+        avatarPopover = [[UIPopoverController alloc] initWithContentViewController:controller];
+    }
+    
+    if (avatarPopover.popoverVisible) {
+        [avatarPopover dismissPopoverAnimated:YES];
+    } else {
+        //[avatarPopover presentPopoverFromRect:cell.frame inView:self.superview permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
+
 }
-*/
 
 - (void)draggingEvent:(CGPoint) pt sourceView:(UIView *)srcView {
   CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
@@ -219,6 +232,7 @@
       }
   
 }
+
 - (void)droppedEvent:(CGPoint) pt sourceView:(UIView *)srcView {
   
   SKViewController *mainViewControllor = (SKViewController*)[self viewController];

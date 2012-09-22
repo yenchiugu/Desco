@@ -8,7 +8,7 @@
 
 #import "PullableView.h"
 #import "GMGridView.h"
-@interface UpperStyledPullableView : PullableView<GMGridViewDataSource, SKDragEvent>
+@interface UpperStyledPullableView : PullableView<GMGridViewDataSource, SKDragEvent, GMGridViewActionDelegate>
 {
 }
 
