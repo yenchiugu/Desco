@@ -20,6 +20,7 @@
 @implementation ChatBoardView
 
 @synthesize chatInput = _chatInput;
+@synthesize sendButton = _sendButton;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -39,16 +40,31 @@
         self.alpha = 0.0f;
         self.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:[image_paths objectAtIndex:currentIndex]]];
     
-        chatInput = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 500, 100)];
-        chatInput.center = CGPointMake(self.center.x, self.center.y * 1.3f);
+        chatInput = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 400, 100)];
+        chatInput.center = CGPointMake(self.center.x - 60, self.center.y * 1.3f);
         chatInput.alpha = 0.7f;
         [[chatInput layer] setCornerRadius:20];
         [[chatInput layer] setBorderWidth:4.0f];
         [[chatInput layer] setBorderColor:[[UIColor colorWithRed:0.2f green:0.3f blue:0.8f alpha:1] CGColor]];
         [chatInput setFont:[UIFont boldSystemFontOfSize:26.0f]];
+        
+        sendButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        sendButton.frame = CGRectMake(0, 0, 100, 100);
+        sendButton.center = CGPointMake(self.center.x + 210, self.center.y * 1.3f);
+        [sendButton setTitle:@"Send" forState:UIControlStateNormal];
+        [sendButton addTarget:self action:@selector(showGestureMenu:) forControlEvents:UIControlEventTouchUpInside];
+
+        [self addSubview:sendButton];
         [self addSubview:chatInput];
     }
     return self;
+}
+
+- (void)showGestureMenu:(id)sender
+{
+    currentIndex = (currentIndex + 1) % [image_paths count];
+    self.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:[image_paths objectAtIndex:currentIndex]]];
+    [chatInput setText:@""];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

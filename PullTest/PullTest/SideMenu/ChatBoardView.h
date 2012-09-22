@@ -11,6 +11,8 @@
 @interface ChatBoardView : UIView
 {
     UITextView *chatInput;
+    UIButton *sendButton;
 }
 @property (strong, nonatomic) UITextView *chatInput;
+@property (strong, nonatomic) UIButton *sendButton;
 @end
