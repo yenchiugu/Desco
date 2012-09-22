@@ -25,7 +25,6 @@
     FileQueueViewController *fileQueueMenu;
     UIPopoverController *fileQueuePopover;
     UIView *sharingMenu;
-    UITableView *friendAddingMenu;
     ChatBoardView *chatBoard;
 }
 
@@ -206,7 +205,7 @@
         sharingMenu.alpha = 1;
         [UIView commitAnimations];
     } else if (tracker.letter[0] == 'O') {
-        NSLog(@"showFriendAddingView!!!");
+        //
     }
 }
   

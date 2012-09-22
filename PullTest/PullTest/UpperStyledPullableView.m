@@ -171,18 +171,18 @@
 
 - (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
-    GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
-   
     if (avatarPopover == nil) {
         AvatarMenuViewController *controller = [[AvatarMenuViewController alloc] init];
-        controller.contentSizeForViewInPopover = CGSizeMake(240.0f, 480.0f);
+        controller.contentSizeForViewInPopover = CGSizeMake(200.0f, 90.0f);
         avatarPopover = [[UIPopoverController alloc] initWithContentViewController:controller];
     }
     
     if (avatarPopover.popoverVisible) {
         [avatarPopover dismissPopoverAnimated:YES];
     } else {
-        //[avatarPopover presentPopoverFromRect:cell.frame inView:self.superview permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
+        //CGRect newFrame = [self.superview convertRect:cell.frame fromView:cell];
+        [avatarPopover presentPopoverFromRect:cell.frame inView:self.superview permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     }
 
 }

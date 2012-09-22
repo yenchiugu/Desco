@@ -52,15 +52,17 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if(cell == nil)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     cell.textLabel.text = [items objectAtIndex:indexPath.row];
-    
+    /*
     UIButton *addFriendButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    addFriendButton.frame = CGRectMake(200.0f, 5.0f, 75.0f, 30.0f);
+    addFriendButton.frame = CGRectMake(150.0f, 5.0f, 75.0f, 30.0f);
     [addFriendButton setTitle:@"Add" forState:UIControlStateNormal];
     [cell addSubview:addFriendButton];
     [addFriendButton addTarget:self action:@selector(addFriend:) forControlEvents:UIControlEventTouchUpInside];
-
+     */
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
