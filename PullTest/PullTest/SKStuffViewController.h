@@ -10,6 +10,11 @@
 
 @interface SKStuffViewController : UIViewController {
   NSString *_doc_img_path;
+  NSString *_pdf_img_path;
+  NSString *_jpg_img_path;
+  NSString *_mkv_img_path;
+  NSString *_mpg_img_path;
+
 }
 
 @end

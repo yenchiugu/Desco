@@ -51,15 +51,18 @@
         
         user_image_paths = [NSArray arrayWithObjects:
                            [[NSBundle mainBundle]pathForResource:@"user01" ofType:@"jpg"],
-                           [[NSBundle mainBundle]pathForResource:@"user02" ofType:@"jpg"],
+                           [[NSBundle mainBundle]pathForResource:@"user06" ofType:@"jpg"],
+                           [[NSBundle mainBundle]pathForResource:@"user08" ofType:@"jpg"],
+
                            [[NSBundle mainBundle]pathForResource:@"user03" ofType:@"jpg"],
+                           [[NSBundle mainBundle]pathForResource:@"user09" ofType:@"jpg"],                            
                            [[NSBundle mainBundle]pathForResource:@"user04" ofType:@"jpg"],
                            [[NSBundle mainBundle]pathForResource:@"user05" ofType:@"jpg"],
-                           [[NSBundle mainBundle]pathForResource:@"user06" ofType:@"jpg"],
                            [[NSBundle mainBundle]pathForResource:@"user07" ofType:@"jpg"],
-                           [[NSBundle mainBundle]pathForResource:@"user08" ofType:@"jpg"],
-                           [[NSBundle mainBundle]pathForResource:@"user09" ofType:@"jpg"],
+
+
                            [[NSBundle mainBundle]pathForResource:@"user10" ofType:@"jpg"],
+                           [[NSBundle mainBundle]pathForResource:@"user02" ofType:@"jpg"],
                             nil];
         
         GMGridView *gmGridView2 = [[GMGridView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 160)];
@@ -157,14 +160,37 @@
   
   //[[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
   
-    //UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,size.height,size.width,20)];//cell.contentView.bounds];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,size.height,size.width,20)];//cell.contentView.bounds];
     //label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    //label.text = @"test";
-    //label.textAlignment = UITextAlignmentCenter;
-    //label.backgroundColor = [UIColor clearColor];
-    //label.textColor = [UIColor blackColor];
-    //label.font = [UIFont boldSystemFontOfSize:20];
-    //[cell.contentView addSubview:label];
+  NSString *str=@"";
+  
+  if (index==0) {
+    str=@"Ace's iPad";
+  } else if (index==1) {
+    str=@"Ace's Laptop1";
+  } else if (index==9) {
+    str=@"SY's iPad";
+  } else if (index==2) {
+    str=@"CC's iPad";
+  } else if (index==3) {
+    str=@"Juliet's iPad";	
+  } else if (index==4) {
+    str=@"Ace's Laptop2";
+  } else if (index==5) {
+    str=@"新衣's iPad";
+  } else if (index==6) {
+    str=@"小欄's iPad";
+  } else if (index==7) {
+    str=@"什麼狗's iPad";
+  } else if (index==8) {
+    str=@"海賊王's iPad";
+  }
+    label.text = str;
+    label.textAlignment = UITextAlignmentCenter;
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont boldSystemFontOfSize:20];
+    [cell.contentView addSubview:label];
   
   return cell;
 }
