@@ -33,11 +33,12 @@
   [super loadView];
  
   _user_img_path1 = [[NSBundle mainBundle]pathForResource:@"user1" ofType:@"jpg"];
+  _user_img_path6 = [[NSBundle mainBundle]pathForResource:@"user6" ofType:@"jpg"];
+
   _user_img_path2 = [[NSBundle mainBundle]pathForResource:@"user2" ofType:@"jpg"];
   _user_img_path3 = [[NSBundle mainBundle]pathForResource:@"user3" ofType:@"jpg"];
   _user_img_path4 = [[NSBundle mainBundle]pathForResource:@"user4" ofType:@"jpg"];
   _user_img_path5 = [[NSBundle mainBundle]pathForResource:@"user5" ofType:@"jpg"];
-  _user_img_path6 = [[NSBundle mainBundle]pathForResource:@"user6" ofType:@"jpg"];
   _user_img_path7 = [[NSBundle mainBundle]pathForResource:@"user7" ofType:@"jpg"];
   _user_img_path8 = [[NSBundle mainBundle]pathForResource:@"user8" ofType:@"jpg"];
   _user_img_path9 = [[NSBundle mainBundle]pathForResource:@"user9" ofType:@"jpg"];
@@ -151,14 +152,14 @@
   
   //[[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
   
-//  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,size.height,size.width,20)];//cell.contentView.bounds];
+  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,size.height,size.width,20)];//cell.contentView.bounds];
 //  //label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//  label.text = @"test";
-//  label.textAlignment = UITextAlignmentCenter;
-//  label.backgroundColor = [UIColor clearColor];
-//  label.textColor = [UIColor blackColor];
-//  label.font = [UIFont boldSystemFontOfSize:20];
-//  [cell.contentView addSubview:label];
+  label.text = @"test";
+  label.textAlignment = UITextAlignmentCenter;
+  label.backgroundColor = [UIColor clearColor];
+  label.textColor = [UIColor blackColor];
+  label.font = [UIFont boldSystemFontOfSize:20];
+  [cell.contentView addSubview:label];
   
   return cell;
 }
