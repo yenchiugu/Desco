@@ -209,9 +209,6 @@
         sharingMenu.alpha = 1;
         [UIView commitAnimations];
     } else if (tracker.letter[0] == 'O') {
-<<<<<<< HEAD
-        //
-=======
       UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
       [self setFriendRequestViewController:(FriendRequestViewController *)
                                           [storyboard instantiateViewControllerWithIdentifier:@"FriendRequestViewController"]];
@@ -233,7 +230,7 @@
       [self.friendRequestViewController setDelegate:self];
       [self presentPopupViewController:self.friendRequestViewController animationType:MJPopupViewAnimationSlideBottomTop];
        // NSLog(@"showFriendAddingView!!!");
->>>>>>> friend request
+
     }
 }
   
