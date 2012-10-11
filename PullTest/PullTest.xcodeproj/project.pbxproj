@@ -57,6 +57,8 @@
 		664DA145160D78FA00CC507D /* MKV.png in Resources */ = {isa = PBXBuildFile; fileRef = 664DA144160D78FA00CC507D /* MKV.png */; };
 		664DA147160D79E300CC507D /* MPG.png in Resources */ = {isa = PBXBuildFile; fileRef = 664DA146160D79E300CC507D /* MPG.png */; };
 		664DA153160D86A000CC507D /* FriendRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664DA152160D86A000CC507D /* FriendRequestViewController.m */; };
+		664DA167160D8C4C00CC507D /* app icon_144-02-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 664DA166160D8C4C00CC507D /* app icon_144-02-02.png */; };
+		664DA169160D8C5800CC507D /* app icon_144-02-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 664DA168160D8C5800CC507D /* app icon_144-02-02.png */; };
 		667EF9C1160B4901003CA809 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 667EF9BE160B4901003CA809 /* MJPopupBackgroundView.m */; };
 		667EF9C2160B4901003CA809 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 667EF9C0160B4901003CA809 /* UIViewController+MJPopupViewController.m */; };
 		667EF9C6160B4E42003CA809 /* green-ok-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 667EF9C4160B4E42003CA809 /* green-ok-icon.png */; };
@@ -191,6 +193,8 @@
 		664DA146160D79E300CC507D /* MPG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPG.png; sourceTree = "<group>"; };
 		664DA151160D86A000CC507D /* FriendRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestViewController.h; sourceTree = "<group>"; };
 		664DA152160D86A000CC507D /* FriendRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestViewController.m; sourceTree = "<group>"; };
+		664DA166160D8C4C00CC507D /* app icon_144-02-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app icon_144-02-02.png"; sourceTree = "<group>"; };
+		664DA168160D8C5800CC507D /* app icon_144-02-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app icon_144-02-02.png"; sourceTree = "<group>"; };
 		667EF9BD160B4901003CA809 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJPopupBackgroundView.h; path = MJPopupViewController/MJPopupBackgroundView.h; sourceTree = "<group>"; };
 		667EF9BE160B4901003CA809 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJPopupBackgroundView.m; path = MJPopupViewController/MJPopupBackgroundView.m; sourceTree = "<group>"; };
 		667EF9BF160B4901003CA809 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MJPopupViewController.h"; path = "MJPopupViewController/UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
@@ -303,6 +307,7 @@
 		6603888715FC50E7007EE91B = {
 			isa = PBXGroup;
 			children = (
+				664DA168160D8C5800CC507D /* app icon_144-02-02.png */,
 				660D964B15FC76DE00721B31 /* Images */,
 				66B6ECD6160CD39300B81D55 /* app icon.png */,
 				66B6ECC6160CB87500B81D55 /* QRCodeGenerator.h */,
@@ -410,6 +415,7 @@
 		660D964B15FC76DE00721B31 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				664DA166160D8C4C00CC507D /* app icon_144-02-02.png */,
 				664DA146160D79E300CC507D /* MPG.png */,
 				664DA144160D78FA00CC507D /* MKV.png */,
 				50B54AF5160CFA2F00281350 /* chat */,
@@ -679,6 +685,8 @@
 				664DA145160D78FA00CC507D /* MKV.png in Resources */,
 				664DA147160D79E300CC507D /* MPG.png in Resources */,
 				503C89A4160D892500178369 /* side_message_light.png in Resources */,
+				664DA167160D8C4C00CC507D /* app icon_144-02-02.png in Resources */,
+				664DA169160D8C5800CC507D /* app icon_144-02-02.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
