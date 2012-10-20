@@ -309,7 +309,7 @@
   
   if (position!=-1) {
 
-    GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
+    //GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
 
     
     
