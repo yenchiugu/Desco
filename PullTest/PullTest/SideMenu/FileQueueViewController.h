@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface FileQueueViewController : UIViewController
+{
+  UITableView *fileQueueTable;
+}
+@property (strong, nonatomic) IBOutlet UITableView *fileQueueTable;
 
 @end

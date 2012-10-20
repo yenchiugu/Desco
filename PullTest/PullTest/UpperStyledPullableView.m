@@ -314,6 +314,7 @@
     
     
     SKViewController *mainViewControllor = (SKViewController*)[self viewController];
+    
     [mainViewControllor presentPopupViewController:mainViewControllor.questionSendViewController animationType:MJPopupViewAnimationSlideBottomTop];
     
 

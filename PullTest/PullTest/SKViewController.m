@@ -142,7 +142,7 @@
     //UIViewController *mainViewControllor = [self viewController];
   
     questionSendViewController.delegate = self;
-    [questionSendViewController.view setFrame:CGRectMake(0, 0, 256, 128)];
+    [questionSendViewController.view setFrame:CGRectMake(0, 0, 400, 250)];
 }
 
 - (void)setupSideButtons

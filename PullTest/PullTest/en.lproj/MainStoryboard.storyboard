@@ -376,7 +376,7 @@ EEFjY2VwdCE
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="256" height="128"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="250"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
             </objects>
@@ -387,6 +387,50 @@ EEFjY2VwdCE
         <image name="green-ok-icon.png" width="26" height="26"/>
         <image name="red-cross-icon.png" width="26" height="26"/>
     </resources>
+    <classes>
+        <class className="FriendRequestViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FriendRequestViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="ClickAcceptBtn:"/>
+                <relationship kind="outlet" name="friendLable" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="imgView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="LocationSearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LocationSearchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="ClickSaveBtn:"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="LocationShareViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LocationShareViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="ClickCancelBtn:"/>
+                <relationship kind="action" name="ClickShareNowBtn:"/>
+                <relationship kind="action" name="HourSliderChanged:"/>
+                <relationship kind="outlet" name="hourLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="QrCodeShareViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QrCodeShareViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="ClickDesktopDescoBtn:"/>
+                <relationship kind="outlet" name="imgView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="QuestionSendViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuestionSendViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="ClickNoBtn:"/>
+                <relationship kind="action" name="ClickYesBtn:"/>
+            </relationships>
+        </class>
+        <class className="SKViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SKViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
