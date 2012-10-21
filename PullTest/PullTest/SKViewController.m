@@ -104,6 +104,7 @@
     
     
     my_stuff_view_controllor = [[SKStuffViewController alloc] initWithNibName:nil bundle:nil];
+    [self addChildViewController:my_stuff_view_controllor];
     //UIViewController *recent_view_controllor = [[UIViewController alloc] initWithNibName:nil bundle:nil];
     
     //[[my_stuff_view_controllor view] setBackgroundColor:[UIColor clearColor]];
@@ -134,6 +135,7 @@
     
 //    [pullable_view addSubview:tabBarController.view];
     [pullable_view addSubview:my_stuff_view_controllor.view];
+    
     
     [self setupSideButtons];
     [self setupSharingMenu];

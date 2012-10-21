@@ -109,7 +109,7 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate
     _gmGridView.dataSource = self;
     
     //UIView *view1 = self.parentViewController.view;
-    UIView *view2 = self.parentViewController.parentViewController.view;
+    UIView *view2 = self.parentViewController.view;
     //UIView *view3 = self.parentViewController.parentViewController.parentViewController.view;
     
     UIView *upper_view = [view2 viewWithTag:2377 ];
