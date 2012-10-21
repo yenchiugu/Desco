@@ -309,11 +309,12 @@
   
   if (position!=-1) {
 
-    GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
+    //GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
 
     
     
     SKViewController *mainViewControllor = (SKViewController*)[self viewController];
+    
     [mainViewControllor presentPopupViewController:mainViewControllor.questionSendViewController animationType:MJPopupViewAnimationSlideBottomTop];
     
 

@@ -13,6 +13,7 @@
 @end
 
 @implementation FileQueueViewController
+@synthesize fileQueueTable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,12 +28,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view = [[UIView alloc] init];
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"menu_file_queue_1.png"]];
+  self.view = fileQueueTable;
+    //self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"FileQ_content_2_act9.png"]];
 }
 
 - (void)viewDidUnload
 {
+    [self setFileQueueTable:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
