@@ -17,21 +17,22 @@
 #import "QrCodeShareViewController.h"
 #import "LocationSearchViewController.h"
 #import "FriendRequestViewController.h"
+#import "SKStuffViewController.h"
 
 @interface SKViewController : UIViewController <PullableViewDelegate, NGTabBarControllerDelegate,QuestionSendDelegate,LocationShareDelegate,
 
 QrCodeShareDelegate,LocationSearchDelegate,FriendRequestDelegate>
 {
 }
-@property (strong) UpperStyledPullableView *upperView;
-@property (strong) StyledPullableView *bottomView;
-@property (strong) NGTabBarController *tabBarController;
-@property (strong) QuestionSendViewController *questionSendViewController;
-@property (strong) UIButton *locationShareButton;
-@property (strong) LocationShareViewController *locationViewController;
-@property (strong) UIButton *qrCodeShareButton;
-@property (strong) QrCodeShareViewController *qrCodeViewController;
-@property (strong) LocationSearchViewController *locationSearchViewController;
-@property (strong) FriendRequestViewController *friendRequestViewController;
-
+@property (nonatomic,strong) UpperStyledPullableView *upperView;
+@property (nonatomic,strong) StyledPullableView *bottomView;
+@property (nonatomic,strong) NGTabBarController *tabBarController;
+@property (nonatomic,strong) QuestionSendViewController *questionSendViewController;
+@property (nonatomic,strong) UIButton *locationShareButton;
+@property (nonatomic,strong) LocationShareViewController *locationViewController;
+@property (nonatomic,strong) UIButton *qrCodeShareButton;
+@property (nonatomic,strong) QrCodeShareViewController *qrCodeViewController;
+@property (nonatomic,strong) LocationSearchViewController *locationSearchViewController;
+@property (nonatomic,strong) FriendRequestViewController *friendRequestViewController;
+@property (nonatomic,strong) SKStuffViewController *my_stuff_view_controllor;
 @end
