@@ -21,6 +21,8 @@
 #import "QuestionSendViewController.h"
 #import "FriendRequestViewController.h"
 
+#import "DropboxManager/DropboxManager.h"
+
 @interface SKViewController ()
 {
     TouchTracker *touchTracker;
@@ -28,6 +30,7 @@
     UIPopoverController *fileQueuePopover;
     UIView *sharingMenu;
     ChatBoardView *chatBoard;
+    DropboxManager *dbManager;
 }
 
 @end
@@ -168,7 +171,7 @@
     [SettingsButton  setImage:[UIImage imageNamed:@"side_settings.png"]   forState:UIControlStateNormal];
     [fileQueueButton addTarget:self action:@selector(popupFileQueueMenu:) forControlEvents:UIControlEventTouchUpInside];
     [MessageButton   addTarget:self action:@selector(showChatBoard:)      forControlEvents:UIControlEventTouchUpInside];
-    [SettingsButton  addTarget:self action:@selector(popupFileQueueMenu:) forControlEvents:UIControlEventTouchUpInside];
+    [SettingsButton  addTarget:self action:@selector(popupSettingsMenu:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:fileQueueButton];
     [self.view addSubview:MessageButton];
     [self.view addSubview:SettingsButton];
@@ -221,10 +224,10 @@
         static int people = 1;
         [self.friendRequestViewController.view setFrame:CGRectMake(0, 0, 500, 496)];
         
-        if (people==1) {
+        if (people == 1) {
             [self.friendRequestViewController.imgView setImage:[UIImage imageNamed:@"user02.jpg"]];
             [self.friendRequestViewController.friendLable setText:@"SY"];
-            people =2;
+            people = 2;
         } else {
             [self.friendRequestViewController.imgView setImage:[UIImage imageNamed:@"user01.jpg"]];
             [self.friendRequestViewController.friendLable setText:@"Ace"];
@@ -256,6 +259,29 @@
     }
 }
 
+- (void)popupSettingsMenu:(id)sender
+{
+
+    if (dbManager == nil) {
+        NSLog(@"init");
+        dbManager = [[DropboxManager alloc] initWithAppKey:@"3or4oa1y8okdbbd"
+                                                 appSecret:@"lu2qmice5mv4kgz"
+                                                    myName:@"test"
+                                              downloadPath:@"/Documents"];
+    }
+    if (![dbManager isLinked]) {
+        NSLog(@"link");
+        [dbManager linkFromController:self];
+    } else {
+        NSLog(@"linked");
+        NSLog(@"upload");
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docPath = [paths objectAtIndex:0];
+        NSString *testFile = [docPath stringByAppendingPathComponent:@"123.mp3"];
+        [dbManager uploadFile:testFile toUser:@"ace"];
+    }
+}
+
 - (void)showChatBoard:(id)sender
 {
     UIButton *button = (UIButton *)sender;
@@ -273,7 +299,7 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     [self setLocationSearchViewController:(LocationSearchViewController *)
-     [storyboard instantiateViewControllerWithIdentifier:@"LocationSearchViewController"]];
+    [storyboard instantiateViewControllerWithIdentifier:@"LocationSearchViewController"]];
     
     [self.locationSearchViewController.view setFrame:CGRectMake(0, 0, 500, 570)];
     

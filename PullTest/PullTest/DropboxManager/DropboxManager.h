@@ -33,15 +33,22 @@
     DBSession *dbSession;
     DBRestClient *restClient;
     id<DropboxManagerDelegate> delegate;
+    NSString *userName;
+    NSString *downloadPath;
 }
 @property (strong, nonatomic) DBSession *dbSession;
 @property (strong, nonatomic) DBRestClient *restClient;
-@property (weak, nonatomic) id<DropboxManagerDelegate> delegate;
+@property (weak,   nonatomic) id<DropboxManagerDelegate> delegate;
+@property (strong, nonatomic) NSString *userName;
+@property (strong, nonatomic) NSString *downloadPath;
 
 - (DropboxManager *)initWithAppKey:(NSString *)key
                          appSecret:(NSString *)secret
                             myName:(NSString *)myName
                       downloadPath:(NSString *)path;
+
+- (void)linkFromController:(UIViewController *)mainController;
+- (BOOL)isLinked;
 
 - (void)uploadFile:(NSString *)srcPath toUser:(NSString *)user;
 //- (void)downloadFile:(NSString *)dropboxPath forUser:(NSString *)user;
