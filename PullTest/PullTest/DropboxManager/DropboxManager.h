@@ -1,10 +1,3 @@
-//
-//  DropboxManager.h
-//  PullTest
-//
-//  Created by Ace Wu on 12/10/21.
-//  Copyright (c) 2012年 Sam Ku. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 #import <DropboxSDK/DropboxSDK.h>
