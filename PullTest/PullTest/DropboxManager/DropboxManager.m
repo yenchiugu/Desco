@@ -1,26 +1,25 @@
-//
-//  DropboxManager.m
-//  PullTest
-//
-//  Created by Ace Wu on 12/10/21.
-//  Copyright (c) 2012年 Sam Ku. All rights reserved.
-//
-
 #import "DropboxManager.h"
+#import "FileInfo.h"
+
+@interface DropboxManager ()
+-(NSNumber *)sizeOfFile:(NSString *)path;
+@end
 
 @implementation DropboxManager
-
-@synthesize userName;
+{
+}
+@synthesize myName;
 
 - (DropboxManager *)initWithAppKey:(NSString *)key
                          appSecret:(NSString *)secret
-                            myName:(NSString *)myName
+                          userName:(NSString *)userName
                       downloadPath:(NSString *)path
 {
     dbSession = [[DBSession alloc] initWithAppKey:key appSecret:secret root:kDBRootDropbox];
     [DBSession setSharedSession:dbSession];
-    userName = myName;
+    myName = userName;
     downloadPath = path;
+
     return self;
 }
 
@@ -36,29 +35,56 @@
     return [[DBSession sharedSession] isLinked];
 }
 
-- (void)uploadFile:(NSString *)srcPath toUser:(NSString *)user;
+- (void)uploadFile:(NSString *)srcPath toUser:(NSString *)user
 {
     if (restClient == nil) {
         restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
         [restClient setDelegate:self];
     }
+    NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
+    NSNumber *size = [self sizeOfFile:srcPath];
     NSString *destPath = [NSString stringWithFormat:@"/user/%@/incoming/",user];
-    [restClient uploadFile:[srcPath lastPathComponent] toPath:destPath withParentRev:nil fromPath:srcPath];
+    NSString *destFile = [NSString stringWithFormat:@"%lf+%@+%@+%@",timestamp,myName,size,[srcPath lastPathComponent]];
+    NSLog(@"%@%@", destPath, destFile);
+    [restClient uploadFile:destFile toPath:destPath withParentRev:nil fromPath:srcPath];
 }
 
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata
 {
-    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+    //NSLog(@"File uploaded successfully to path: %@", metadata.path);
+    if(delegate && [delegate conformsToProtocol:@protocol(DropboxManagerDelegate)]) {
+        FileInfo *info = [[FileInfo alloc] initWithPath:destPath];
+        [delegate uploadedFile:info.fileName
+                        toUser:info.toUser];
+    }
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
 {
     NSLog(@"File upload failed with error - %@", error);
+    [delegate uploadFileFailedWithError:error];
 }
 
 - (void)restClient:(DBRestClient*)client uploadProgress:(CGFloat)progress forFile:(NSString *)destPath from:(NSString *)srcPath
 {
     NSLog(@"from:%@, to:%@, progress:%.2f", srcPath, destPath, progress); //Correct way to visualice the float
+    if(delegate && [delegate conformsToProtocol:@protocol(DropboxManagerDelegate)]) {
+        FileInfo *info = [[FileInfo alloc] initWithPath:destPath inProgress:progress];
+        [delegate uploadProgress:info.progress
+                         forFile:info.fileName
+                          toUser:info.toUser
+                        uploaded:info.processdSize
+                           total:info.totalSize];
+    }
+}
+
+
+-(NSNumber *)sizeOfFile:(NSString *)path
+{
+    NSError *error = nil;
+    NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
+    NSNumber *size = [attrs objectForKey:NSFileSize];
+    return size;    
 }
 
 @end

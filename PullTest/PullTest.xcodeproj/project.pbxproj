@@ -10,6 +10,7 @@
 		5006A58B160900E200151551 /* gestureLocationShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 5006A589160900E200151551 /* gestureLocationShare.png */; };
 		5006A58C160900E200151551 /* gestureQRCodeShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 5006A58A160900E200151551 /* gestureQRCodeShare.png */; };
 		503C89A4160D892500178369 /* side_message_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 503C89A3160D892500178369 /* side_message_light.png */; };
+		506785FA16381A8300A0D8D9 /* FileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 506785F916381A8300A0D8D9 /* FileInfo.m */; };
 		508326381607185500140AA9 /* user01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5083262E1607185500140AA9 /* user01.jpg */; };
 		508326391607185500140AA9 /* user02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5083262F1607185500140AA9 /* user02.jpg */; };
 		5083263A1607185500140AA9 /* user03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 508326301607185500140AA9 /* user03.jpg */; };
@@ -145,6 +146,8 @@
 		5006A589160900E200151551 /* gestureLocationShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gestureLocationShare.png; sourceTree = "<group>"; };
 		5006A58A160900E200151551 /* gestureQRCodeShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gestureQRCodeShare.png; sourceTree = "<group>"; };
 		503C89A3160D892500178369 /* side_message_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = side_message_light.png; sourceTree = "<group>"; };
+		506785F816381A8300A0D8D9 /* FileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfo.h; sourceTree = "<group>"; };
+		506785F916381A8300A0D8D9 /* FileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfo.m; sourceTree = "<group>"; };
 		5083262E1607185500140AA9 /* user01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user01.jpg; sourceTree = "<group>"; };
 		5083262F1607185500140AA9 /* user02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user02.jpg; sourceTree = "<group>"; };
 		508326301607185500140AA9 /* user03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = user03.jpg; sourceTree = "<group>"; };
@@ -354,6 +357,8 @@
 			children = (
 				50FD787416342AD300CAE25F /* DropboxManager.h */,
 				50FD787516342AD300CAE25F /* DropboxManager.m */,
+				506785F816381A8300A0D8D9 /* FileInfo.h */,
+				506785F916381A8300A0D8D9 /* FileInfo.m */,
 			);
 			path = DropboxManager;
 			sourceTree = "<group>";
@@ -842,6 +847,7 @@
 				662E624C1633FD6F00F3F8E9 /* UIImage+Alpha.m in Sources */,
 				662E624D1633FD6F00F3F8E9 /* UIImage+Resize.m in Sources */,
 				662E624E1633FD6F00F3F8E9 /* UIImage+RoundedCorner.m in Sources */,
+				506785FA16381A8300A0D8D9 /* FileInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

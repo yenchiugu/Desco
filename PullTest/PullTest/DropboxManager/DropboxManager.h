@@ -1,4 +1,3 @@
-
 #import <Foundation/Foundation.h>
 #import <DropboxSDK/DropboxSDK.h>
 
@@ -8,18 +7,18 @@
 
 @optional
 - (void)uploadProgress:(CGFloat)progress // float 0~100
-                  from:(NSString *)srcPath
-                toUser:(NSString *)
-              uploaded:(NSInteger)uploadedSize
-                 total:(NSInteger)totalSize;
+               forFile:(NSString *)fileName
+                toUser:(NSString *)user
+              uploaded:(long long)uploadedSize
+                 total:(long long)totalSize;
 - (void)uploadedFile:(NSString *)srcPath toUser:(NSString *)user;
 - (void)uploadFileFailedWithError:(NSError *)error;
 
 - (void)downloadProgress:(CGFloat)progress // float 0~100
-                 forFile:(NSString *)destPath
+                 forFile:(NSString *)fileName
                 fromUser:(NSString *)user
-              downloaded:(NSInteger)downloadedSize
-                   total:(NSInteger)totalSize;
+              downloaded:(long long)downloadedSize
+                   total:(long long)totalSize;
 - (void)downloadedFile:(NSString *)destPath fromUser:(NSString *)user;
 - (void)downloadFileFailedWithError:(NSError *)error;
 
@@ -28,23 +27,23 @@
 @end
 
 
-@interface DropboxManager : NSObject <DBSessionDelegate, DBRestClientDelegate, DBNetworkRequestDelegate>
+@interface DropboxManager : NSObject <DBSessionDelegate, DBRestClientDelegate>
 {
     DBSession *dbSession;
     DBRestClient *restClient;
     id<DropboxManagerDelegate> delegate;
-    NSString *userName;
+    NSString *myName;
     NSString *downloadPath;
 }
 @property (strong, nonatomic) DBSession *dbSession;
 @property (strong, nonatomic) DBRestClient *restClient;
 @property (weak,   nonatomic) id<DropboxManagerDelegate> delegate;
-@property (strong, nonatomic) NSString *userName;
+@property (strong, nonatomic) NSString *myName;
 @property (strong, nonatomic) NSString *downloadPath;
 
 - (DropboxManager *)initWithAppKey:(NSString *)key
                          appSecret:(NSString *)secret
-                            myName:(NSString *)myName
+                          userName:(NSString *)userName
                       downloadPath:(NSString *)path;
 
 - (void)linkFromController:(UIViewController *)mainController;

@@ -266,9 +266,10 @@
         NSLog(@"init");
         dbManager = [[DropboxManager alloc] initWithAppKey:@"3or4oa1y8okdbbd"
                                                  appSecret:@"lu2qmice5mv4kgz"
-                                                    myName:@"test"
+                                                  userName:@"test"
                                               downloadPath:@"/Documents"];
     }
+    
     if (![dbManager isLinked]) {
         NSLog(@"link");
         [dbManager linkFromController:self];
