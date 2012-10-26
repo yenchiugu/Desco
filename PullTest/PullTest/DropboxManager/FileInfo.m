@@ -55,4 +55,14 @@
     }
     return self;
 }
+
++ (FileInfo *) fileInfoByPath:(NSString *)path
+{
+    return [[FileInfo alloc] initWithPath:path];
+}
+
++ (FileInfo *) fileInfoByPath:(NSString *)path inProgress:(CGFloat)currentProgress
+{
+    return [[FileInfo alloc] initWithPath:path inProgress:currentProgress];
+}
 @end

@@ -28,4 +28,6 @@
 
 - (FileInfo *) initWithPath:(NSString *)path;
 - (FileInfo *) initWithPath:(NSString *)path inProgress:(CGFloat)currentProgress;
++ (FileInfo *) fileInfoByPath:(NSString *)path;
++ (FileInfo *) fileInfoByPath:(NSString *)path inProgress:(CGFloat)currentProgress;
 @end

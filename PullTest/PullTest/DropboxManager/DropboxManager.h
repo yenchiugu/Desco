@@ -27,10 +27,10 @@
 @end
 
 
-@interface DropboxManager : NSObject <DBSessionDelegate, DBRestClientDelegate>
+@interface DropboxManager : NSObject <DBRestClientDelegate>
 {
     DBSession *dbSession;
-    DBRestClient *restClient;
+    DBRestClient *_restClient;
     id<DropboxManagerDelegate> delegate;
     NSString *myName;
     NSString *downloadPath;
@@ -40,6 +40,8 @@
 @property (weak,   nonatomic) id<DropboxManagerDelegate> delegate;
 @property (strong, nonatomic) NSString *myName;
 @property (strong, nonatomic) NSString *downloadPath;
+
+- (DBRestClient *)restClient;
 
 - (DropboxManager *)initWithAppKey:(NSString *)key
                          appSecret:(NSString *)secret

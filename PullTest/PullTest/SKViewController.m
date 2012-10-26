@@ -261,25 +261,23 @@
 
 - (void)popupSettingsMenu:(id)sender
 {
-
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docPath  = [paths objectAtIndex:0];
     if (dbManager == nil) {
         NSLog(@"init");
         dbManager = [[DropboxManager alloc] initWithAppKey:@"3or4oa1y8okdbbd"
                                                  appSecret:@"lu2qmice5mv4kgz"
-                                                  userName:@"test"
-                                              downloadPath:@"/Documents"];
-    }
-    
-    if (![dbManager isLinked]) {
+                                                  userName:@"ace"
+                                              downloadPath:docPath];
+        NSLog(@"linked:%i", [dbManager isLinked]);
+    } else if (![dbManager isLinked]) {
         NSLog(@"link");
         [dbManager linkFromController:self];
     } else {
         NSLog(@"linked");
         NSLog(@"upload");
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *docPath = [paths objectAtIndex:0];
         NSString *testFile = [docPath stringByAppendingPathComponent:@"123.mp3"];
-        [dbManager uploadFile:testFile toUser:@"ace"];
+        [dbManager uploadFile:testFile toUser:@"test"];
     }
 }
 
