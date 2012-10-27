@@ -24,6 +24,9 @@
 QrCodeShareDelegate,LocationSearchDelegate,FriendRequestDelegate>
 {
 }
+
+
+
 @property (nonatomic,strong) UpperStyledPullableView *upperView;
 @property (nonatomic,strong) StyledPullableView *bottomView;
 @property (nonatomic,strong) NGTabBarController *tabBarController;
@@ -35,4 +38,6 @@ QrCodeShareDelegate,LocationSearchDelegate,FriendRequestDelegate>
 @property (nonatomic,strong) LocationSearchViewController *locationSearchViewController;
 @property (nonatomic,strong) FriendRequestViewController *friendRequestViewController;
 @property (nonatomic,strong) SKStuffViewController *my_stuff_view_controllor;
+
+
 @end

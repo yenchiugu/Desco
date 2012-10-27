@@ -11,6 +11,11 @@
 #ifdef __OBJC__
   #import <UIKit/UIKit.h>
   #import <Foundation/Foundation.h>
+
+#import <QuartzCore/QuartzCore.h>
+#import "NimbusCore.h"
+#import "NimbusPhotos.h"
+
 #endif
 #define INTERFACE_IS_PAD     ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 #define INTERFACE_IS_PHONE   ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)

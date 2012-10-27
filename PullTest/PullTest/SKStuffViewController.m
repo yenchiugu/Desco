@@ -10,12 +10,15 @@
 
 #import "GMGridViewLayoutStrategies.h"
 #import "UpperStyledPullableView.h"
-#import "UIImage+SKScalableUImage.h"
-#import "UIImage+fixOrientation.h"
-#import "UIImage-Categories/UIImage+Resize.h"
+
+#import "SKThumbnailImgUtils.h"
+#import "SKImgLoadContext.h"
+
 @interface SKStuffViewController () <
 GMGridViewDataSource,GMGridViewSortingDelegate,GMGridViewTransformationDelegate,
-UINavigationControllerDelegate,UIImagePickerControllerDelegate
+UINavigationControllerDelegate,UIImagePickerControllerDelegate,
+SKDoubleTapEvent
+
 > {
     __gm_weak GMGridView *_gmGridView;
 
@@ -34,11 +37,14 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate
 //@synthesize photo_btn;
 @synthesize popover;
 @synthesize tmp;
+@synthesize selectedIdx;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+
     }
     return self;
 }
@@ -58,7 +64,7 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate
 //    UIImage *toggledImage = [UIImage imageNamed:@"file_toolbar_.png"];
 //    UIImage *toggledSelectedImage = [UIImage imageNamed:@"file_toolbar_.png"];
 //    CGPoint center = CGPointMake(40.0f, 40.0f);
-
+    
 
 
     
@@ -105,8 +111,9 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate
     [[self view] addSubview:photo_btn];
     
     _gmGridView.sortingDelegate = self;
-    _gmGridView.transformDelegate = self;
+    //_gmGridView.transformDelegate = self;
     _gmGridView.dataSource = self;
+    _gmGridView.skDoubleTapDelegate = self;
     
     //UIView *view1 = self.parentViewController.view;
     UIView *view2 = self.parentViewController.view;
@@ -170,50 +177,12 @@ UINavigationControllerDelegate,UIImagePickerControllerDelegate
     
 }
 
--(NSString*) getCurrentDateTimeString {
-    NSDateFormatter *formatter;
-    NSString        *dateString;
-    
-    formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"'img_'yyyyddMMHHmmss'.png'"];
-    
-    dateString = [formatter stringFromDate:[NSDate date]];
-    return dateString;
-}
-
--(NSString*) getDocPath {
-    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-}
-
-
-
-#pragma mark Image Methods
-
 -(void) saveImage:(UIImage*) img {
-    NSString *doc_path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    NSString *current_time_string = [self getCurrentDateTimeString];
-    NSString *path_path = [doc_path stringByAppendingPathComponent:current_time_string];
-
-    img = [img fixOrientation];
-    NSLog(@"saveImage: %@",path_path);
-    BOOL result = [UIImagePNGRepresentation(img) writeToFile:path_path atomically:YES];
-    NSLog(@"saveImage result:%d",result);
     
+    [SKThumbnailImgUtils saveImage:img];
     [_gmGridView reloadData];
 }
 
--(void) saveImage:(UIImage*) img fileNmae:(NSString*)filename {
-    NSString *doc_path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-  
-    NSString *path_path = [doc_path stringByAppendingPathComponent:filename];
-    
-    //img = [img fixOrientation];
-    NSLog(@"saveImage: %@",path_path);
-    BOOL result = [UIImagePNGRepresentation(img) writeToFile:path_path atomically:YES];
-    NSLog(@"saveImage result:%d",result);
-    
-    //[_gmGridView reloadData];
-}
 
 #pragma mark –
 #pragma mark Camera View Delegate Methods
@@ -235,26 +204,16 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissModalViewControllerAnimated:YES];
 }
 
+
+
 //////////////////////////////////////////////////////////////
 #pragma mark GMGridViewDataSource
 //////////////////////////////////////////////////////////////
 
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
 {
-    NSFileManager *file_mgr = [NSFileManager defaultManager];
-    NSDirectoryEnumerator *dir_enum = [file_mgr enumeratorAtPath:
-                                       [self getDocPath]];
     
-    int file_cnt = 0;
-    NSString *filename;
-    while (filename=[dir_enum nextObject]) {
-        if ([[filename pathExtension] isEqualToString:@"png"] ||
-            [[filename pathExtension] isEqualToString:@"jpg"] ) {
-            file_cnt++;
-        }
-    }
-    
-    return file_cnt;
+    return [SKThumbnailImgUtils getFileCount];
 }
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -269,31 +228,18 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     }
 }
 
-- (UIImage*) openOrCreateThumbnailImg:(NSString*) filename imgSize:(CGSize) size {
-    
-    NSString *thumbnail_filename = [filename stringByAppendingString:@".thumb"];
-    NSString *thumbnail_filepath = [[self getDocPath] stringByAppendingPathComponent:thumbnail_filename];
-    NSFileManager *file_mgr = [NSFileManager defaultManager];
-    if ([file_mgr fileExistsAtPath:thumbnail_filepath]) {
-        return [UIImage imageWithContentsOfFile:thumbnail_filepath];
-    }
-    
-    NSString *filepath = [[self getDocPath] stringByAppendingPathComponent:filename];
-    
-    UIImage *thumbnail_img =
-    [[UIImage imageWithContentsOfFile:filepath]
-     resizedImageWithContentMode:UIViewContentModeScaleAspectFit
-     bounds:size  interpolationQuality:kCGInterpolationHigh];
-    [self saveImage: thumbnail_img fileNmae:thumbnail_filename];
-    return thumbnail_img;
-}
-
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
 {
     CGSize size = [self GMGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
     
     GMGridViewCell *cell = nil;//[gridView dequeueReusableCell];
     
+    NSString *filename;
+    UIImage *thumbnail_img =
+        [SKThumbnailImgUtils openOrCreateThumbnailImgFromIndex:index
+                                                       ImgSize:size
+                                                   outFileName:&filename];
+    /*
     NSFileManager *file_mgr = [NSFileManager defaultManager];
     NSDirectoryEnumerator *dir_enum = [file_mgr enumeratorAtPath:
                                        [self getDocPath]];
@@ -320,7 +266,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                 
            
     }
-    
+    */
     
     
     if (!cell)
@@ -338,7 +284,16 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         }
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(my_x, my_y, size.width, size.height)];
         
+        
         imageView.image = thumbnail_img;
+        imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+        imageView.layer.borderWidth = 5;
+        imageView.backgroundColor = [UIColor blackColor];
+        imageView.layer.shadowColor = [UIColor blackColor].CGColor;
+        imageView.layer.shadowOffset = CGSizeMake(0, 2);
+        imageView.layer.shadowOpacity = 0.8;
+        imageView.layer.shadowRadius = 2.0;
+        imageView.clipsToBounds = NO;
 //        if (index==0||index==1 ||index==5) {
 //            imageView.image = [UIImage imageWithContentsOfFile:_jpg_img_path];
 //            
@@ -526,6 +481,18 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 {
     // We dont care about this in this demo (see demo 1 for examples)
 }
+
+- (void)doubleClick:(GMGridView*) gridView atIndex:(NSInteger)index {
+    NSLog(@"double click delegate");
+    NSLog(@"%@",self.parentViewController);
+    selectedIdx = index;
+    [self.parentViewController
+        performSegueWithIdentifier:@"ToolbarPhotoViewControllorSegue"
+        sender:self];
+    
+
+}
+
 
 
 @end

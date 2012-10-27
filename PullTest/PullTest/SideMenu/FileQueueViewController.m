@@ -20,6 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [[NSBundle mainBundle] loadNibNamed:@"FileQueueTableView" owner:self options:nil];
     }
     return self;
 }
