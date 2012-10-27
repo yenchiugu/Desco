@@ -21,8 +21,7 @@
 }
 @synthesize myName;
 
-#pragma mark -
-#pragma mark initialization
+#pragma mark - initialization
 - (DropboxManager *)initWithAppKey:(NSString *)key
                          appSecret:(NSString *)secret
                           userName:(NSString *)userName
@@ -74,8 +73,7 @@
     return nil;
 }
 
-#pragma mark -
-#pragma mark callbacks for uploading
+#pragma mark - callbacks for uploading
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata
 {
     NSLog(@"File uploaded successfully to path: %@", metadata.path);
@@ -109,8 +107,7 @@
     }
 }
 
-#pragma mark -
-#pragma mark callbacks for downloading
+#pragma mark - callbacks for downloading
 - (void)restClient:(DBRestClient*)client loadedFile:(NSString*)destPath
        contentType:(NSString*)contentType metadata:(DBMetadata*)metadata
 {
@@ -147,8 +144,7 @@
     }
 }
 
-#pragma mark -
-#pragma mark callbacks for thumbnail
+#pragma mark - callbacks for thumbnail
 - (void)restClient:(DBRestClient*)client loadedThumbnail:(NSString*)destPath metadata:(DBMetadata*)metadata
 {
     NSLog(@"Thumbnail downloaded successfully from path:[[%@]] to path:[[%@]]", metadata.path, destPath);
@@ -159,8 +155,7 @@
     NSLog(@"Thumbnail download failed with error: %@", error);
 }
 
-#pragma mark -
-#pragma mark callbacks for matadata
+#pragma mark - callbacks for matadata
 - (void)restClient:(DBRestClient*)client loadedMetadata:(DBMetadata*)metadata
 {
     if ([self isIncomingFile:metadata.path]) {
@@ -178,8 +173,7 @@
     NSLog(@"metadata download failed with error - %@", error);
 }
 
-#pragma mark -
-#pragma mark callbacks for deleting
+#pragma mark - callbacks for deleting
 - (void)restClient:(DBRestClient*)client deletedPath:(NSString *)path
 {
     [_downloadingFile removeObjectForKey:path];
@@ -191,8 +185,7 @@
     NSLog(@"file delete failed with error: %@", error);
 }
 
-#pragma mark -
-#pragma mark auxiliary functions
+#pragma mark - auxiliary functions
 - (void)downloadAllFiles:(DBMetadata *)metadata
 {
     if (metadata.isDirectory) {
@@ -213,8 +206,7 @@
     }
 }
 
-#pragma mark -
-#pragma mark utilities
+#pragma mark - utilities
 - (NSString *)incomingPathOfUser:(NSString *)userName
 {
     return [NSString stringWithFormat:@"/user/%@/incoming/",userName];

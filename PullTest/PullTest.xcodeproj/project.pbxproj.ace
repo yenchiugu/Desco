@@ -34,7 +34,6 @@
 		50B54B09160D1B6B00281350 /* AvatarMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B54B08160D1B6B00281350 /* AvatarMenuViewController.m */; };
 		50C6643F163642D100FCADE8 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C6643E163642D100FCADE8 /* DropboxSDK.framework */; };
 		50C664411636433E00FCADE8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C664401636433E00FCADE8 /* Security.framework */; };
-		50F9113E163BC54800DAE570 /* FileQueueCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F9113D163BC54800DAE570 /* FileQueueCellView.m */; };
 		50FD787616342AD300CAE25F /* DropboxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FD787516342AD300CAE25F /* DropboxManager.m */; };
 		6603889715FC50E7007EE91B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6603889615FC50E7007EE91B /* UIKit.framework */; };
 		6603889915FC50E7007EE91B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6603889815FC50E7007EE91B /* Foundation.framework */; };
@@ -174,8 +173,6 @@
 		50B54B08160D1B6B00281350 /* AvatarMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarMenuViewController.m; path = TopMenu/AvatarMenuViewController.m; sourceTree = "<group>"; };
 		50C6643E163642D100FCADE8 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxSDK.framework; path = PullTest/DropboxSDK.framework; sourceTree = "<group>"; };
 		50C664401636433E00FCADE8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		50F9113C163BC54800DAE570 /* FileQueueCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileQueueCellView.h; sourceTree = "<group>"; };
-		50F9113D163BC54800DAE570 /* FileQueueCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileQueueCellView.m; sourceTree = "<group>"; };
 		50FD787416342AD300CAE25F /* DropboxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxManager.h; sourceTree = "<group>"; };
 		50FD787516342AD300CAE25F /* DropboxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxManager.m; sourceTree = "<group>"; };
 		6603889215FC50E7007EE91B /* Desco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desco.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -617,8 +614,6 @@
 				66A434591605C7DD009A97C5 /* FileQueueViewController.m */,
 				66EC6B1116255A46005306FC /* FileQueueTableView.xib */,
 				66EC6B0B16246008005306FC /* FileQueueCellView.xib */,
-				50F9113C163BC54800DAE570 /* FileQueueCellView.h */,
-				50F9113D163BC54800DAE570 /* FileQueueCellView.m */,
 				509C0A16160CEE6B00FDE603 /* ChatBoardView.h */,
 				509C0A17160CEE6B00FDE603 /* ChatBoardView.m */,
 			);
@@ -853,7 +848,6 @@
 				662E624D1633FD6F00F3F8E9 /* UIImage+Resize.m in Sources */,
 				662E624E1633FD6F00F3F8E9 /* UIImage+RoundedCorner.m in Sources */,
 				506785FA16381A8300A0D8D9 /* FileInfo.m in Sources */,
-				50F9113E163BC54800DAE570 /* FileQueueCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

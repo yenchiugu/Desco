@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">12A269</string>
+		<int key="IBDocument.SystemTarget">1296</int>
+		<string key="IBDocument.SystemVersion">12B19</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2549</string>
 		<string key="IBDocument.AppKitVersion">1187</string>
 		<string key="IBDocument.HIToolboxVersion">624.00</string>
@@ -46,7 +46,8 @@
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{14, 20}, {95, 59}}</string>
 								<reference key="NSSuperview" ref="621153464"/>
-								<reference key="NSNextKeyView" ref="933756531"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="249919962"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -56,6 +57,8 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{14, 89}, {84, 9}}</string>
 								<reference key="NSSuperview" ref="621153464"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="912080079"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -66,7 +69,8 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{14, 1}, {241, 21}}</string>
 								<reference key="NSSuperview" ref="621153464"/>
-								<reference key="NSNextKeyView" ref="912080079"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="339943099"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -96,6 +100,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{117, 47}, {33, 31}}</string>
 								<reference key="NSSuperview" ref="621153464"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1025533044"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -104,8 +109,9 @@
 							<object class="IBUILabel" id="912080079">
 								<reference key="NSNextResponder" ref="621153464"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{81, 81}, {42, 21}}</string>
+								<string key="NSFrame">{{93, 81}, {42, 21}}</string>
 								<reference key="NSSuperview" ref="621153464"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="197850031"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -132,9 +138,9 @@
 							<object class="IBUILabel" id="197850031">
 								<reference key="NSNextResponder" ref="621153464"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{131, 81}, {19, 21}}</string>
+								<string key="NSFrame">{{143, 81}, {19, 21}}</string>
 								<reference key="NSSuperview" ref="621153464"/>
-								<reference key="NSNextKeyView" ref="249919962"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -154,6 +160,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{112, 25}, {42, 21}}</string>
 								<reference key="NSSuperview" ref="621153464"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="384694119"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -180,6 +187,8 @@
 						</array>
 						<string key="NSFrameSize">{174, 109}</string>
 						<reference key="NSSuperview" ref="537829819"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="933756531"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -194,15 +203,58 @@
 				</array>
 				<string key="NSFrameSize">{174, 110}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="621153464"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 				<reference key="IBUIContentView" ref="621153464"/>
+				<string key="IBUIReuseIdentifier">fileQueueCellView</string>
 				<real value="110" key="IBUIRowHeight"/>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<array class="NSMutableArray" key="connectionRecords"/>
+			<array class="NSMutableArray" key="connectionRecords">
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">fileIconView</string>
+						<reference key="source" ref="537829819"/>
+						<reference key="destination" ref="339943099"/>
+					</object>
+					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">fileNameLabel</string>
+						<reference key="source" ref="537829819"/>
+						<reference key="destination" ref="933756531"/>
+					</object>
+					<int key="connectionID">20</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">progressView</string>
+						<reference key="source" ref="537829819"/>
+						<reference key="destination" ref="1025533044"/>
+					</object>
+					<int key="connectionID">21</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">progressLabel</string>
+						<reference key="source" ref="537829819"/>
+						<reference key="destination" ref="912080079"/>
+					</object>
+					<int key="connectionID">22</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">friendAvatarView</string>
+						<reference key="source" ref="537829819"/>
+						<reference key="destination" ref="384694119"/>
+					</object>
+					<int key="connectionID">23</int>
+				</object>
+			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
 					<object class="IBObjectRecord">
@@ -277,6 +329,7 @@
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="11.CustomClassName">FileQueueCellView</string>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -290,11 +343,55 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">18</int>
+			<int key="maxID">23</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">FileQueueCellView</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="fileIconView">UIImageView</string>
+						<string key="fileNameLabel">UILabel</string>
+						<string key="friendAvatarView">UIImageView</string>
+						<string key="progressLabel">UILabel</string>
+						<string key="progressView">UIProgressView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="fileIconView">
+							<string key="name">fileIconView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="fileNameLabel">
+							<string key="name">fileNameLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="friendAvatarView">
+							<string key="name">friendAvatarView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="progressLabel">
+							<string key="name">progressLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="progressView">
+							<string key="name">progressView</string>
+							<string key="candidateClassName">UIProgressView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FileQueueCellView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
+			<real value="1296" key="NS.object.0"/>
+		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<string key="IBCocoaTouchPluginVersion">1498</string>

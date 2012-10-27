@@ -19,10 +19,30 @@
 #import "FriendRequestViewController.h"
 #import "SKStuffViewController.h"
 
-@interface SKViewController : UIViewController <PullableViewDelegate, NGTabBarControllerDelegate,QuestionSendDelegate,LocationShareDelegate,
+#import "SideMenu/FileQueueViewController.h"
+#import "SideMenu/ChatBoardView.h"
 
-QrCodeShareDelegate,LocationSearchDelegate,FriendRequestDelegate>
+#import "TouchTracker/TouchTracker.h"
+#import "DropboxManager/DropboxManager.h"
+
+
+@interface SKViewController : UIViewController <
+        PullableViewDelegate,
+        NGTabBarControllerDelegate,
+        QuestionSendDelegate,
+        QrCodeShareDelegate,
+        LocationShareDelegate,
+        LocationSearchDelegate,
+        FriendRequestDelegate,
+        DropboxManagerDelegate>
 {
+    TouchTracker *touchTracker;
+    FileQueueViewController *fileQueueMenu;
+    UIPopoverController *fileQueuePopover;
+    UIView *sharingMenu;
+    ChatBoardView *chatBoard;
+    DropboxManager *dbManager;
+    FileQueueViewController *fileQueueViewController;
 }
 @property (nonatomic,strong) UpperStyledPullableView *upperView;
 @property (nonatomic,strong) StyledPullableView *bottomView;
@@ -35,4 +55,6 @@ QrCodeShareDelegate,LocationSearchDelegate,FriendRequestDelegate>
 @property (nonatomic,strong) LocationSearchViewController *locationSearchViewController;
 @property (nonatomic,strong) FriendRequestViewController *friendRequestViewController;
 @property (nonatomic,strong) SKStuffViewController *my_stuff_view_controllor;
+@property (nonatomic,strong) DropboxManager *dbManager;
+@property (nonatomic,strong) FileQueueViewController *fileQueueViewController;
 @end

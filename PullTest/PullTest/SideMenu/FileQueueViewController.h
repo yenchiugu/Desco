@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FileQueueCellView.h"
 
-@interface FileQueueViewController : UIViewController
+
+@interface FileQueueViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
-  UITableView *fileQueueTable;
+    UITableView *fileQueueTable;
+    NSMutableArray *files;
 }
 @property (strong, nonatomic) IBOutlet UITableView *fileQueueTable;
+@property (strong, nonatomic) NSMutableArray *files;
 
 @end

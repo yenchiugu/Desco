@@ -17,7 +17,6 @@
 }
 
 @property(readonly, nonatomic) char *letter;
-@property(readwrite, nonatomic) bool enabled;
 
 - (id) initWithFrame:(CGRect)frame andTarget:(id)target action:(SEL)action;
 

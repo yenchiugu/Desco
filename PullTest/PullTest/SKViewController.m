@@ -7,30 +7,19 @@
 //
 
 #import "SKViewController.h"
-#import "NGTabBarController/NGTabBarController.h"
 
 #import "SKUserListViewController.h"
 #import "StyledPullableView.h"
 #import "UpperStyledPullableView.h"
 
-#import "TouchTracker/TouchTracker.h"
-#import "SideMenu/FileQueueViewController.h"
-#import "SideMenu/ChatBoardView.h"
-
+#import "NGTabBarController/NGTabBarController.h"
 #import "MJPopupViewController/UIViewController+MJPopupViewController.h"
 #import "QuestionSendViewController.h"
 #import "FriendRequestViewController.h"
 
-#import "DropboxManager/DropboxManager.h"
 
 @interface SKViewController ()
 {
-    TouchTracker *touchTracker;
-    FileQueueViewController *fileQueueMenu;
-    UIPopoverController *fileQueuePopover;
-    UIView *sharingMenu;
-    ChatBoardView *chatBoard;
-    DropboxManager *dbManager;
 }
 
 @end
@@ -49,6 +38,8 @@
 @synthesize locationSearchViewController;
 @synthesize friendRequestViewController;
 @synthesize my_stuff_view_controllor;
+@synthesize dbManager;
+@synthesize fileQueueViewController;
 //@synthesize mapView;
 
 
@@ -71,9 +62,7 @@
     [self.view addSubview:chatBoard];
     
     // Upper Pullable View
-    UpperStyledPullableView * upper_pullable_view = [[UpperStyledPullableView alloc]
-                                                     initWithFrame:CGRectMake(
-                                                                              0, 0, my_width, 200)];
+    UpperStyledPullableView * upper_pullable_view = [[UpperStyledPullableView alloc] initWithFrame:CGRectMake(0, 0, my_width, 200)];
     //self.view.frame.size.width,
     //self.view.frame.size.height/7 )];
     upper_pullable_view.openedCenter = CGPointMake(my_width/2, 100);
@@ -90,8 +79,7 @@
     
     // -----------------
     // Bottom Panel
-    StyledPullableView *pullable_view = [[StyledPullableView alloc]
-                                         initWithFrame:CGRectMake(0, 0, my_width, 600)];
+    StyledPullableView *pullable_view = [[StyledPullableView alloc] initWithFrame:CGRectMake(0, 0, my_width, 600)];
     //self.view.frame.size.width,
     //self.view.frame.size.height/7 )];
     pullable_view.openedCenter = CGPointMake(my_width/2, my_height+50);
@@ -142,7 +130,6 @@
     
     [self setupSideButtons];
     [self setupSharingMenu];
-    [self setupFriendAddingMenu];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     questionSendViewController = (QuestionSendViewController*)
@@ -151,6 +138,20 @@
     
     questionSendViewController.delegate = self;
     [questionSendViewController.view setFrame:CGRectMake(0, 0, 400, 250)];
+    
+    [self setupDropboxManager];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return ((interfaceOrientation == UIInterfaceOrientationPortrait) ||
+            (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown));
 }
 
 - (void)setupSideButtons
@@ -204,10 +205,6 @@
     [self.view addSubview:sharingMenu];
 }
 
-- (void)setupFriendAddingMenu
-{
-}
-
 - (void)showGestureMenu:(id)sender
 {
     TouchTracker *tracker = (TouchTracker *) sender;
@@ -246,12 +243,13 @@
 {
     UIButton *button = (UIButton *)sender;
     
-    if (fileQueuePopover == nil) {
-        UIViewController *controller = [[FileQueueViewController alloc] init];
-        controller.contentSizeForViewInPopover = CGSizeMake(240.0f, 480.0f);
-        fileQueuePopover = [[UIPopoverController alloc] initWithContentViewController:controller];
+    if (fileQueueViewController == nil) {
+        fileQueueViewController = [[FileQueueViewController alloc] init];
     }
-    
+    if (fileQueuePopover == nil) {
+        fileQueueViewController.contentSizeForViewInPopover = CGSizeMake(240.0f, 480.0f);
+        fileQueuePopover = [[UIPopoverController alloc] initWithContentViewController:fileQueueViewController];
+    }    
     if (fileQueuePopover.popoverVisible) {
         [fileQueuePopover dismissPopoverAnimated:YES];
     } else {
@@ -261,29 +259,6 @@
 
 - (void)popupSettingsMenu:(id)sender
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docPath  = [paths objectAtIndex:0];
-    if (dbManager == nil) {
-        NSLog(@"init");
-        dbManager = [[DropboxManager alloc] initWithAppKey:@"3or4oa1y8okdbbd"
-                                                 appSecret:@"lu2qmice5mv4kgz"
-                                                  userName:@"test"
-                                              downloadPath:docPath];
-        NSLog(@"linked:%i", [dbManager isLinked]);
-    } else if (![dbManager isLinked]) {
-        NSLog(@"link");
-        [dbManager linkFromController:self];
-    } else {
-        NSLog(@"linked");
-        NSLog(@"upload");
-        return;
-        NSString *testFile = [docPath stringByAppendingPathComponent:@"upload/2.png"];
-        [dbManager uploadFile:testFile toUser:@"test"];
-        //testFile = [docPath stringByAppendingPathComponent:@"upload/3.mp3"];
-        //[dbManager uploadFile:testFile toUser:@"test"];
-        testFile = [docPath stringByAppendingPathComponent:@"upload/1.jpg"];
-        [dbManager uploadFile:testFile toUser:@"test"];
-    }
 }
 
 - (void)showChatBoard:(id)sender
@@ -312,30 +287,79 @@
     [self presentPopupViewController:self.locationSearchViewController animationType:MJPopupViewAnimationSlideBottomTop];
 }
 
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
-}
-
-- (void) pullableView:(PullableView *)pView didChangeState:(BOOL)opened
+- (void)pullableView:(PullableView *)pView didChangeState:(BOOL)opened
 {
 }
 
-////////////////////////////////////////////////////////////////////////
+#pragma mark - Dropbox
+- (void)setupDropboxManager
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docPath  = [paths objectAtIndex:0];
+    if (dbManager == nil) {
+        NSLog(@"init");
+        dbManager = [[DropboxManager alloc] initWithAppKey:@"3or4oa1y8okdbbd"
+                                                 appSecret:@"lu2qmice5mv4kgz"
+                                                  userName:@"test"
+                                              downloadPath:docPath];
+        dbManager.delegate = self;
+        NSLog(@"linked:%i", [dbManager isLinked]);
+    }
+    if (![dbManager isLinked]) {
+        NSLog(@"link");
+        [dbManager linkFromController:self];
+    }
+    /*
+    else {
+        NSLog(@"linked");
+        NSLog(@"upload");
+        return;
+        NSString *testFile = [docPath stringByAppendingPathComponent:@"upload/2.png"];
+        [dbManager uploadFile:testFile toUser:@"test"];
+        //testFile = [docPath stringByAppendingPathComponent:@"upload/3.mp3"];
+        //[dbManager uploadFile:testFile toUser:@"test"];
+        testFile = [docPath stringByAppendingPathComponent:@"upload/1.jpg"];
+        [dbManager uploadFile:testFile toUser:@"test"];
+    }
+     */
+}
+
+- (void)uploadProgress:(CGFloat)progress
+               forFile:(NSString *)fileName
+                toUser:(NSString *)user
+              uploaded:(long long)uploadedSize
+                 total:(long long)totalSize
+                fileId:(NSString *)fileId
+{}
+
+- (void)uploadedFile:(NSString *)srcPath toUser:(NSString *)user
+{}
+
+- (void)uploadFileFailedWithError:(NSError *)error
+{}
+
+- (void)downloadProgress:(CGFloat)progress
+                 forFile:(NSString *)fileName
+                fromUser:(NSString *)user
+              downloaded:(long long)downloadedSize
+                   total:(long long)totalSize
+                  fileId:(NSString *)fileId
+{
+}
+
+- (void)downloadedFile:(NSString *)destPath fromUser:(NSString *)user
+{}
+
+- (void)downloadFileFailedWithError:(NSError *)error
+{}
+
+
 #pragma mark - NGTabBarControllerDelegate
-////////////////////////////////////////////////////////////////////////
-
 - (CGSize)tabBarController:(NGTabBarController *)tabBarController
 sizeOfItemForViewController:(UIViewController *)viewController
                    atIndex:(NSUInteger)index
-                  position:(NGTabBarPosition)position {
+                  position:(NGTabBarPosition)position
+{
     if (NGTabBarIsVertical(position)) {
         return CGSizeMake(200.f, 100.f);
     } else {
@@ -345,12 +369,10 @@ sizeOfItemForViewController:(UIViewController *)viewController
 
 - (void)ClickSendYesBtn:(UIViewController*) uiview {
     [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
-    
 }
 
 - (void)ClickSendNoBtn:(UIViewController*) uiview {
     [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
-    
 }
 
 - (void)ClickShareNowBtn:(UIViewController*) uiview {
@@ -391,7 +413,6 @@ sizeOfItemForViewController:(UIViewController *)viewController
 
 - (void)ClickAcceptBtn:(UIViewController*) uiview {
     [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
-    
     [self setFriendRequestViewController:nil];
 }
 @end
