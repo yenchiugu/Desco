@@ -1087,9 +1087,7 @@
 				662E624C1633FD6F00F3F8E9 /* UIImage+Alpha.m in Sources */,
 				662E624D1633FD6F00F3F8E9 /* UIImage+Resize.m in Sources */,
 				662E624E1633FD6F00F3F8E9 /* UIImage+RoundedCorner.m in Sources */,
-
 				506785FA16381A8300A0D8D9 /* FileInfo.m in Sources */,
-
 				6645CE9D1636E23500CBB348 /* NIPhotoAlbumScrollView.m in Sources */,
 				6645CE9E1636E23500CBB348 /* NIPhotoScrollView.m in Sources */,
 				6645CE9F1636E23500CBB348 /* NIPhotoScrubberView.m in Sources */,
@@ -1119,7 +1117,6 @@
 				66A09E50163B9B1C00B88096 /* SKImgLoadContext.m in Sources */,
 				66A09E59163BC8E600B88096 /* SKThumbnailImgUtils.m in Sources */,
 				66A09E5C163BD6E100B88096 /* CaptionedPhotoView.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
