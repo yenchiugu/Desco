@@ -267,7 +267,7 @@
         NSLog(@"init");
         dbManager = [[DropboxManager alloc] initWithAppKey:@"3or4oa1y8okdbbd"
                                                  appSecret:@"lu2qmice5mv4kgz"
-                                                  userName:@"ace"
+                                                  userName:@"test"
                                               downloadPath:docPath];
         NSLog(@"linked:%i", [dbManager isLinked]);
     } else if (![dbManager isLinked]) {
@@ -276,7 +276,12 @@
     } else {
         NSLog(@"linked");
         NSLog(@"upload");
-        NSString *testFile = [docPath stringByAppendingPathComponent:@"123.mp3"];
+        return;
+        NSString *testFile = [docPath stringByAppendingPathComponent:@"upload/2.png"];
+        [dbManager uploadFile:testFile toUser:@"test"];
+        //testFile = [docPath stringByAppendingPathComponent:@"upload/3.mp3"];
+        //[dbManager uploadFile:testFile toUser:@"test"];
+        testFile = [docPath stringByAppendingPathComponent:@"upload/1.jpg"];
         [dbManager uploadFile:testFile toUser:@"test"];
     }
 }

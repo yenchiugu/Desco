@@ -11,6 +11,7 @@
 @interface FileInfo : NSObject
 {
     NSString *fileName;
+    NSString *fullPath;
     NSString *fromUser;
     NSString *toUser;
     long long totalSize;
@@ -19,6 +20,7 @@
     float progress;
 }
 @property (strong, nonatomic) NSString *fileName;
+@property (strong, nonatomic) NSString *fullPath;
 @property (strong, nonatomic) NSString *fromUser;
 @property (strong, nonatomic) NSString *toUser;
 @property long long totalSize;

@@ -2,19 +2,27 @@
 #import "FileInfo.h"
 
 @interface DropboxManager ()
+// aux
+- (void)downloadAllFiles:(DBMetadata *)metadata;
+// util
 - (NSString *)incomingPathOfUser:(NSString *)userName;
 - (NSString *)encodeFileName:(NSString *)fileName;
 - (NSNumber *)sizeOfFile:(NSString *)path;
 - (void)handlePollingTimer:(NSTimer *)timer;
+- (BOOL)isDelegateValid;
+- (BOOL)isIncomingFile:(NSString *)path;
+- (BOOL)hasThumbnail:(NSString *)path;
 @end
 
 @implementation DropboxManager
 {
     NSTimer *_pullingTimer;
-    NSMutableDictionary *_downloading;
+    NSMutableDictionary *_downloadingFile;
 }
 @synthesize myName;
 
+#pragma mark -
+#pragma mark initialization
 - (DropboxManager *)initWithAppKey:(NSString *)key
                          appSecret:(NSString *)secret
                           userName:(NSString *)userName
@@ -26,7 +34,7 @@
     myName = userName;
     downloadPath = path;
     _pullingTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(handlePollingTimer:) userInfo:nil repeats:YES];
-    _downloading = [[NSMutableDictionary alloc] init];
+    _downloadingFile = [[NSMutableDictionary alloc] init];
     return self;
 }
 
@@ -52,19 +60,26 @@
     return [[DBSession sharedSession] isLinked];
 }
 
-- (void)uploadFile:(NSString *)srcPath toUser:(NSString *)user
+- (NSString *)uploadFile:(NSString *)srcPath toUser:(NSString *)user
 {
     NSString *destPath = [self incomingPathOfUser:user];
     NSString *destFile = [self encodeFileName:srcPath];
-    NSLog(@"%@%@", destPath, destFile);
-    [self.restClient uploadFile:destFile toPath:destPath withParentRev:nil fromPath:srcPath];
+    NSString *fullPath = [destPath stringByAppendingPathComponent:destFile];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:srcPath]) {
+        [self.restClient uploadFile:destFile toPath:destPath withParentRev:nil fromPath:srcPath];
+        return fullPath;
+    } else {
+        NSLog(@"can not find local file: %@", srcPath);
+    }
+    return nil;
 }
 
-// ========== upload callbacks ==========
+#pragma mark -
+#pragma mark callbacks for uploading
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata
 {
     NSLog(@"File uploaded successfully to path: %@", metadata.path);
-    if (delegate && [delegate conformsToProtocol:@protocol(DropboxManagerDelegate)]) {
+    if ([self isDelegateValid]) {
         FileInfo *info = [FileInfo fileInfoByPath:destPath];
         [delegate uploadedFile:info.fileName
                         toUser:info.toUser];
@@ -74,7 +89,7 @@
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
 {
     NSLog(@"File upload failed with error - %@", error);
-    if (delegate && [delegate conformsToProtocol:@protocol(DropboxManagerDelegate)]) {
+    if ([self isDelegateValid]) {
         [delegate uploadFileFailedWithError:error];
     }
 }
@@ -83,23 +98,25 @@
 {
     NSLog(@"upload file: from:%@, to:%@, progress:%.2f%%", srcPath, destPath, progress*100);
     NSLog(@"thread:%@", [NSThread currentThread]);
-    if (delegate && [delegate conformsToProtocol:@protocol(DropboxManagerDelegate)]) {
+    if ([self isDelegateValid]) {
         FileInfo *info = [FileInfo fileInfoByPath:destPath inProgress:progress];
         [delegate uploadProgress:info.progress
                          forFile:info.fileName
                           toUser:info.toUser
                         uploaded:info.processdSize
-                           total:info.totalSize];
+                           total:info.totalSize
+                          fileId:info.fullPath];
     }
 }
 
-// ========== download callbacks ==========
+#pragma mark -
+#pragma mark callbacks for downloading
 - (void)restClient:(DBRestClient*)client loadedFile:(NSString*)destPath
        contentType:(NSString*)contentType metadata:(DBMetadata*)metadata
 {
     NSLog(@"File downloaded successfully from path:[[%@]] to path:[[%@]]", metadata.path, destPath);
     [self.restClient deletePath:metadata.path];
-    if (delegate && [delegate conformsToProtocol:@protocol(DropboxManagerDelegate)]) {
+    if ([self isDelegateValid]) {
         FileInfo *info = [FileInfo fileInfoByPath:metadata.path];
         [delegate uploadedFile:info.fileName
                         toUser:info.toUser];
@@ -109,13 +126,14 @@
 - (void)restClient:(DBRestClient*)client loadProgress:(CGFloat)progress forFile:(NSString*)destPath
 {
     NSLog(@"download file: to:%@, progress:%.2f%%", destPath, progress*100);
-    if (delegate && [delegate conformsToProtocol:@protocol(DropboxManagerDelegate)]) {
+    if ([self isDelegateValid]) {
         FileInfo *info = [FileInfo fileInfoByPath:destPath inProgress:progress];
         [delegate downloadProgress:info.progress
                            forFile:info.fileName
                           fromUser:info.fromUser
                         downloaded:info.processdSize
-                             total:info.totalSize];
+                             total:info.totalSize
+                            fileId:info.fullPath];
     }
 
 }
@@ -123,27 +141,30 @@
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error
 {
     NSLog(@"File download failed with error - %@", error);
-    //[_downloading removeObjectForKey:<#(id)#>]
+    //[_downloadingFile removeObjectForKey:<#(id)#>]
     if (delegate && [delegate conformsToProtocol:@protocol(DropboxManagerDelegate)]) {
         [delegate downloadFileFailedWithError:error];
     }
 }
 
-// ========== metadata callbacks ==========
+#pragma mark -
+#pragma mark callbacks for thumbnail
+- (void)restClient:(DBRestClient*)client loadedThumbnail:(NSString*)destPath metadata:(DBMetadata*)metadata
+{
+    NSLog(@"Thumbnail downloaded successfully from path:[[%@]] to path:[[%@]]", metadata.path, destPath);
+}
+
+- (void)restClient:(DBRestClient*)client loadThumbnailFailedWithError:(NSError*)error
+{
+    NSLog(@"Thumbnail download failed with error: %@", error);
+}
+
+#pragma mark -
+#pragma mark callbacks for matadata
 - (void)restClient:(DBRestClient*)client loadedMetadata:(DBMetadata*)metadata
 {
-    if (metadata.isDirectory) {
-        NSLog(@"Folder '%@' contains:", metadata.path);
-        for (DBMetadata *file in metadata.contents) {
-            NSLog(@"\t%@", file.filename);
-            NSString *fullPath = [metadata.path stringByAppendingPathComponent:file.filename];
-            FileInfo *info = [FileInfo fileInfoByPath:fullPath];
-            NSString *destPath = [downloadPath stringByAppendingPathComponent:info.fileName];
-            if (![_downloading objectForKey:fullPath]) {
-                [_downloading setObject:fullPath forKey:fullPath];
-                [self.restClient loadFile:fullPath intoPath:destPath];
-            }
-        }
+    if ([self isIncomingFile:metadata.path]) {
+        [self downloadAllFiles:metadata];
     }
 }
 
@@ -157,10 +178,11 @@
     NSLog(@"metadata download failed with error - %@", error);
 }
 
-// ========== delete callbacks ==========
+#pragma mark -
+#pragma mark callbacks for deleting
 - (void)restClient:(DBRestClient*)client deletedPath:(NSString *)path
 {
-    [_downloading removeObjectForKey:path];
+    [_downloadingFile removeObjectForKey:path];
     NSLog(@"file deleted:%@", path);
 }
 
@@ -169,10 +191,40 @@
     NSLog(@"file delete failed with error: %@", error);
 }
 
-// ========== extended functions ==========
+#pragma mark -
+#pragma mark auxiliary functions
+- (void)downloadAllFiles:(DBMetadata *)metadata
+{
+    if (metadata.isDirectory) {
+        NSLog(@"Folder '%@' contains:", metadata.path);
+        for (DBMetadata *file in metadata.contents) {
+            NSLog(@"\t%@", file.filename);
+            NSString *fullPath  = [metadata.path stringByAppendingPathComponent:file.filename];
+            FileInfo *info      = [FileInfo fileInfoByPath:fullPath];
+            NSString *localPath = [downloadPath stringByAppendingPathComponent:info.fileName];
+            if (![_downloadingFile objectForKey:fullPath]) {
+                [_downloadingFile setObject:fullPath forKey:fullPath];
+                //[self.restClient loadFile:fullPath intoPath:localPath];
+                if ([self hasThumbnail:fullPath]) {
+                    [self.restClient loadThumbnail:fullPath ofSize:@"m" intoPath:[localPath stringByAppendingString:@".thumb"]];
+                }
+            }
+        }
+    }
+}
+
+#pragma mark -
+#pragma mark utilities
 - (NSString *)incomingPathOfUser:(NSString *)userName
 {
     return [NSString stringWithFormat:@"/user/%@/incoming/",userName];
+}
+
+- (NSString *)encodeFileName:(NSString *)fileName
+{
+    NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
+    NSNumber *size = [self sizeOfFile:fileName];
+    return [NSString stringWithFormat:@"%lf+%@+%@+%@",timestamp,myName,size,[fileName lastPathComponent]];
 }
 
 - (NSNumber *)sizeOfFile:(NSString *)path
@@ -191,5 +243,33 @@
         NSString *fullPath = [self incomingPathOfUser:myName];
         [self.restClient loadMetadata:fullPath];
     }
+}
+
+- (BOOL)isDelegateValid
+{
+    return delegate && [delegate conformsToProtocol:@protocol(DropboxManagerDelegate)];
+}
+
+- (BOOL)isIncomingFile:(NSString *)path
+{
+    if ([path hasPrefix:@"/user/"]) {
+        NSRange range = [path rangeOfString:@"/incoming"];
+        if (range.location != NSNotFound) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)hasThumbnail:(NSString *)path
+{
+    NSArray *supportedExt = [NSArray arrayWithObjects:@"jpg",@"jpeg",@"png",@"tiff",@"tif",@"gif",@"bmp",nil];
+    path = [[path pathExtension] lowercaseString];
+    for (NSString *ext in supportedExt) {
+        if ([path hasSuffix:ext]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 @end

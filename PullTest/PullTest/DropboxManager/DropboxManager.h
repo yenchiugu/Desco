@@ -10,7 +10,8 @@
                forFile:(NSString *)fileName
                 toUser:(NSString *)user
               uploaded:(long long)uploadedSize
-                 total:(long long)totalSize;
+                 total:(long long)totalSize
+                fileId:(NSString *)fileId;
 - (void)uploadedFile:(NSString *)srcPath toUser:(NSString *)user;
 - (void)uploadFileFailedWithError:(NSError *)error;
 
@@ -18,7 +19,8 @@
                  forFile:(NSString *)fileName
                 fromUser:(NSString *)user
               downloaded:(long long)downloadedSize
-                   total:(long long)totalSize;
+                   total:(long long)totalSize
+                  fileId:(NSString *)fileId;
 - (void)downloadedFile:(NSString *)destPath fromUser:(NSString *)user;
 - (void)downloadFileFailedWithError:(NSError *)error;
 
@@ -51,7 +53,7 @@
 - (void)linkFromController:(UIViewController *)mainController;
 - (BOOL)isLinked;
 
-- (void)uploadFile:(NSString *)srcPath toUser:(NSString *)user;
+- (NSString *)uploadFile:(NSString *)srcPath toUser:(NSString *)user;
 //- (void)downloadFile:(NSString *)dropboxPath forUser:(NSString *)user;
 //- (void)queryIncomingFileFor:(NSString *)user;
 - (NSDictionary *)friendList;

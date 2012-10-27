@@ -13,6 +13,7 @@
     NSRegularExpression *regex;
 }
 @synthesize fileName;
+@synthesize fullPath;
 @synthesize fromUser;
 @synthesize toUser;
 @synthesize totalSize;
@@ -35,9 +36,10 @@
             }
             //NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             //[formatter setNumberStyle:NSNumberFormatter];
+            fileName  = [path substringWithRange:[match rangeAtIndex:5]];
+            fullPath  = path;
             fromUser  = [path substringWithRange:[match rangeAtIndex:3]];
             toUser    = [path substringWithRange:[match rangeAtIndex:1]];
-            fileName  = [path substringWithRange:[match rangeAtIndex:5]];
             totalSize = [[path substringWithRange:[match rangeAtIndex:4]] longLongValue];
             timestamp = [[path substringWithRange:[match rangeAtIndex:2]] doubleValue];
             progress  = 0.0f;
