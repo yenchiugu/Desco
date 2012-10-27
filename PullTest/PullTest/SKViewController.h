@@ -44,6 +44,9 @@
     DropboxManager *dbManager;
     FileQueueViewController *fileQueueViewController;
 }
+
+
+
 @property (nonatomic,strong) UpperStyledPullableView *upperView;
 @property (nonatomic,strong) StyledPullableView *bottomView;
 @property (nonatomic,strong) NGTabBarController *tabBarController;

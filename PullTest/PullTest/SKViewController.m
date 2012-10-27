@@ -263,6 +263,11 @@
 
 - (void)showChatBoard:(id)sender
 {
+    
+    [self
+     performSegueWithIdentifier:@"ToolbarPhotoViewControllorSegue"
+     sender:self];
+    /*
     UIButton *button = (UIButton *)sender;
     [button setImage:[UIImage imageNamed:@"side_message.png"] forState:UIControlStateNormal];
     bool is_showing = chatBoard.alpha < 0.5f;
@@ -272,6 +277,7 @@
     [UIView setAnimationDuration:0.5f];
     chatBoard.alpha = newAlpha;
     [UIView commitAnimations];
+     */
 }
 
 - (void)clickLocationSearchBtn:(id)sender
@@ -414,5 +420,22 @@ sizeOfItemForViewController:(UIViewController *)viewController
 - (void)ClickAcceptBtn:(UIViewController*) uiview {
     [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
     [self setFriendRequestViewController:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    SKToolbarPhotoViewController *photo_vc =
+    (SKToolbarPhotoViewController*)segue.destinationViewController;
+    
+    SKStuffViewController *sk_stuff_vc = (SKStuffViewController*)sender;
+    SKViewController *sk_vc = sk_stuff_vc.parentViewController;
+    UINavigationController *vc = (UINavigationController*) sk_vc.parentViewController;
+
+    [vc setNavigationBarHidden:NO animated:YES];
+    
+    photo_vc.scrubberIsEnabled = YES;
+    photo_vc.my_navigationController = vc;
+    photo_vc.select_index = sk_stuff_vc.selectedIdx;
+    //[photo_vc.photoScrubberView setSelectedPhotoIndex:sk_stuff_vc.selectedIdx];
+    
 }
 @end

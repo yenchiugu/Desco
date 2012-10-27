@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="mus-VG-S29">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
@@ -13,10 +13,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="tTB-gd-bXf"/>
+                    <connections>
+                        <segue destination="Wk4-K6-5Ap" kind="push" identifier="ToolbarPhotoViewControllorSegue" id="5O6-nA-HJr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-994" y="-401"/>
+            <point key="canvasLocation" x="-20" y="-401"/>
         </scene>
         <!--Location Share View Controller-->
         <scene sceneID="pr9-oY-QDp">
@@ -117,6 +121,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DsZ-Tq-U5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="122" y="-1142"/>
+        </scene>
+        <!--Toolbar Photo View Controller-->
+        <scene sceneID="h51-Zc-xDb">
+            <objects>
+                <viewController id="Wk4-K6-5Ap" customClass="SKToolbarPhotoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="i90-f9-94K">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4Tv-6l-Be7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ka7-El-RQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1036" y="-399"/>
         </scene>
         <!--Qr Code Share View Controller-->
         <scene sceneID="16b-o2-uG1">
@@ -383,6 +402,24 @@ EEFjY2VwdCE
             </objects>
             <point key="canvasLocation" x="-410" y="-1142"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oQh-LE-Ds6">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="mus-VG-S29" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mYz-Nz-p6E">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="bUm-Jo-AOS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4oB-UA-xcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-994" y="-401"/>
+        </scene>
     </scenes>
     <resources>
         <image name="green-ok-icon.png" width="26" height="26"/>
@@ -414,6 +451,9 @@ EEFjY2VwdCE
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
+        <class className="NIToolbarPhotoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NIToolbarPhotoViewController.h"/>
+        </class>
         <class className="QrCodeShareViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/QrCodeShareViewController.h"/>
             <relationships>
@@ -427,6 +467,9 @@ EEFjY2VwdCE
                 <relationship kind="action" name="ClickNoBtn:"/>
                 <relationship kind="action" name="ClickYesBtn:"/>
             </relationships>
+        </class>
+        <class className="SKToolbarPhotoViewController" superclassName="NIToolbarPhotoViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SKToolbarPhotoViewController.h"/>
         </class>
         <class className="SKViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SKViewController.h"/>

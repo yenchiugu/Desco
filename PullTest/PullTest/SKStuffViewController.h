@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RNExpandingButtonBar/RNExpandingButtonBar.h"
 #import "GMGridView.h"
+#import "SKToolbarPhotoViewController.h"
 
 @interface SKStuffViewController : UIViewController {
   NSString *_doc_img_path;
@@ -20,9 +21,12 @@
 //  GMGridView *_gmGridView;
 }
 
+@property (nonatomic) NSInteger selectedIdx;
 @property (nonatomic, strong) RNExpandingButtonBar *bar;
 @property (nonatomic, strong) UIPopoverController  *popover;
 //@property (nonatomic, strong) GMGridView *_gmGridView;
 //@property (nonatomic, strong) UIButton *photo_btn;
 @property (nonatomic,strong) UIImage *tmp;
 @end
+
+

@@ -36,6 +36,7 @@
 @protocol GMGridViewTransformationDelegate;
 @protocol GMGridViewLayoutStrategy;
 @protocol SKDragEvent;
+@protocol SKDoubleTapEvent;
 
 
 typedef enum
@@ -70,7 +71,12 @@ typedef enum
 @property (nonatomic, gm_weak) IBOutlet NSObject<GMGridViewActionDelegate> *actionDelegate;            // Optional - to get taps callback & deleting item
 @property (nonatomic, gm_weak) IBOutlet NSObject<GMGridViewSortingDelegate> *sortingDelegate;          // Optional - to enable sorting
 @property (nonatomic, gm_weak) IBOutlet NSObject<GMGridViewTransformationDelegate> *transformDelegate; // Optional - to enable fullsize mode
+
+// SK
 @property (nonatomic, gm_weak) IBOutlet NSObject<SKDragEvent> *skDragDelegate;
+
+// SK
+@property (nonatomic, gm_weak) IBOutlet NSObject<SKDoubleTapEvent> *skDoubleTapDelegate;
 
 // Layout Strategy
 @property (nonatomic, strong) IBOutlet id<GMGridViewLayoutStrategy> layoutStrategy; // Default is GMGridViewLayoutVerticalStrategy
@@ -201,5 +207,12 @@ typedef enum
 @required
 - (void)draggingEvent:(CGPoint) pt sourceView:(UIView *)srcView;
 - (void)droppedEvent:(CGPoint) pt sourceView:(UIView *)srcView;
+
+@end
+
+@protocol SKDoubleTapEvent <NSObject>
+
+@required
+- (void)doubleClick:(GMGridView*) gridView atIndex:(NSInteger)index;
 
 @end

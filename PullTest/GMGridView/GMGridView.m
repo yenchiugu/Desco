@@ -53,6 +53,9 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
     UIRotationGestureRecognizer  *_rotationGesture;
     UIPanGestureRecognizer       *_panGesture;
     
+    // SK
+    UITapGestureRecognizer       *_doubleTapGesture;
+    
     // General vars
     NSInteger _numberTotalItems;
     CGSize    _itemSize;
@@ -88,6 +91,7 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
 - (void)sortingPanGestureUpdated:(UIPanGestureRecognizer *)panGesture;
 - (void)longPressGestureUpdated:(UILongPressGestureRecognizer *)longPressGesture;
 - (void)tapGestureUpdated:(UITapGestureRecognizer *)tapGesture;
+- (void)doubleTapGestureUpdated:(UITapGestureRecognizer *)doubleTapGesture;
 - (void)panGestureUpdated:(UIPanGestureRecognizer *)panGesture;
 - (void)pinchGestureUpdated:(UIPinchGestureRecognizer *)pinchGesture;
 - (void)rotationGestureUpdated:(UIRotationGestureRecognizer *)rotationGesture;
@@ -192,6 +196,17 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
     _tapGesture.numberOfTouchesRequired = 1;
     _tapGesture.cancelsTouchesInView = NO;
     [self addGestureRecognizer:_tapGesture];
+    
+    // SK
+    _doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapGestureUpdated:)];
+    //_doubleTapGesture.delegate = self;
+    _doubleTapGesture.numberOfTapsRequired = 2;
+    _doubleTapGesture.numberOfTouchesRequired = 1;
+    _doubleTapGesture.cancelsTouchesInView = NO;
+    [self addGestureRecognizer:_doubleTapGesture];
+    
+    [_tapGesture requireGestureRecognizerToFail:_doubleTapGesture];
+    // -------------------------------------------------------------------------
     
     /////////////////////////////
     // Transformation gestures :
@@ -1177,6 +1192,34 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
         }
     }
 }
+
+// SK
+- (void)doubleTapGestureUpdated:(UITapGestureRecognizer *)doubleTapGesture
+{
+
+    CGPoint locationTouch = [doubleTapGesture locationInView:self];
+    NSInteger position = [self.layoutStrategy itemPositionFromLocation:locationTouch];
+    NSLog(@"double click. Position:%d",position);
+    if (position != GMGV_INVALID_POSITION)
+    {
+        if (!self.editing) {
+            [self cellForItemAtIndex:position].highlighted = NO;
+            [self.skDoubleTapDelegate doubleClick:self atIndex:position];
+        }
+    }
+    else
+    {
+        if([self.actionDelegate respondsToSelector:@selector(GMGridViewDidTapOnEmptySpace:)])
+        {
+            [self.actionDelegate GMGridViewDidTapOnEmptySpace:self];
+        }
+        
+        if (self.disableEditOnEmptySpaceTap) {
+            self.editing = NO;
+        }
+    }
+}
+
 
 //////////////////////////////////////////////////////////////
 #pragma mark private methods
