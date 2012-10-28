@@ -14,16 +14,24 @@
               uploaded:(long long)uploadedSize
                  total:(long long)totalSize
                 fileId:(NSString *)fileId;
-- (void)uploadedFile:(NSString *)srcPath toUser:(NSString *)user;
+- (void)uploadedFile:(NSString *)fileName
+              toUser:(NSString *)toUser
+              fileId:(NSString *)fileId;
 - (void)uploadFileFailedWithError:(NSError *)error;
 
+- (void)downloadStartForFile:(NSString *)fileName
+                      toPath:(NSString *)localFile
+                    fromUser:(NSString *)fromUser
+                      fileId:(NSString *)fileId;
 - (void)downloadProgress:(CGFloat)progress // float 0~100
                  forFile:(NSString *)fileName
-                fromUser:(NSString *)user
+                fromUser:(NSString *)fromUser
               downloaded:(long long)downloadedSize
                    total:(long long)totalSize
                   fileId:(NSString *)fileId;
-- (void)downloadedFile:(NSString *)destPath fromUser:(NSString *)user;
+- (void)downloadedFile:(NSString *)fileName
+              fromUser:(NSString *)fromUser
+                fileId:(NSString *)fileId;
 - (void)downloadFileFailedWithError:(NSError *)error;
 
 //- (void)queriedIncomingFile:(NSArray *)files forUser:(NSString *)user;

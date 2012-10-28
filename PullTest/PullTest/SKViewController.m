@@ -139,6 +139,7 @@
     questionSendViewController.delegate = self;
     [questionSendViewController.view setFrame:CGRectMake(0, 0, 400, 250)];
     
+    [self setupFileQueueMenu];
     [self setupDropboxManager];
 }
 
@@ -239,13 +240,17 @@
     }
 }
 
-- (void)popupFileQueueMenu:(id)sender
+- (void)setupFileQueueMenu
 {
-    UIButton *button = (UIButton *)sender;
-    
     if (fileQueueViewController == nil) {
         fileQueueViewController = [[FileQueueViewController alloc] init];
     }
+}
+
+- (void)popupFileQueueMenu:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    [self setupFileQueueMenu];
     if (fileQueuePopover == nil) {
         fileQueueViewController.contentSizeForViewInPopover = CGSizeMake(240.0f, 480.0f);
         fileQueuePopover = [[UIPopoverController alloc] initWithContentViewController:fileQueueViewController];
@@ -324,8 +329,8 @@
                                                   userName:@"Smiler"
                                               downloadPath:docPath];
         */
-        dbManager.delegate = self;
-        dbManager.mainController=self;
+        dbManager.delegate = fileQueueViewController;
+        dbManager.mainController = self;
         NSLog(@"linked:%i", [dbManager isLinked]);
     }
     if (![dbManager isLinked]) {
@@ -347,39 +352,6 @@
      */
 }
 
-- (void)uploadProgress:(CGFloat)progress
-               forFile:(NSString *)fileName
-                toUser:(NSString *)user
-              uploaded:(long long)uploadedSize
-                 total:(long long)totalSize
-                fileId:(NSString *)fileId
-{
-    //fileQueueViewController.files;
-}
-
-- (void)uploadedFile:(NSString *)srcPath toUser:(NSString *)user
-{}
-
-- (void)uploadFileFailedWithError:(NSError *)error
-{}
-
-- (void)downloadProgress:(CGFloat)progress
-                 forFile:(NSString *)fileName
-                fromUser:(NSString *)user
-              downloaded:(long long)downloadedSize
-                   total:(long long)totalSize
-                  fileId:(NSString *)fileId
-{}
-
-- (void)downloadedFile:(NSString *)destPath fromUser:(NSString *)user
-{
-    
-}
-
-- (void)downloadFileFailedWithError:(NSError *)error
-{}
-
-
 #pragma mark - NGTabBarControllerDelegate
 - (CGSize)tabBarController:(NGTabBarController *)tabBarController
 sizeOfItemForViewController:(UIViewController *)viewController
@@ -396,7 +368,11 @@ sizeOfItemForViewController:(UIViewController *)viewController
 - (void)ClickSendYesBtn:(UIViewController*) uiview {
     [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
     QuestionSendViewController *qsView = (QuestionSendViewController *)uiview;
-    [dbManager uploadFile:qsView.srcFile toUser:qsView.toUser];
+    NSString *fileId = [dbManager uploadFile:qsView.srcFile toUser:qsView.toUser];
+    [fileQueueViewController createTransferProgressForFileId:fileId
+                                                    fullPath:qsView.srcFile
+                                                    userName:qsView.toUser
+                                                  isDownload:NO];
     [qsView clear];
 }
 

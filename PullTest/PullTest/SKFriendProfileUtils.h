@@ -11,6 +11,7 @@
 @interface SKFriendProfileUtils : NSObject
 
 +(NSInteger) getProfileCount ;
-+ (UIImage*) openProfileImgFromIndex:(NSInteger) index
++ (UIImage *) openProfileImgByName:(NSString *)userName;
++ (UIImage *) openProfileImgFromIndex:(NSInteger) index
                          outFileName:(NSString**) filename;
 @end

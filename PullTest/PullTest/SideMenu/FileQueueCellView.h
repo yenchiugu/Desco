@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *progressLabel;
 @property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) IBOutlet UIImageView *friendAvatarView;
+@property (strong, nonatomic) IBOutlet UILabel *directionLebel;
 
 @end
 
@@ -22,6 +23,7 @@
 @interface FileProgress : NSObject
 
 @property (strong, nonatomic) NSString *fileName;
+@property (strong, nonatomic) NSString *fileIconPath;
 @property (strong, nonatomic) NSString *friendName;
 @property float progress;
 @property BOOL isDownload;

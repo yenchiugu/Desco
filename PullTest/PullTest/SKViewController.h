@@ -23,7 +23,6 @@
 #import "SideMenu/ChatBoardView.h"
 
 #import "TouchTracker/TouchTracker.h"
-#import "DropboxManager/DropboxManager.h"
 
 
 @interface SKViewController : UIViewController <
@@ -33,19 +32,13 @@
         QrCodeShareDelegate,
         LocationShareDelegate,
         LocationSearchDelegate,
-        FriendRequestDelegate,
-        DropboxManagerDelegate>
+        FriendRequestDelegate>
 {
     TouchTracker *touchTracker;
-    FileQueueViewController *fileQueueMenu;
     UIPopoverController *fileQueuePopover;
     UIView *sharingMenu;
     ChatBoardView *chatBoard;
-    DropboxManager *dbManager;
-    FileQueueViewController *fileQueueViewController;
 }
-
-
 
 @property (nonatomic,strong) UpperStyledPullableView *upperView;
 @property (nonatomic,strong) StyledPullableView *bottomView;

@@ -14,6 +14,7 @@
 @synthesize progressLabel;
 @synthesize progressView;
 @synthesize friendAvatarView;
+@synthesize directionLebel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -37,6 +38,7 @@
 @implementation FileProgress
 
 @synthesize fileName;
+@synthesize fileIconPath;
 @synthesize friendName;
 @synthesize progress;
 @synthesize isDownload;

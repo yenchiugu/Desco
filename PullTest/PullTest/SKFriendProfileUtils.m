@@ -43,20 +43,10 @@
 
 + (UIImage *) openProfileImgByName:(NSString *)userName
 {
-    return [self openProfileImg:[self getProfilePathByName:userName]];
+    return [UIImage imageWithContentsOfFile:[self getProfilePathByName:userName]];
 }
 
-+ (UIImage*) openProfileImg:(NSString*) filename {
-    NSString *thumbnail_filename = [filename stringByAppendingString:@".thumb"];
-    NSString *thumbnail_filepath = [[self getDocPath] stringByAppendingPathComponent:thumbnail_filename];
-    NSFileManager *file_mgr = [NSFileManager defaultManager];
-    if ([file_mgr fileExistsAtPath:thumbnail_filepath]) {
-            return [UIImage imageWithContentsOfFile:thumbnail_filepath];
-        }
-    return nil;
-}
-
-+ (UIImage*) openProfileImgFromIndex:(NSInteger) index
++ (UIImage *) openProfileImgFromIndex:(NSInteger) index
                            outFileName:(NSString**) filename {
     NSFileManager *file_mgr = [NSFileManager defaultManager];
     NSDirectoryEnumerator *dir_enum = [file_mgr enumeratorAtPath:

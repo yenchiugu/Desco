@@ -102,7 +102,8 @@
     if ([self isDelegateValid]) {
         FileInfo *info = [FileInfo fileInfoByPath:destPath];
         [delegate uploadedFile:info.fileName
-                        toUser:info.toUser];
+                        toUser:info.toUser
+                        fileId:info.fullPath];
     }
 }
 
@@ -139,8 +140,11 @@
         [self.restClient deletePath:metadata.path];
         if ([self isDelegateValid]) {
             FileInfo *info = [FileInfo fileInfoByPath:metadata.path];
-            [delegate uploadedFile:info.fileName
-                            toUser:info.toUser];
+            NSString *srcPath = [_downloadingFile objectForKey:destPath];
+            [delegate downloadedFile:info.fileName
+                            fromUser:info.fromUser
+                              fileId:srcPath];
+            [_downloadingFile removeObjectForKey:destPath];
         }
     } else if ([self isFriendsFolder:metadata.path]) {
         [[self getUpperView]._gmGridView reloadData];
@@ -154,12 +158,13 @@
     NSLog(@"download file: to:%@, progress:%.2f%%", destPath, progress*100);
     if ([self isDelegateValid]) {
         FileInfo *info = [FileInfo fileInfoByPath:destPath inProgress:progress];
+        NSString *srcPath = [_downloadingFile objectForKey:destPath];
         [delegate downloadProgress:info.progress
                            forFile:info.fileName
                           fromUser:info.fromUser
                         downloaded:info.processdSize
                              total:info.totalSize
-                            fileId:info.fullPath];
+                            fileId:srcPath];
     }
 
 }
@@ -167,7 +172,6 @@
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error
 {
     NSLog(@"File download failed with error - %@", error);
-    //[_downloadingFile removeObjectForKey:<#(id)#>]
     if (delegate && [delegate conformsToProtocol:@protocol(DropboxManagerDelegate)]) {
         [delegate downloadFileFailedWithError:error];
     }
@@ -227,11 +231,15 @@
             NSString *fullPath  = [metadata.path stringByAppendingPathComponent:file.filename];
             FileInfo *info      = [FileInfo fileInfoByPath:fullPath];
             NSString *localPath = [downloadPath stringByAppendingPathComponent:info.fileName];
-            if (![_downloadingFile objectForKey:fullPath]) {
-                [_downloadingFile setObject:fullPath forKey:fullPath];
-                [self.restClient loadFile:fullPath intoPath:localPath];
+            if (![_downloadingFile objectForKey:localPath]) {
+                [_downloadingFile setObject:fullPath forKey:localPath];
                 if ([self hasThumbnail:fullPath]) {
                     [self.restClient loadThumbnail:fullPath ofSize:@"m" intoPath:[localPath stringByAppendingString:@".thumb"]];
+                }
+                [self.restClient loadFile:fullPath intoPath:localPath];
+                if ([self isDelegateValid]) {
+                    FileInfo *info = [FileInfo fileInfoByPath:fullPath];
+                    [delegate downloadStartForFile:info.fileName toPath:localPath fromUser:info.fromUser fileId:info.fullPath];
                 }
             }
         }

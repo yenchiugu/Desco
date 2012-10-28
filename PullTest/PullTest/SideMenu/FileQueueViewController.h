@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "FileQueueCellView.h"
+#import "../DropboxManager/DropboxManager.h"
 
 
-@interface FileQueueViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
+@interface FileQueueViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, DropboxManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *fileQueueTable;
 @property (strong, nonatomic) NSMutableDictionary *files;
+
 - (NSInteger)indexOfFile:(NSString *)fileId;
+- (BOOL)createTransferProgressForFileId:(NSString *)fileId
+                               fullPath:(NSString *)fullPath
+                               userName:(NSString *)userName
+                             isDownload:(BOOL)isDownload;
 @end
