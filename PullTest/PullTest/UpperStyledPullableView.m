@@ -271,8 +271,13 @@
     if (position != -1) {
         //GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
         SKViewController *mainViewControllor = (SKViewController*)[self viewController];
-        mainViewControllor.questionSendViewController.toUser = @"test";
-        mainViewControllor.questionSendViewController.srcFile = @"/var/mobile/Applications/BD1C2E94-FE81-4473-9098-5F6050216035/Documents/img_20122810114427.png";
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docPath  = [paths objectAtIndex:0];
+        NSString *srcFile = [docPath stringByAppendingPathComponent:text];
+
+        mainViewControllor.questionSendViewController.toUser  = @"test";
+        mainViewControllor.questionSendViewController.srcFile = srcFile;
         [mainViewControllor.questionSendViewController.view setFrame:CGRectMake(0, 0, 400, 250)];
         [mainViewControllor presentPopupViewController:mainViewControllor.questionSendViewController animationType:MJPopupViewAnimationSlideBottomTop];
     }

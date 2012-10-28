@@ -306,17 +306,17 @@
         NSLog(@"init");
         
         // Ace
-        /*
         dbManager = [[DropboxManager alloc] initWithAppKey:@"3or4oa1y8okdbbd"
                                                  appSecret:@"lu2qmice5mv4kgz"
-                                                  userName:@"test"
+                                                  userName:@"Ace"
                                               downloadPath:docPath];
-        */
         // Sam
+        /*
         dbManager = [[DropboxManager alloc] initWithAppKey:@"8y9gqq6z8t2qrwe"
                                                  appSecret:@"qhpd03xgpedx2is"
                                                   userName:@"Sam"
                                               downloadPath:docPath];
+         */
         // Smiler
         /*
         dbManager = [[DropboxManager alloc] initWithAppKey:@"8y9gqq6z8t2qrwe" //<---not yet
