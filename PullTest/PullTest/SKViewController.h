@@ -24,6 +24,8 @@
 
 #import "TouchTracker/TouchTracker.h"
 
+#import "DropboxManager/DropboxManager.h"
+#import "Hud/MBProgressHUD.h"
 
 @interface SKViewController : UIViewController <
         PullableViewDelegate,
@@ -32,7 +34,8 @@
         QrCodeShareDelegate,
         LocationShareDelegate,
         LocationSearchDelegate,
-        FriendRequestDelegate>
+        FriendRequestDelegate,
+        MBProgressHUDDelegate>
 {
     TouchTracker *touchTracker;
     UIPopoverController *fileQueuePopover;
