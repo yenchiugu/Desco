@@ -20,7 +20,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        items = [[NSArray alloc] initWithObjects:@"Share Desktop",@"Chat",nil];
+        items = [[NSArray alloc] initWithObjects:@"Share Desktop",@"Chat",@"Remove",nil];
     }
     return self;
 }

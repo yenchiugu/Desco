@@ -59,6 +59,23 @@
     return [[DBSession sharedSession] isLinked];
 }
 
+- (NSString *)sendFriendRequest
+{
+    NSString *destPath = [self getFriendRequestPath];
+    NSString *destFile = [self getUserProfileFileName:myName];
+    NSString *fullPath = [destPath stringByAppendingPathComponent:destFile];
+    NSString *srcPath = [self getUserProfileFullPath:myName];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:srcPath]) {
+        [self.restClient uploadFile:destFile toPath:destPath withParentRev:nil fromPath:srcPath];
+        return fullPath;
+    } else {
+        NSLog(@"can not find local file: %@", srcPath);
+    }
+    return nil;
+}
+
+
+
 - (NSString *)uploadFile:(NSString *)srcPath toUser:(NSString *)user
 {
     NSString *destPath = [self incomingPathOfUser:user];
@@ -112,12 +129,17 @@
        contentType:(NSString*)contentType metadata:(DBMetadata*)metadata
 {
     NSLog(@"File downloaded successfully from path:[[%@]] to path:[[%@]]", metadata.path, destPath);
-    [self.restClient deletePath:metadata.path];
-    if ([self isDelegateValid]) {
-        FileInfo *info = [FileInfo fileInfoByPath:metadata.path];
-        [delegate uploadedFile:info.fileName
-                        toUser:info.toUser];
+    
+    if ([self isIncomingFile:metadata.path]) {
+        [self.restClient deletePath:metadata.path];
+        if ([self isDelegateValid]) {
+            FileInfo *info = [FileInfo fileInfoByPath:metadata.path];
+            [delegate uploadedFile:info.fileName
+                            toUser:info.toUser];
+        }
     }
+
+
 }
 
 - (void)restClient:(DBRestClient*)client loadProgress:(CGFloat)progress forFile:(NSString*)destPath
@@ -160,6 +182,9 @@
 {
     if ([self isIncomingFile:metadata.path]) {
         [self downloadAllFiles:metadata];
+    } else if ([self isFriendsFolder:metadata.path]) {
+        [self listAndUpdateUsers:metadata];
+    
     }
 }
 
@@ -197,7 +222,7 @@
             NSString *localPath = [downloadPath stringByAppendingPathComponent:info.fileName];
             if (![_downloadingFile objectForKey:fullPath]) {
                 [_downloadingFile setObject:fullPath forKey:fullPath];
-                //[self.restClient loadFile:fullPath intoPath:localPath];
+                [self.restClient loadFile:fullPath intoPath:localPath];
                 if ([self hasThumbnail:fullPath]) {
                     [self.restClient loadThumbnail:fullPath ofSize:@"m" intoPath:[localPath stringByAppendingString:@".thumb"]];
                 }
@@ -206,11 +231,98 @@
     }
 }
 
+
+
+-(void)listAndUpdateUsers:(DBMetadata *)metadata {
+    
+    if (metadata.isDirectory) {
+        NSLog(@"[listAndUpdateUsers] Friends Folder '%@' contains:", metadata.path);
+        
+        NSString *localPath =
+        [downloadPath stringByAppendingPathComponent:@"friends"];
+        
+        NSMutableSet *local_user_set = [[NSMutableSet alloc] init];
+        NSFileManager *file_mgr = [NSFileManager defaultManager];
+        NSDirectoryEnumerator *dir_enum = [file_mgr enumeratorAtPath:
+                                           localPath];
+        
+        NSString *local_filename;
+        while (local_filename=[dir_enum nextObject]) {
+            
+            if ([[local_filename pathExtension] isEqualToString:@"profile"]) {
+                [local_user_set addObject:local_filename];
+                
+            }
+        }
+        
+        for (DBMetadata *file in metadata.contents) {
+            NSLog(@"[listAndUpdateUsers] file:%@",file);
+            if ([[file.filename pathExtension] isEqualToString:@"profile"]) {
+                
+                NSFileManager *file_mgr = [NSFileManager defaultManager];
+                if (![file_mgr fileExistsAtPath:localPath]) {
+                    if (![file_mgr createDirectoryAtPath:localPath
+                             withIntermediateDirectories:YES
+                                              attributes:nil
+                                                   error:nil]) {
+                        NSLog(@"[listAndUpdateUsers] create folder failed! %@",localPath);
+                    }
+                    
+                }
+                
+                
+                NSString *target_local_filepath = [localPath stringByAppendingPathComponent:file.filename];
+                
+                // NOTE: now we only download profile one time... no update
+                if (![file_mgr fileExistsAtPath:target_local_filepath]) {
+                    NSLog(@"[listAndUpdateUsers] localPath:%@, target_local_filepath:%@, file.filename:%@",
+                          localPath,target_local_filepath,file.filename);
+                    [self.restClient loadFile:file.path intoPath:target_local_filepath];
+                }
+                
+                [local_user_set removeObject:file.filename];
+            }
+        }
+        
+        /*
+        for (NSString* will_delete_user_name in local_user_set) {
+            
+        }
+         */
+    }
+}
+
 #pragma mark - utilities
 - (NSString *)incomingPathOfUser:(NSString *)userName
 {
     return [NSString stringWithFormat:@"/user/%@/incoming/",userName];
 }
+
+- (NSString *)friendsPathOfUser:(NSString *)userName
+{
+    return [NSString stringWithFormat:@"/user/%@/friends/",userName];
+}
+
+- (NSString *)getFriendRequestPath
+{
+    return @"/user/friend_request/";
+}
+
+- (NSString *)getUserFriendRequestFilePath:(NSString*)userName
+{
+    return [NSString stringWithFormat:@"/user/friend_request/%@.profile",userName];
+}
+
+- (NSString *)getUserProfileFileName:(NSString*)userName
+{
+    return [NSString stringWithFormat:@"%@.profile",userName];
+}
+
+- (NSString *)getUserProfileFullPath:(NSString *)userName
+{
+    return [NSString stringWithFormat:@"/user/%@/%@.profile",userName,userName];
+}
+
 
 - (NSString *)encodeFileName:(NSString *)fileName
 {
@@ -234,6 +346,8 @@
         NSLog(@"request metadata myname:%@ rest:%@",myName,self.restClient);
         NSString *fullPath = [self incomingPathOfUser:myName];
         [self.restClient loadMetadata:fullPath];
+        NSString *friendsPath = [self friendsPathOfUser:myName];
+        [self.restClient loadMetadata:friendsPath];
     }
 }
 
@@ -246,6 +360,38 @@
 {
     if ([path hasPrefix:@"/user/"]) {
         NSRange range = [path rangeOfString:@"/incoming"];
+        if (range.location != NSNotFound) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)isFriendsFolder:(NSString *)path
+{
+    if ([path hasPrefix:@"/user/"]) {
+        NSRange range = [path rangeOfString:@"/friends"];
+        if (range.location != NSNotFound) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)isExistedFriendFolder:(NSString *)path {
+    if ([path hasPrefix:@"/user/"]) {
+        NSRange range = [path rangeOfString:@"/friends/"];
+        if (range.location != NSNotFound) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)isFriendRequestFolder:(NSString *)path
+{
+    if ([path hasPrefix:@"/user/"]) {
+        NSRange range = [path rangeOfString:@"/friend_request"];
         if (range.location != NSNotFound) {
             return YES;
         }

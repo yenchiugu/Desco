@@ -52,12 +52,13 @@ SKDoubleTapEvent
 - (void)loadView
 {
     [super loadView];
-    
+    /*
     _doc_img_path = [[NSBundle mainBundle]pathForResource:@"Word" ofType:@"png"];
     _pdf_img_path = [[NSBundle mainBundle]pathForResource:@"Reader" ofType:@"png"];
     _jpg_img_path = [[NSBundle mainBundle]pathForResource:@"Jpg" ofType:@"png"];
     _mkv_img_path = [[NSBundle mainBundle]pathForResource:@"MKV" ofType:@"png"];
     _mpg_img_path = [[NSBundle mainBundle]pathForResource:@"MPG" ofType:@"png"];
+    */
 //    
 //    UIImage *image = [UIImage imageNamed:@"file_toolbar_.png"];
 //    UIImage *selectedImage = [UIImage imageNamed:@"file_toolbar_.png"];
@@ -166,6 +167,7 @@ SKDoubleTapEvent
     picker.delegate = self;
     //picker.allowsEditing = YES;
     picker.sourceType = sourceType;
+    picker.videoQuality = UIImagePickerControllerQualityTypeMedium;
     popover =
         [[UIPopoverController alloc] initWithContentViewController:picker];
     

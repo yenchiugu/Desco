@@ -108,6 +108,8 @@
 		667EF9C6160B4E42003CA809 /* green-ok-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 667EF9C4160B4E42003CA809 /* green-ok-icon.png */; };
 		667EF9C7160B4E42003CA809 /* red-cross-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 667EF9C5160B4E42003CA809 /* red-cross-icon.png */; };
 		667EF9CA160B57D9003CA809 /* QuestionSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 667EF9C9160B57D9003CA809 /* QuestionSendViewController.m */; };
+		6696B72F163C32FD0059E5BC /* NSMutableArray+QueueAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6696B72E163C32FD0059E5BC /* NSMutableArray+QueueAdditions.m */; };
+		6696B733163C465A0059E5BC /* SKFriendProfileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6696B732163C465A0059E5BC /* SKFriendProfileUtils.m */; };
 		66A09E50163B9B1C00B88096 /* SKImgLoadContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A09E4F163B9B1C00B88096 /* SKImgLoadContext.m */; };
 		66A09E52163BBA1600B88096 /* NimbusPhotos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66A09E51163BBA1600B88096 /* NimbusPhotos.bundle */; };
 		66A09E59163BC8E600B88096 /* SKThumbnailImgUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A09E58163BC8E600B88096 /* SKThumbnailImgUtils.m */; };
@@ -345,6 +347,10 @@
 		667EF9C5160B4E42003CA809 /* red-cross-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-cross-icon.png"; sourceTree = "<group>"; };
 		667EF9C8160B57D9003CA809 /* QuestionSendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionSendViewController.h; sourceTree = "<group>"; };
 		667EF9C9160B57D9003CA809 /* QuestionSendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionSendViewController.m; sourceTree = "<group>"; };
+		6696B72D163C32FD0059E5BC /* NSMutableArray+QueueAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+QueueAdditions.h"; path = "queue_obj/NSMutableArray+QueueAdditions.h"; sourceTree = "<group>"; };
+		6696B72E163C32FD0059E5BC /* NSMutableArray+QueueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+QueueAdditions.m"; path = "queue_obj/NSMutableArray+QueueAdditions.m"; sourceTree = "<group>"; };
+		6696B731163C465A0059E5BC /* SKFriendProfileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFriendProfileUtils.h; sourceTree = "<group>"; };
+		6696B732163C465A0059E5BC /* SKFriendProfileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFriendProfileUtils.m; sourceTree = "<group>"; };
 		66A09E4E163B9B1C00B88096 /* SKImgLoadContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKImgLoadContext.h; sourceTree = "<group>"; };
 		66A09E4F163B9B1C00B88096 /* SKImgLoadContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKImgLoadContext.m; sourceTree = "<group>"; };
 		66A09E51163BBA1600B88096 /* NimbusPhotos.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusPhotos.bundle; path = resources/NimbusPhotos.bundle; sourceTree = "<group>"; };
@@ -510,6 +516,7 @@
 		6603889C15FC50E7007EE91B /* PullTest */ = {
 			isa = PBXGroup;
 			children = (
+				6696B730163C33040059E5BC /* QueueObj */,
 				50FD787316342A7400CAE25F /* DropboxManager */,
 				667EF9C3160B49C2003CA809 /* MJPopup */,
 				66A434601605C81A009A97C5 /* TouchTracker */,
@@ -806,6 +813,15 @@
 			name = MJPopup;
 			sourceTree = "<group>";
 		};
+		6696B730163C33040059E5BC /* QueueObj */ = {
+			isa = PBXGroup;
+			children = (
+				6696B72D163C32FD0059E5BC /* NSMutableArray+QueueAdditions.h */,
+				6696B72E163C32FD0059E5BC /* NSMutableArray+QueueAdditions.m */,
+			);
+			name = QueueObj;
+			sourceTree = "<group>";
+		};
 		66A09E5D163BE83B00B88096 /* BottomPanel */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,6 +862,8 @@
 			children = (
 				66EC99891604A64800572EAE /* UpperStyledPullableView.h */,
 				66EC998A1604A64800572EAE /* UpperStyledPullableView.m */,
+				6696B731163C465A0059E5BC /* SKFriendProfileUtils.h */,
+				6696B732163C465A0059E5BC /* SKFriendProfileUtils.m */,
 			);
 			name = UpperPanel;
 			sourceTree = "<group>";
@@ -1123,6 +1141,8 @@
 				66A09E50163B9B1C00B88096 /* SKImgLoadContext.m in Sources */,
 				66A09E59163BC8E600B88096 /* SKThumbnailImgUtils.m in Sources */,
 				66A09E5C163BD6E100B88096 /* CaptionedPhotoView.m in Sources */,
+				6696B72F163C32FD0059E5BC /* NSMutableArray+QueueAdditions.m in Sources */,
+				6696B733163C465A0059E5BC /* SKFriendProfileUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
