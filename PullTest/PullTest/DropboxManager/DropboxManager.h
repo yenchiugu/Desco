@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
 #import <DropboxSDK/DropboxSDK.h>
 
+@class SKViewController;
+
 @protocol DropboxManagerDelegate <NSObject>
 
 @required
@@ -36,6 +38,7 @@
 @property (weak,   nonatomic) id<DropboxManagerDelegate> delegate;
 @property (strong, nonatomic) NSString *myName;
 @property (strong, nonatomic) NSString *downloadPath;
+@property (weak,   nonatomic) SKViewController *mainController;
 
 - (DBRestClient *)restClient;
 

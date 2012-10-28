@@ -130,8 +130,9 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
-    NSString *tmp_profile_path = [user_image_paths objectAtIndex:index];
-
+    //NSString *tmp_profile_path = [user_image_paths objectAtIndex:index];
+    NSString *tmp_profile_path;
+    
     imageView.image = [SKFriendProfileUtils openProfileImgFromIndex:index outFileName:&tmp_profile_path];
     
     [view addSubview:imageView];
@@ -270,25 +271,12 @@
   NSLog(@"positoin:%d",position);
   NSLog(@"target:%@",target);
   
-  if (position!=-1) {
-
-    GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
-    UILabel *user_name_lbl = (UILabel*)[cell viewWithTag:250];
-    NSString *user_name = user_name_lbl.text;
-
-
-    
-    
-    CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
-    NSLog(@"converted: [%f,%f]",converted_p.x,converted_p.y);
-    UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];
-    int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
-    
-    NSLog(@"positoin:%d",position);
-    NSLog(@"target:%@",target);
     
     if (position != -1) {
-        //GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
+        GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
+        UILabel *user_name_lbl = (UILabel*)[cell viewWithTag:250];
+        NSString *user_name = user_name_lbl.text;
+        
         SKViewController *mainViewControllor = (SKViewController*)[self viewController];
         mainViewControllor.questionSendViewController.toUser = @"test";
         mainViewControllor.questionSendViewController.srcFile = @"/var/mobile/Applications/BD1C2E94-FE81-4473-9098-5F6050216035/Documents/img_20122810114427.png";

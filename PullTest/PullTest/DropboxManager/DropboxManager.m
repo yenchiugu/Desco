@@ -1,6 +1,6 @@
 #import "DropboxManager.h"
 #import "FileInfo.h"
-
+#import "SKViewController.h"
 @interface DropboxManager ()
 // aux
 - (void)downloadAllFiles:(DBMetadata *)metadata;
@@ -24,6 +24,7 @@
 @synthesize delegate;
 @synthesize myName;
 @synthesize downloadPath;
+@synthesize mainController;
 
 #pragma mark - initialization
 - (DropboxManager *)initWithAppKey:(NSString *)key
@@ -253,7 +254,7 @@
         NSString *local_filename;
         while (local_filename=[dir_enum nextObject]) {
             
-            if ([[local_filename pathExtension] isEqualToString:@"profile"]) {
+            if ([[local_filename pathExtension] isEqualToString:@"png"]) {
                 [local_user_set addObject:local_filename];
                 
             }
@@ -261,7 +262,7 @@
         
         for (DBMetadata *file in metadata.contents) {
             NSLog(@"[listAndUpdateUsers] file:%@",file);
-            if ([[file.filename pathExtension] isEqualToString:@"profile"]) {
+            if ([[file.filename pathExtension] isEqualToString:@"png"]) {
                 
                 NSFileManager *file_mgr = [NSFileManager defaultManager];
                 if (![file_mgr fileExistsAtPath:localPath]) {
@@ -314,17 +315,17 @@
 
 - (NSString *)getUserFriendRequestFilePath:(NSString*)userName
 {
-    return [NSString stringWithFormat:@"/user/friend_request/%@.profile",userName];
+    return [NSString stringWithFormat:@"/user/friend_request/%@.png",userName];
 }
 
 - (NSString *)getUserProfileFileName:(NSString*)userName
 {
-    return [NSString stringWithFormat:@"%@.profile",userName];
+    return [NSString stringWithFormat:@"%@.png",userName];
 }
 
 - (NSString *)getUserProfileFullPath:(NSString *)userName
 {
-    return [NSString stringWithFormat:@"/user/%@/%@.profile",userName,userName];
+    return [NSString stringWithFormat:@"/user/%@/%@.png",userName,userName];
 }
 
 

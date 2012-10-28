@@ -26,7 +26,7 @@
     int file_cnt = 0;
     NSString *filename;
     while (filename=[dir_enum nextObject]) {
-        if ([[filename pathExtension] isEqualToString:@"profile"]) {
+        if ([[filename pathExtension] isEqualToString:@"png"]) {
             file_cnt++;
         }
     }
@@ -34,15 +34,6 @@
     return file_cnt;
 }
 
-+ (UIImage*) openProfileImg:(NSString*) filename {
-    NSString *thumbnail_filename = [filename stringByAppendingString:@".thumb"];
-    NSString *thumbnail_filepath = [[self getDocPath] stringByAppendingPathComponent:thumbnail_filename];
-    NSFileManager *file_mgr = [NSFileManager defaultManager];
-    if ([file_mgr fileExistsAtPath:thumbnail_filepath]) {
-        return [UIImage imageWithContentsOfFile:thumbnail_filepath];
-    }
-    return nil;
-}
 
 + (UIImage*) openProfileImgFromIndex:(NSInteger) index
                            outFileName:(NSString**) filename {
@@ -57,7 +48,7 @@
     //NSLog(@"cellForItemAtIndex index:%d",index);
     while (*filename= [dir_enum nextObject]) {
         
-        if ([[*filename pathExtension] isEqualToString:@"profile"]) {
+        if ([[*filename pathExtension] isEqualToString:@"png"]) {
             if (index==file_cnt) {
                 NSString *profile_filepath = [[self getFriendPath]
                                                 stringByAppendingPathComponent:*filename];

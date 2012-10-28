@@ -325,6 +325,7 @@
                                               downloadPath:docPath];
         */
         dbManager.delegate = self;
+        dbManager.mainController=self;
         NSLog(@"linked:%i", [dbManager isLinked]);
     }
     if (![dbManager isLinked]) {
