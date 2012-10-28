@@ -318,20 +318,20 @@
 - (void)showChatBoard:(id)sender
 {
     
-    [self
+    /*[self
      performSegueWithIdentifier:@"ToolbarPhotoViewControllorSegue"
-     sender:self];
-    /*
+     sender:self];*/
+    
     UIButton *button = (UIButton *)sender;
     [button setImage:[UIImage imageNamed:@"side_message.png"] forState:UIControlStateNormal];
     bool is_showing = chatBoard.alpha < 0.5f;
-    touchTracker.enabled = !is_showing;
+    //touchTracker.enabled = !is_showing;
     CGFloat newAlpha = is_showing ? 1.0f : 0.0f;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5f];
     chatBoard.alpha = newAlpha;
     [UIView commitAnimations];
-     */
+     
 }
 
 - (void)clickLocationSearchBtn:(id)sender

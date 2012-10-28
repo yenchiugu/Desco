@@ -38,7 +38,7 @@
     [DBSession setSharedSession:dbSession];
     myName = userName;
     downloadPath = path;
-    _pullingTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(handlePollingTimer:) userInfo:nil repeats:YES];
+    _pullingTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(handlePollingTimer:) userInfo:nil repeats:YES];
     _downloadingFile = [[NSMutableDictionary alloc] init];
     return self;
 }
