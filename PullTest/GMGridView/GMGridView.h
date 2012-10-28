@@ -206,7 +206,7 @@ typedef enum
 
 @required
 - (void)draggingEvent:(CGPoint) pt sourceView:(UIView *)srcView;
-- (void)droppedEvent:(CGPoint) pt sourceView:(UIView *)srcView;
+- (void)droppedEvent:(CGPoint) pt sourceView:(UIView *)srcView sourceText:(NSString*)text;
 
 @end
 

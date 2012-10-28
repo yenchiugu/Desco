@@ -759,7 +759,11 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
 - (void)sortingMoveDidStopAtPoint:(CGPoint)point
 {
     [_sortMovingItem shake:NO];
-    [self.skDragDelegate droppedEvent:point sourceView:self];
+    UILabel *tmp_label = (UILabel*)[_sortMovingItem viewWithTag:500];
+    if (tmp_label==nil) {
+        NSLog(@"[sortingMoveDidStopAtPoint] cannot find label from cell");
+    }
+    [self.skDragDelegate droppedEvent:point sourceView:self sourceText:tmp_label.text];
     _sortMovingItem.tag = _sortFuturePosition + kTagOffset;
     
     CGRect frameInScroll = [self.mainSuperView convertRect:_sortMovingItem.frame toView:self];

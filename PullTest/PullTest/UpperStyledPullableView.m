@@ -265,8 +265,9 @@
   
 }
 
-- (void)droppedEvent:(CGPoint) pt sourceView:(UIView *)srcView {
-  
+- (void)droppedEvent:(CGPoint) pt sourceView:(UIView *)srcView sourceText:(NSString *)text{
+    NSLog(@"[droppedEvent] sourceText:%@",text);
+    
   SKViewController *mainViewControllor = (SKViewController*)[self viewController];
   CGPoint localtion_pt = [srcView convertPoint:pt toView:mainViewControllor.locationShareButton];
   BOOL dropped_to_location = [mainViewControllor.locationShareButton pointInside:localtion_pt withEvent:nil];
