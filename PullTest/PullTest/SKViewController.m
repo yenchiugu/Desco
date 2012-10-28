@@ -20,6 +20,7 @@
 
 @interface SKViewController ()
 {
+    MBProgressHUD *hud;
 }
 
 @end
@@ -214,6 +215,19 @@
         sharingMenu.alpha = 1;
         [UIView commitAnimations];
     } else if (tracker.letter[0] == 'O') {
+        hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:hud];
+        
+        hud.dimBackground = YES;
+        
+        // Regiser for HUD callbacks so we can remove it from the window at the right time
+        hud.delegate = self;
+        
+        hud.labelText = @"Searching friends...";
+        
+        [hud showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
+        
+        
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
         [self setFriendRequestViewController:(FriendRequestViewController *)
          [storyboard instantiateViewControllerWithIdentifier:@"FriendRequestViewController"]];
@@ -235,6 +249,7 @@
         [self.friendRequestViewController setDelegate:self];
         [self presentPopupViewController:self.friendRequestViewController animationType:MJPopupViewAnimationSlideBottomTop];
         // NSLog(@"showFriendAddingView!!!");
+         
         
     }
 }
@@ -462,5 +477,19 @@ sizeOfItemForViewController:(UIViewController *)viewController
     photo_vc.select_index = sk_stuff_vc.selectedIdx;
     //[photo_vc.photoScrubberView setSelectedPhotoIndex:sk_stuff_vc.selectedIdx];
     
+}
+
+- (void)myTask {
+	// Do something usefull in here instead of sleeping ...
+	sleep(3);
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	// Remove HUD from screen when the HUD was hidded
+	[hud removeFromSuperview];
+	hud = nil;
 }
 @end

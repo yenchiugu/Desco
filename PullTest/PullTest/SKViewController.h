@@ -24,7 +24,7 @@
 
 #import "TouchTracker/TouchTracker.h"
 #import "DropboxManager/DropboxManager.h"
-
+#import "Hud/MBProgressHUD.h"
 
 @interface SKViewController : UIViewController <
         PullableViewDelegate,
@@ -34,7 +34,8 @@
         LocationShareDelegate,
         LocationSearchDelegate,
         FriendRequestDelegate,
-        DropboxManagerDelegate>
+        DropboxManagerDelegate,
+        MBProgressHUDDelegate>
 {
     TouchTracker *touchTracker;
     FileQueueViewController *fileQueueMenu;
