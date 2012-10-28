@@ -369,19 +369,26 @@
                                               downloadPath:docPath];
         */
         // Sam
-        /*
+        
         dbManager = [[DropboxManager alloc] initWithAppKey:@"8y9gqq6z8t2qrwe"
                                                  appSecret:@"qhpd03xgpedx2is"
                                                   userName:@"Sam"
                                               downloadPath:docPath];
-        */
-        // Smiler
         
+        // Smiler
+        /*
         dbManager = [[DropboxManager alloc] initWithAppKey:@"oui0y94htnkexdq"
                                                  appSecret:@"bhakmtcnc4yvvkg" 
                                                   userName:@"Smiler"
                                               downloadPath:docPath];
-        
+        */
+        // Cindy (for demo)
+        /*
+        dbManager = [[DropboxManager alloc] initWithAppKey:@"carepdopln1ia9z"
+                                                 appSecret:@"elmx8n1ohvwlp0t"
+                                                  userName:@"Cindy"
+                                              downloadPath:docPath];
+        */
         dbManager.delegate = fileQueueViewController;
         dbManager.mainController = self;
         NSLog(@"linked:%i", [dbManager isLinked]);
