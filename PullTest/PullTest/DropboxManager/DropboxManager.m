@@ -142,6 +142,8 @@
             [delegate uploadedFile:info.fileName
                             toUser:info.toUser];
         }
+    } else if ([self isFriendsFolder:metadata.path]) {
+        [[self getUpperView]._gmGridView reloadData];
     }
 
 
@@ -260,6 +262,7 @@
             }
         }
         
+        BOOL is_user_list_changed = NO;
         for (DBMetadata *file in metadata.contents) {
             NSLog(@"[listAndUpdateUsers] file:%@",file);
             if ([[file.filename pathExtension] isEqualToString:@"png"]) {
@@ -283,12 +286,17 @@
                     NSLog(@"[listAndUpdateUsers] localPath:%@, target_local_filepath:%@, file.filename:%@",
                           localPath,target_local_filepath,file.filename);
                     [self.restClient loadFile:file.path intoPath:target_local_filepath];
+                    is_user_list_changed = YES;
                 }
                 
                 [local_user_set removeObject:file.filename];
             }
         }
         
+        if (is_user_list_changed) {
+            NSLog(@"[listAndUpdateUsers] user list changed, reload upper panel");
+            [[self getUpperView]._gmGridView reloadData];
+        }
         /*
         for (NSString* will_delete_user_name in local_user_set) {
             
@@ -415,4 +423,9 @@
     }
     return NO;
 }
+
+- (UpperStyledPullableView*) getUpperView {
+    return (UpperStyledPullableView*)[self.mainController.view viewWithTag:2377];
+}
+
 @end

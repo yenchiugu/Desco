@@ -10,6 +10,8 @@
 #import "GMGridView.h"
 @interface UpperStyledPullableView : PullableView <GMGridViewDataSource, SKDragEvent, GMGridViewActionDelegate>
 {
+    __gm_weak GMGridView *_gmGridView;
 }
 
+@property (atomic,weak) GMGridView *_gmGridView;
 @end

@@ -20,13 +20,14 @@
 @interface UpperStyledPullableView ()
 {
     NSArray *user_image_paths;
-    __gm_weak GMGridView *_gmGridView;
+    //__gm_weak GMGridView *_gmGridView;
     GMGridViewCell *_animatedCell;
     UIPopoverController *avatarPopover;
 }
 @end
 
 @implementation UpperStyledPullableView
+@synthesize _gmGridView;
 
 - (UIViewController*)viewController
 {
@@ -47,7 +48,7 @@
         UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mybarbarupbk.png"]];
         imgView.frame = CGRectMake(0, 0, frame.size.width, 200);
         [self addSubview:imgView];
-        
+        /*
         user_image_paths = [NSArray arrayWithObjects:
                             [[NSBundle mainBundle] pathForResource:@"user01" ofType:@"jpg"],
                             [[NSBundle mainBundle] pathForResource:@"user06" ofType:@"jpg"],
@@ -62,7 +63,7 @@
                             [[NSBundle mainBundle] pathForResource:@"user10" ofType:@"jpg"],
                             [[NSBundle mainBundle] pathForResource:@"user02" ofType:@"jpg"],
                             nil];
-        
+        */
         GMGridView *gmGridView2 = [[GMGridView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 160)];
         gmGridView2.autoresizingMask = UIViewAutoresizingFlexibleWidth;// | UIViewAutoresizingFlexibleHeight;
         gmGridView2.style = GMGridViewStylePush;

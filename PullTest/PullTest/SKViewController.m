@@ -372,7 +372,9 @@
 {}
 
 - (void)downloadedFile:(NSString *)destPath fromUser:(NSString *)user
-{}
+{
+    
+}
 
 - (void)downloadFileFailedWithError:(NSError *)error
 {}
