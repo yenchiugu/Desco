@@ -1,6 +1,7 @@
 #import "DropboxManager.h"
 #import "FileInfo.h"
 #import "SKViewController.h"
+#import "SKLocationFileInfo.h"
 @interface DropboxManager ()
 // aux
 - (void)downloadAllFiles:(DBMetadata *)metadata;
@@ -79,7 +80,20 @@
     return nil;
 }
 
-
+- (NSString *)uploadLocationFile:(NSString*) srcPath fileName:(NSString *)filename latitude:(double)_latitude
+longitude:(double) _longitue keepHours:(int) _keepHours 
+{
+    NSString *destPath = [self getLocationSharePath];
+    NSString *destFile = [SKLocationFileInfo encodeLocationFileName:filename latitude:_latitude longitude:_longitue keepHours:_keepHours userName:myName];
+    NSString *fullPath = [destPath stringByAppendingPathComponent:destFile];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:srcPath]) {
+        [self.restClient uploadFile:destFile toPath:destPath withParentRev:nil fromPath:srcPath];
+        return fullPath;
+    } else {
+        NSLog(@"can not find local file: %@", srcPath);
+    }
+    return nil;
+}
 
 - (NSString *)uploadFile:(NSString *)srcPath toUser:(NSString *)user
 {
@@ -105,6 +119,7 @@
                         toUser:info.toUser
                         fileId:info.fullPath];
     }
+    [self.mainController showUploadedHud];
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
@@ -146,8 +161,11 @@
                               fileId:srcPath];
             [_downloadingFile removeObjectForKey:destPath];
         }
+        [self.mainController showUploadedHud];
     } else if ([self isFriendsFolder:metadata.path]) {
         [[self getUpperView]._gmGridView reloadData];
+    } else {
+        [self.mainController showUploadedHud];
     }
 
 
@@ -195,8 +213,10 @@
         [self downloadAllFiles:metadata];
     } else if ([self isFriendsFolder:metadata.path]) {
         [self listAndUpdateUsers:metadata];
-    
+    } else if ([SKLocationFileInfo isLocationShareFolder:metadata.path]) {
+        [self listLocationFiles:metadata];
     }
+    
 }
 
 - (void)restClient:(DBRestClient*)client metadataUnchangedAtPath:(NSString*)path
@@ -246,7 +266,15 @@
     }
 }
 
-
+-(void)listLocationFiles:(DBMetadata *)metadata {
+    //BOOL is_user_list_changed = NO;
+    NSMutableArray *loc_info_array = [[NSMutableArray alloc] initWithCapacity:10];
+    for (DBMetadata *file in metadata.contents) {
+        SKLocationFileInfo *loc_info = [[SKLocationFileInfo alloc] initWithPath:file.filename];
+        [loc_info_array addObject:loc_info];
+    }
+    [self.mainController.locationSearchViewController setViewMapPin:loc_info_array];
+}
 
 -(void)listAndUpdateUsers:(DBMetadata *)metadata {
     
@@ -314,6 +342,13 @@
 }
 
 #pragma mark - utilities
+- (NSString *)getLocationSharePath
+{
+    return [NSString stringWithFormat:@"/user/location_share"];
+}
+
+
+
 - (NSString *)incomingPathOfUser:(NSString *)userName
 {
     return [NSString stringWithFormat:@"/user/%@/incoming/",userName];
@@ -409,6 +444,8 @@
     return NO;
 }
 
+
+
 - (BOOL)isFriendRequestFolder:(NSString *)path
 {
     if ([path hasPrefix:@"/user/"]) {
@@ -419,6 +456,7 @@
     }
     return NO;
 }
+
 
 - (BOOL)hasThumbnail:(NSString *)path
 {

@@ -240,6 +240,7 @@
         //[mainViewControllor.locationViewController showCurrentLocation];
         [mainViewControllor.locationViewController setMainView:mainViewControllor];
         [mainViewControllor.locationViewController setDelegate:mainViewControllor];
+        [mainViewControllor.locationViewController setTargetFileName:text];
         [mainViewControllor presentPopupViewController:mainViewControllor.locationViewController animationType:MJPopupViewAnimationSlideBottomTop];
         return;
     }

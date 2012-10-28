@@ -12,10 +12,16 @@
 @protocol LocationShareDelegate;
 
 @interface LocationShareViewController : UIViewController <MKMapViewDelegate>
+
 @property (strong) IBOutlet MKMapView *mapView;
 @property (strong) IBOutlet UILabel *hourLabel;
 @property (weak) UIViewController *mainView;
 @property (weak) NSObject<LocationShareDelegate> *delegate;
+@property (strong, atomic) NSString *targetFileName;
+@property ( atomic) double longitude;
+@property ( atomic) double latitude;
+@property (atomic)  int keepHours;
+
 - (IBAction)ClickShareNowBtn:(id)sender;
 - (IBAction)ClickCancelBtn:(id)sender;
 - (void)showCurrentLocation;

@@ -39,7 +39,7 @@
     
     img = [img fixOrientation];
     NSLog(@"saveImage: %@",path_path);
-    BOOL result = [UIImagePNGRepresentation(img) writeToFile:path_path atomically:YES];
+    BOOL result = [UIImageJPEGRepresentation(img,0.7) writeToFile:path_path atomically:YES];
     NSLog(@"saveImage result:%d",result);
     
 //    [_gmGridView reloadData];
@@ -52,7 +52,7 @@
     
     //img = [img fixOrientation];
     NSLog(@"saveImage: %@",path_path);
-    BOOL result = [UIImagePNGRepresentation(img) writeToFile:path_path atomically:YES];
+    BOOL result = [UIImageJPEGRepresentation(img,0.7) writeToFile:path_path atomically:YES];
     NSLog(@"saveImage result:%d",result);
     
     //[_gmGridView reloadData];

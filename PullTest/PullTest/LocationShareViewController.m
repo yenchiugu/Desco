@@ -17,6 +17,10 @@
 @synthesize hourLabel;
 @synthesize mainView;
 @synthesize delegate;
+@synthesize latitude;
+@synthesize longitude;
+@synthesize targetFileName;
+@synthesize keepHours;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +56,7 @@
 }
 
 - (IBAction)ClickShareNowBtn:(id)sender {
+  
   if (self.delegate && [self.delegate respondsToSelector:@selector(ClickShareNowBtn:)]) {
     [self.delegate ClickShareNowBtn:self];
   }
@@ -75,7 +80,10 @@
   double X = mapView.userLocation.location.coordinate.latitude;
   double Y = mapView.userLocation.location.coordinate.longitude;
 
-  
+    latitude = X;
+    longitude = Y;
+    
+  keepHours = 1;
   //自行定義的設定地圖函式
   [self setMapRegionLongitude:Y andLatitude:X withLongitudeSpan:0.0045 andLatitudeSpan:0.0045];
 }
@@ -83,6 +91,7 @@
 - (IBAction)HourSliderChanged:(id)sender {
   UISlider *my_slider=  (UISlider*)sender;
   NSString *label_str = [NSString stringWithFormat:@"%d",(int)my_slider.value];
+  keepHours = (int)my_slider.value;
   [hourLabel setText:label_str];
 }
 

@@ -55,5 +55,8 @@
 @property (nonatomic,strong) SKStuffViewController *my_stuff_view_controllor;
 @property (nonatomic,strong) FileQueueViewController *fileQueueViewController;
 @property (nonatomic,strong) DropboxManager *dbManager;
+
+- (void)showUploadedHud;
+- (void)showDownloadedHud;
 @end
 
