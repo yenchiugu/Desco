@@ -147,6 +147,8 @@
 		66EB184B163D0C7600C63837 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EB184A163D0C7600C63837 /* MBProgressHUD.m */; };
 		66EB1859163D207400C63837 /* SKLocationFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EB1858163D207400C63837 /* SKLocationFileInfo.m */; };
 		66EB185C163D270400C63837 /* SKCommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EB185B163D270400C63837 /* SKCommonUtils.m */; };
+		66EB1870163D3C6D00C63837 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EB186E163D3C6D00C63837 /* 37x-Checkmark.png */; };
+		66EB1871163D3C6D00C63837 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EB186F163D3C6D00C63837 /* 37x-Checkmark@2x.png */; };
 		66EC6B0C16246008005306FC /* FileQueueCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EC6B0B16246008005306FC /* FileQueueCellView.xib */; };
 		66EC6B1216255A46005306FC /* FileQueueTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EC6B1116255A46005306FC /* FileQueueTableView.xib */; };
 		66EC997416047DF400572EAE /* mybarbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EC997316047DF400572EAE /* mybarbar.png */; };
@@ -415,6 +417,8 @@
 		66EB1858163D207400C63837 /* SKLocationFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLocationFileInfo.m; sourceTree = "<group>"; };
 		66EB185A163D270400C63837 /* SKCommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCommonUtils.h; sourceTree = "<group>"; };
 		66EB185B163D270400C63837 /* SKCommonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCommonUtils.m; sourceTree = "<group>"; };
+		66EB186E163D3C6D00C63837 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		66EB186F163D3C6D00C63837 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
 		66EC6B0B16246008005306FC /* FileQueueCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FileQueueCellView.xib; path = ../FileQueueCellView.xib; sourceTree = "<group>"; };
 		66EC6B1116255A46005306FC /* FileQueueTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileQueueTableView.xib; sourceTree = "<group>"; };
 		66EC997316047DF400572EAE /* mybarbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mybarbar.png; sourceTree = "<group>"; };
@@ -596,6 +600,8 @@
 		660D964B15FC76DE00721B31 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				66EB186E163D3C6D00C63837 /* 37x-Checkmark.png */,
+				66EB186F163D3C6D00C63837 /* 37x-Checkmark@2x.png */,
 				66476F101633A56C00113797 /* Metro-Photo-Blue.png */,
 				66476F111633A56C00113797 /* Metro-Photo-Blue@2x.png */,
 				66476F0B1632B9C100113797 /* file_toolbar_.png */,
@@ -1091,6 +1097,8 @@
 				66476F121633A56C00113797 /* Metro-Photo-Blue.png in Resources */,
 				66476F131633A56C00113797 /* Metro-Photo-Blue@2x.png in Resources */,
 				66A09E52163BBA1600B88096 /* NimbusPhotos.bundle in Resources */,
+				66EB1870163D3C6D00C63837 /* 37x-Checkmark.png in Resources */,
+				66EB1871163D3C6D00C63837 /* 37x-Checkmark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

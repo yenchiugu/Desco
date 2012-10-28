@@ -209,6 +209,46 @@
     [self.view addSubview:sharingMenu];
 }
 
+- (void)showUploadedHud{
+    hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:hud];
+
+    // The sample image is based on the work by http://www.pixelpressicons.com, http://creativecommons.org/licenses/by/2.5/ca/
+	// Make the customViews 37 by 37 pixels for best results (those are the bounds of the build-in progress indicators)
+	hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] ;
+	
+	// Set custom view mode
+	hud.mode = MBProgressHUDModeCustomView;
+	
+	hud.delegate = self;
+	hud.labelText = @"Upload Completed";
+	
+	[hud show:YES];
+	[hud hide:YES afterDelay:2];
+
+    
+}
+
+- (void)showDownloadedHud{
+    hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:hud];
+    
+    // The sample image is based on the work by http://www.pixelpressicons.com, http://creativecommons.org/licenses/by/2.5/ca/
+	// Make the customViews 37 by 37 pixels for best results (those are the bounds of the build-in progress indicators)
+	hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] ;
+	
+	// Set custom view mode
+	hud.mode = MBProgressHUDModeCustomView;
+	
+	hud.delegate = self;
+	hud.labelText = @"Download Completed";
+	
+	[hud show:YES];
+	[hud hide:YES afterDelay:2];
+    
+    
+}
+
 - (void)showGestureMenu:(id)sender
 {
     TouchTracker *tracker = (TouchTracker *) sender;
@@ -219,17 +259,7 @@
         [UIView commitAnimations];
     } else if (tracker.letter[0] == 'O') {
         
-        hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:hud];
-        
-        hud.dimBackground = YES;
-        
-        // Regiser for HUD callbacks so we can remove it from the window at the right time
-        hud.delegate = self;
-        
-        hud.labelText = @"Searching friends...";
-        
-        [hud showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
+
         
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];

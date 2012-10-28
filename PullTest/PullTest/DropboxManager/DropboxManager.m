@@ -119,6 +119,7 @@ longitude:(double) _longitue keepHours:(int) _keepHours
                         toUser:info.toUser
                         fileId:info.fullPath];
     }
+    [self.mainController showUploadedHud];
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
@@ -160,8 +161,11 @@ longitude:(double) _longitue keepHours:(int) _keepHours
                               fileId:srcPath];
             [_downloadingFile removeObjectForKey:destPath];
         }
+        [self.mainController showUploadedHud];
     } else if ([self isFriendsFolder:metadata.path]) {
         [[self getUpperView]._gmGridView reloadData];
+    } else {
+        [self.mainController showUploadedHud];
     }
 
 
@@ -340,7 +344,7 @@ longitude:(double) _longitue keepHours:(int) _keepHours
 #pragma mark - utilities
 - (NSString *)getLocationSharePath
 {
-    return [NSString stringWithFormat:@"/user/location_share/"];
+    return [NSString stringWithFormat:@"/user/location_share"];
 }
 
 
