@@ -46,6 +46,16 @@
     return [self openProfileImg:[self getProfilePathByName:userName]];
 }
 
++ (UIImage*) openProfileImg:(NSString*) filename {
+    NSString *thumbnail_filename = [filename stringByAppendingString:@".thumb"];
+    NSString *thumbnail_filepath = [[self getDocPath] stringByAppendingPathComponent:thumbnail_filename];
+    NSFileManager *file_mgr = [NSFileManager defaultManager];
+    if ([file_mgr fileExistsAtPath:thumbnail_filepath]) {
+            return [UIImage imageWithContentsOfFile:thumbnail_filepath];
+        }
+    return nil;
+}
+
 + (UIImage*) openProfileImgFromIndex:(NSInteger) index
                            outFileName:(NSString**) filename {
     NSFileManager *file_mgr = [NSFileManager defaultManager];
