@@ -22,18 +22,18 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        files = [NSMutableArray array];
+        files = [NSMutableDictionary dictionary];
         FileProgress *newFile;
         newFile = [[FileProgress alloc] init];
         newFile.fileName = @"test.jpg";
         newFile.friendName = @"Ace Wu";
         newFile.prograss = 23.43f;
-        [files addObject:newFile];
+        [files setObject:newFile forKey:@"test1"];
         newFile = [[FileProgress alloc] init];
         newFile.fileName = @"haha.mp3";
         newFile.friendName = @"Sam Ku";
         newFile.prograss = 98.10f;
-        [files addObject:newFile];
+        [files setObject:newFile forKey:@"test2"];
     }
     return self;
 }
@@ -71,8 +71,6 @@
 {
     NSString *uniqueId = @"fileQueueCellView";
     FileQueueCellView *cell = (FileQueueCellView *)[fileQueueTable dequeueReusableCellWithIdentifier:uniqueId];
-    FileProgress *file = [files objectAtIndex:[indexPath row]];
-    
     if (!cell) {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"FileQueueCellView" owner:nil options:nil];
         for (id obj in topLevelObjects) {
@@ -82,6 +80,8 @@
             }
         }
     }
+
+    FileProgress *file = [files objectForKey:[files.allKeys objectAtIndex:indexPath.row]];
     
     //cell.fileIconView
     cell.fileNameLabel.text = file.fileName;

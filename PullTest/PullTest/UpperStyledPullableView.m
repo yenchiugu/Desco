@@ -28,17 +28,14 @@
 
 - (UIViewController*)viewController
 {
-  for (UIView* next = [self superview]; next; next = next.superview)
-  {
-    UIResponder* nextResponder = [next nextResponder];
-    
-    if ([nextResponder isKindOfClass:[UIViewController class]])
-    {
-      return (UIViewController*)nextResponder;
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController*)nextResponder;
+        }
     }
-  }
-  
-  return nil;
+    return nil;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -50,19 +47,18 @@
         [self addSubview:imgView];
         
         user_image_paths = [NSArray arrayWithObjects:
-                           [[NSBundle mainBundle]pathForResource:@"user01" ofType:@"jpg"],
-                           [[NSBundle mainBundle]pathForResource:@"user06" ofType:@"jpg"],
-                           [[NSBundle mainBundle]pathForResource:@"user08" ofType:@"jpg"],
-
-                           [[NSBundle mainBundle]pathForResource:@"user03" ofType:@"jpg"],
-                           [[NSBundle mainBundle]pathForResource:@"user09" ofType:@"jpg"],                            
-                           [[NSBundle mainBundle]pathForResource:@"user04" ofType:@"jpg"],
-                           [[NSBundle mainBundle]pathForResource:@"user05" ofType:@"jpg"],
-                           [[NSBundle mainBundle]pathForResource:@"user07" ofType:@"jpg"],
-
-
-                           [[NSBundle mainBundle]pathForResource:@"user10" ofType:@"jpg"],
-                           [[NSBundle mainBundle]pathForResource:@"user02" ofType:@"jpg"],
+                            [[NSBundle mainBundle] pathForResource:@"user01" ofType:@"jpg"],
+                            [[NSBundle mainBundle] pathForResource:@"user06" ofType:@"jpg"],
+                            [[NSBundle mainBundle] pathForResource:@"user08" ofType:@"jpg"],
+                            
+                            [[NSBundle mainBundle] pathForResource:@"user03" ofType:@"jpg"],
+                            [[NSBundle mainBundle] pathForResource:@"user09" ofType:@"jpg"],
+                            [[NSBundle mainBundle] pathForResource:@"user04" ofType:@"jpg"],
+                            [[NSBundle mainBundle] pathForResource:@"user05" ofType:@"jpg"],
+                            [[NSBundle mainBundle] pathForResource:@"user07" ofType:@"jpg"],
+                            
+                            [[NSBundle mainBundle] pathForResource:@"user10" ofType:@"jpg"],
+                            [[NSBundle mainBundle] pathForResource:@"user02" ofType:@"jpg"],
                             nil];
         
         GMGridView *gmGridView2 = [[GMGridView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 160)];
@@ -74,9 +70,9 @@
         gmGridView2.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutHorizontal];
         [self addSubview:gmGridView2];
         _gmGridView = gmGridView2;
-      
+        
         [self computeViewFrames];
-      
+        
         //_gmGridView.sortingDelegate = self;
         //_gmGridView.transformDelegate = self;
         
@@ -84,58 +80,43 @@
         _gmGridView.mainSuperView = self;
         _gmGridView.actionDelegate = self;
     }
-  
-  _animatedCell = NULL;
+    
+    _animatedCell = NULL;
     return self;
 }
-//////////////////////////////////////////////////////////////
-#pragma mark Privates
-//////////////////////////////////////////////////////////////
 
+
+#pragma mark - Privates
 - (void)computeViewFrames
 {
-  
-  
-  
-  CGRect frame2 = CGRectMake(0, 0, self.bounds.size.width ,180);
-  
-  
-  _gmGridView.frame = frame2;
-  
-  
-  
-  
+    CGRect frame2 = CGRectMake(0, 0, self.bounds.size.width ,180);
+    _gmGridView.frame = frame2;
 }
 
-//////////////////////////////////////////////////////////////
-#pragma mark GMGridViewDataSource
-//////////////////////////////////////////////////////////////
 
+#pragma mark GMGridViewDataSource
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
 {
-  return 10;
+    return 10;
 }
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-  if (INTERFACE_IS_PHONE)
-  {
-    return CGSizeMake(140, 110);
-  }
-  else
-  {
-    return CGSizeMake(160, 160);
-  }
+    if (INTERFACE_IS_PHONE) {
+        return CGSizeMake(140, 110);
+    } else {
+        return CGSizeMake(160, 160);
+    }
 }
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
 {
     CGSize size = [self GMGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
-  
-//  GMGridViewCell *cell = [gridView dequeueReusableCell];
+    
+    //  GMGridViewCell *cell = [gridView dequeueReusableCell];
     GMGridViewCell *cell = NULL;
-//  if (!cell)
-//  {
+    //  if (!cell)
+    //  {
     cell = [[GMGridViewCell alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height+20)];
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
@@ -143,7 +124,7 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
     NSString *tmp_img_path = [user_image_paths objectAtIndex:index];
-
+    
     imageView.image = [UIImage imageWithContentsOfFile: tmp_img_path];
     
     [view addSubview:imageView];
@@ -156,43 +137,43 @@
     //view.layer.shadowRadius = 8;
     
     cell.contentView = view;
- // }
-  
-  //[[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-  
+    // }
+    
+    //[[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,size.height,size.width,20)];//cell.contentView.bounds];
     //label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  NSString *str=@"";
-  
-  if (index==0) {
-    str=@"Ace's iPad";
-  } else if (index==1) {
-    str=@"Ace's Laptop1";
-  } else if (index==9) {
-    str=@"SY's iPad";
-  } else if (index==2) {
-    str=@"CC's iPad";
-  } else if (index==3) {
-    str=@"Juliet's iPad";	
-  } else if (index==4) {
-    str=@"Ace's Laptop2";
-  } else if (index==5) {
-    str=@"新衣's iPad";
-  } else if (index==6) {
-    str=@"小欄's iPad";
-  } else if (index==7) {
-    str=@"什麼狗's iPad";
-  } else if (index==8) {
-    str=@"海賊王's iPad";
-  }
+    NSString *str=@"";
+    
+    if (index==0) {
+        str=@"Ace's iPad";
+    } else if (index==1) {
+        str=@"Ace's Laptop1";
+    } else if (index==9) {
+        str=@"SY's iPad";
+    } else if (index==2) {
+        str=@"CC's iPad";
+    } else if (index==3) {
+        str=@"Juliet's iPad";
+    } else if (index==4) {
+        str=@"Ace's Laptop2";
+    } else if (index==5) {
+        str=@"新衣's iPad";
+    } else if (index==6) {
+        str=@"小欄's iPad";
+    } else if (index==7) {
+        str=@"什麼狗's iPad";
+    } else if (index==8) {
+        str=@"海賊王's iPad";
+    }
     label.text = str;
     label.textAlignment = UITextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:20];
     [cell.contentView addSubview:label];
-  
-  return cell;
+    
+    return cell;
 }
 
 - (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
@@ -210,125 +191,115 @@
         //CGRect newFrame = [self.superview convertRect:cell.frame fromView:cell];
         [avatarPopover presentPopoverFromRect:cell.frame inView:self.superview permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     }
-
 }
 
-- (void)draggingEvent:(CGPoint) pt sourceView:(UIView *)srcView {
-  CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
-  NSLog(@"converted: [%f,%f]",converted_p.x,converted_p.y);
-  //UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];
-  int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
-  
-  NSLog(@"positoin:%d",position);
-  //NSLog(@"target:%@",target);
-
-  if (position!=-1) {
-    //CGPoint converted_p2 =[self convertPoint:converted_p toView:target];
-
-    //UIView *target2=[target hitTest:converted_p2 withEvent:nil];
-    //NSLog(@"target2:%@",target2);
-    //int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
-    GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
-    if (_animatedCell!=cell) {
-      [UIView animateWithDuration:0 delay:0
-                          options:UIViewAnimationOptionBeginFromCurrentState
-                       animations:(void (^)(void)) ^ {
-                         _animatedCell.transform=CGAffineTransformIdentity;}
-                       completion:nil
-       //^(BOOL finished) {
-       //  cell.transform=CGAffineTransformIdentity;
-       // }
-       ];
-      _animatedCell=NULL;
+- (void)draggingEvent:(CGPoint)pt sourceView:(UIView *)srcView
+{
+    CGPoint converted_p = [srcView convertPoint:pt toView:_gmGridView];
+    NSLog(@"converted: [%f,%f]", converted_p.x, converted_p.y);
+    //UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];
+    int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
+    
+    NSLog(@"positoin:%d",position);
+    //NSLog(@"target:%@",target);
+    
+    if (position != -1) {
+        //CGPoint converted_p2 =[self convertPoint:converted_p toView:target];
+        
+        //UIView *target2=[target hitTest:converted_p2 withEvent:nil];
+        //NSLog(@"target2:%@",target2);
+        //int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
+        GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
+        if (_animatedCell != cell) {
+            [UIView animateWithDuration:0 delay:0
+                                options:UIViewAnimationOptionBeginFromCurrentState
+                             animations:(void (^)(void)) ^ {
+                                 _animatedCell.transform=CGAffineTransformIdentity;}
+                             completion:nil
+             //^(BOOL finished) {
+             //  cell.transform=CGAffineTransformIdentity;
+             // }
+             ];
+            _animatedCell=NULL;
+        }
+        if (cell) {
+            [UIView animateWithDuration:0.1 delay:0
+                                options:UIViewAnimationOptionBeginFromCurrentState
+                             animations:(void (^)(void)) ^ {
+                                 cell.transform=CGAffineTransformMakeScale(1.2, 1.2);}
+                             completion:nil
+             //^(BOOL finished) {
+             //  cell.transform=CGAffineTransformIdentity;
+             // }
+             ];
+            [_gmGridView bringSubviewToFront:cell];
+            _animatedCell = cell;
+        }
     }
-    if (cell) {
-      [UIView animateWithDuration:0.1 delay:0
-                          options:UIViewAnimationOptionBeginFromCurrentState
-                       animations:(void (^)(void)) ^ {
-                         cell.transform=CGAffineTransformMakeScale(1.2, 1.2);}
-                       completion:nil
-                       //^(BOOL finished) {
-                       //  cell.transform=CGAffineTransformIdentity;
-                      // }
-       ];
-      [_gmGridView bringSubviewToFront:cell];
-      _animatedCell = cell;
-    }
-
-      }
-  
 }
 
-- (void)droppedEvent:(CGPoint) pt sourceView:(UIView *)srcView {
-  
-  SKViewController *mainViewControllor = (SKViewController*)[self viewController];
-  CGPoint localtion_pt = [srcView convertPoint:pt toView:mainViewControllor.locationShareButton];
-  BOOL dropped_to_location = [mainViewControllor.locationShareButton pointInside:localtion_pt withEvent:nil];
-  NSLog(@"pointInside [location]:%d",dropped_to_location);
-  
-  if (dropped_to_location) {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    [mainViewControllor setLocationViewController: (LocationShareViewController*)
-     [storyboard instantiateViewControllerWithIdentifier:@"LocationShareViewController"]];
-    [mainViewControllor.locationViewController.view setFrame:CGRectMake(0, 0, 500, 570)];
-    //[mainViewControllor.locationViewController showCurrentLocation];
-    [mainViewControllor.locationViewController setMainView:mainViewControllor];
-    [mainViewControllor.locationViewController setDelegate:mainViewControllor];
-    [mainViewControllor presentPopupViewController:mainViewControllor.locationViewController animationType:MJPopupViewAnimationSlideBottomTop];
-    
-
-    return;
-  }
-  
-  CGPoint qrcode_pt = [srcView convertPoint:pt toView:mainViewControllor.qrCodeShareButton];
-  BOOL dropped_to_qrcode = [mainViewControllor.qrCodeShareButton pointInside:qrcode_pt withEvent:nil];
-  NSLog(@"pointInside [location]:%d",dropped_to_qrcode);
-  
-  if (dropped_to_qrcode) {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    [mainViewControllor setQrCodeViewController: (QrCodeShareViewController*)
-     [storyboard instantiateViewControllerWithIdentifier:@"QrCodeShareViewController"]];
-    [mainViewControllor.qrCodeViewController.view setFrame:CGRectMake(0, 0, 500, 570)];
-
-    //[mainViewControllor.qrCodeViewController setMainView:mainViewControllor];
-    [mainViewControllor.qrCodeViewController setDelegate:mainViewControllor];
-    [mainViewControllor presentPopupViewController:mainViewControllor.qrCodeViewController animationType:MJPopupViewAnimationSlideBottomTop];
-    
-    
-    return;
-  }
-  
-  
-  CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
-  NSLog(@"converted: [%f,%f]",converted_p.x,converted_p.y);
-  UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];
-  int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
-  
-  NSLog(@"positoin:%d",position);
-  NSLog(@"target:%@",target);
-  
-  if (position!=-1) {
-
-    //GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
-
-    
-    
+- (void)droppedEvent:(CGPoint)pt sourceView:(UIView *)srcView
+{
     SKViewController *mainViewControllor = (SKViewController*)[self viewController];
-    [mainViewControllor.questionSendViewController.view setFrame:CGRectMake(0, 0, 400, 250)];
-    [mainViewControllor presentPopupViewController:mainViewControllor.questionSendViewController animationType:MJPopupViewAnimationSlideBottomTop];
     
-
-  }
-  
-  if (_animatedCell) {
-    [UIView animateWithDuration:0 delay:0
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:(void (^)(void)) ^ {
-                       _animatedCell.transform=CGAffineTransformIdentity;}
-                     completion:nil
-     ];
-    _animatedCell = NULL;
-  }
+    CGPoint localtion_pt = [srcView convertPoint:pt toView:mainViewControllor.locationShareButton];
+    BOOL dropped_to_location = [mainViewControllor.locationShareButton pointInside:localtion_pt withEvent:nil];
+    NSLog(@"pointInside [location]:%d", dropped_to_location);
+    
+    if (dropped_to_location) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        [mainViewControllor setLocationViewController: (LocationShareViewController*)
+        [storyboard instantiateViewControllerWithIdentifier:@"LocationShareViewController"]];
+        [mainViewControllor.locationViewController.view setFrame:CGRectMake(0, 0, 500, 570)];
+        //[mainViewControllor.locationViewController showCurrentLocation];
+        [mainViewControllor.locationViewController setMainView:mainViewControllor];
+        [mainViewControllor.locationViewController setDelegate:mainViewControllor];
+        [mainViewControllor presentPopupViewController:mainViewControllor.locationViewController animationType:MJPopupViewAnimationSlideBottomTop];
+        return;
+    }
+    
+    CGPoint qrcode_pt = [srcView convertPoint:pt toView:mainViewControllor.qrCodeShareButton];
+    BOOL dropped_to_qrcode = [mainViewControllor.qrCodeShareButton pointInside:qrcode_pt withEvent:nil];
+    NSLog(@"pointInside [location]:%d", dropped_to_qrcode);
+    
+    if (dropped_to_qrcode) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        [mainViewControllor setQrCodeViewController: (QrCodeShareViewController*)
+        [storyboard instantiateViewControllerWithIdentifier:@"QrCodeShareViewController"]];
+        [mainViewControllor.qrCodeViewController.view setFrame:CGRectMake(0, 0, 500, 570)];
+        
+        //[mainViewControllor.qrCodeViewController setMainView:mainViewControllor];
+        [mainViewControllor.qrCodeViewController setDelegate:mainViewControllor];
+        [mainViewControllor presentPopupViewController:mainViewControllor.qrCodeViewController animationType:MJPopupViewAnimationSlideBottomTop];
+        return;
+    }
+    
+    
+    CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
+    NSLog(@"converted: [%f,%f]",converted_p.x,converted_p.y);
+    UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];
+    int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
+    
+    NSLog(@"positoin:%d",position);
+    NSLog(@"target:%@",target);
+    
+    if (position != -1) {
+        //GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
+        SKViewController *mainViewControllor = (SKViewController*)[self viewController];
+        mainViewControllor.questionSendViewController.toUser = @"test";
+        mainViewControllor.questionSendViewController.srcFile = @"/var/mobile/Applications/BD1C2E94-FE81-4473-9098-5F6050216035/Documents/img_20122810114427.png";
+        [mainViewControllor.questionSendViewController.view setFrame:CGRectMake(0, 0, 400, 250)];
+        [mainViewControllor presentPopupViewController:mainViewControllor.questionSendViewController animationType:MJPopupViewAnimationSlideBottomTop];
+    }
+    
+    if (_animatedCell) {
+        [UIView animateWithDuration:0 delay:0
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:(void (^)(void)) ^ {_animatedCell.transform = CGAffineTransformIdentity;}
+                         completion:nil
+         ];
+        _animatedCell = NULL;
+    }
 }
 
 @end

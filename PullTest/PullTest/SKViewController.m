@@ -336,7 +336,9 @@
               uploaded:(long long)uploadedSize
                  total:(long long)totalSize
                 fileId:(NSString *)fileId
-{}
+{
+    //fileQueueViewController.files;
+}
 
 - (void)uploadedFile:(NSString *)srcPath toUser:(NSString *)user
 {}
@@ -350,8 +352,7 @@
               downloaded:(long long)downloadedSize
                    total:(long long)totalSize
                   fileId:(NSString *)fileId
-{
-}
+{}
 
 - (void)downloadedFile:(NSString *)destPath fromUser:(NSString *)user
 {}
@@ -375,10 +376,15 @@ sizeOfItemForViewController:(UIViewController *)viewController
 
 - (void)ClickSendYesBtn:(UIViewController*) uiview {
     [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
+    QuestionSendViewController *qsView = (QuestionSendViewController *)uiview;
+    [dbManager uploadFile:qsView.srcFile toUser:qsView.toUser];
+    [qsView clear];
 }
 
 - (void)ClickSendNoBtn:(UIViewController*) uiview {
     [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
+    QuestionSendViewController *qsView = (QuestionSendViewController *)uiview;
+    [qsView clear];
 }
 
 - (void)ClickShareNowBtn:(UIViewController*) uiview {

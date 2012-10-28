@@ -11,12 +11,15 @@
 @protocol QuestionSendDelegate;
 
 @interface QuestionSendViewController : UIViewController
+
+@property (weak, nonatomic) id<QuestionSendDelegate> delegate;
+@property (strong, nonatomic) NSString *srcFile;
+@property (strong, nonatomic) NSString *toUser;
+//@property  (strong) IBOutlet UIButton *yesBtn;
+
 - (IBAction)ClickYesBtn:(id)sender;
 - (IBAction)ClickNoBtn:(id)sender;
-
-//@property  (strong) IBOutlet UIButton *yesBtn;
-@property (weak) NSObject<QuestionSendDelegate> *delegate;
-
+- (void)clear;
 @end
 
 
@@ -25,5 +28,4 @@
 @optional
 - (void)ClickSendYesBtn:(UIViewController*) uiview;
 - (void)ClickSendNoBtn:(UIViewController*) uiview;
-
 @end

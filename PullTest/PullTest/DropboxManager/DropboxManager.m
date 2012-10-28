@@ -19,7 +19,11 @@
     NSTimer *_pullingTimer;
     NSMutableDictionary *_downloadingFile;
 }
+@synthesize dbSession;
+@synthesize restClient=_restClient;
+@synthesize delegate;
 @synthesize myName;
+@synthesize downloadPath;
 
 #pragma mark - initialization
 - (DropboxManager *)initWithAppKey:(NSString *)key

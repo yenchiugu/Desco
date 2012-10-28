@@ -31,9 +31,9 @@
         if (NSEqualRanges(NSMakeRange(NSNotFound, 0), [match rangeAtIndex:0])) {
             return nil;
         } else {
-            for (int i = 0; i < [match numberOfRanges]; ++i) {
-                NSLog(@"%@", [path substringWithRange:[match rangeAtIndex:i]]);
-            }
+//            for (int i = 0; i < [match numberOfRanges]; ++i) {
+//              NSLog(@"%@", [path substringWithRange:[match rangeAtIndex:i]]);
+//            }
             //NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             //[formatter setNumberStyle:NSNumberFormatter];
             fileName  = [path substringWithRange:[match rangeAtIndex:5]];

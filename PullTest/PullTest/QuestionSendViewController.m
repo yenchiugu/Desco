@@ -9,14 +9,14 @@
 #import "QuestionSendViewController.h"
 
 @interface QuestionSendViewController ()
-
-
 @end
 
 
 @implementation QuestionSendViewController
 
 @synthesize delegate;
+@synthesize srcFile;
+@synthesize toUser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,15 +44,23 @@
 	return YES;
 }
 
-- (IBAction)ClickYesBtn:(id)sender {
-  if (self.delegate && [self.delegate respondsToSelector:@selector(ClickSendYesBtn:)]) {
-    [self.delegate ClickSendYesBtn:self];
-  }
+- (IBAction)ClickYesBtn:(id)sender
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ClickSendYesBtn:)]) {
+        [self.delegate ClickSendYesBtn:self];
+    }
 }
 
-- (IBAction)ClickNoBtn:(id)sender {
-  if (self.delegate && [self.delegate respondsToSelector:@selector(ClickSendNoBtn:)]) {
-    [self.delegate ClickSendNoBtn:self];
-  }
+- (IBAction)ClickNoBtn:(id)sender
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ClickSendNoBtn:)]) {
+        [self.delegate ClickSendNoBtn:self];
+    }
+}
+
+- (void)clear
+{
+    srcFile = nil;
+    toUser  = nil;
 }
 @end

@@ -20,13 +20,10 @@
 
 
 @interface FileProgress : NSObject
-{
-    NSString *fileName;
-    NSString *friendName;
-    float prograss;
-}
+
 @property (strong, nonatomic) NSString *fileName;
 @property (strong, nonatomic) NSString *friendName;
 @property float prograss;
+@property BOOL isDownload;
 
 @end

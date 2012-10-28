@@ -11,11 +11,9 @@
 
 
 @interface FileQueueViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-{
-    UITableView *fileQueueTable;
-    NSMutableArray *files;
-}
-@property (strong, nonatomic) IBOutlet UITableView *fileQueueTable;
-@property (strong, nonatomic) NSMutableArray *files;
 
+
+@property (strong, nonatomic) IBOutlet UITableView *fileQueueTable;
+@property (strong, nonatomic) NSMutableDictionary *files;
+- (NSInteger)indexOfFile:(NSString *)fileId;
 @end
