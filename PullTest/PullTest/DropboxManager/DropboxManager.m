@@ -1,6 +1,6 @@
 #import "DropboxManager.h"
 #import "FileInfo.h"
-
+#import "SKViewController.h"
 @interface DropboxManager ()
 // aux
 - (void)downloadAllFiles:(DBMetadata *)metadata;
@@ -24,6 +24,7 @@
 @synthesize delegate;
 @synthesize myName;
 @synthesize downloadPath;
+@synthesize mainController;
 
 #pragma mark - initialization
 - (DropboxManager *)initWithAppKey:(NSString *)key
@@ -141,6 +142,8 @@
             [delegate uploadedFile:info.fileName
                             toUser:info.toUser];
         }
+    } else if ([self isFriendsFolder:metadata.path]) {
+        [[self getUpperView]._gmGridView reloadData];
     }
 
 
@@ -253,15 +256,16 @@
         NSString *local_filename;
         while (local_filename=[dir_enum nextObject]) {
             
-            if ([[local_filename pathExtension] isEqualToString:@"profile"]) {
+            if ([[local_filename pathExtension] isEqualToString:@"png"]) {
                 [local_user_set addObject:local_filename];
                 
             }
         }
         
+        BOOL is_user_list_changed = NO;
         for (DBMetadata *file in metadata.contents) {
             NSLog(@"[listAndUpdateUsers] file:%@",file);
-            if ([[file.filename pathExtension] isEqualToString:@"profile"]) {
+            if ([[file.filename pathExtension] isEqualToString:@"png"]) {
                 
                 NSFileManager *file_mgr = [NSFileManager defaultManager];
                 if (![file_mgr fileExistsAtPath:localPath]) {
@@ -282,12 +286,17 @@
                     NSLog(@"[listAndUpdateUsers] localPath:%@, target_local_filepath:%@, file.filename:%@",
                           localPath,target_local_filepath,file.filename);
                     [self.restClient loadFile:file.path intoPath:target_local_filepath];
+                    is_user_list_changed = YES;
                 }
                 
                 [local_user_set removeObject:file.filename];
             }
         }
         
+        if (is_user_list_changed) {
+            NSLog(@"[listAndUpdateUsers] user list changed, reload upper panel");
+            [[self getUpperView]._gmGridView reloadData];
+        }
         /*
         for (NSString* will_delete_user_name in local_user_set) {
             
@@ -314,17 +323,17 @@
 
 - (NSString *)getUserFriendRequestFilePath:(NSString*)userName
 {
-    return [NSString stringWithFormat:@"/user/friend_request/%@.profile",userName];
+    return [NSString stringWithFormat:@"/user/friend_request/%@.png",userName];
 }
 
 - (NSString *)getUserProfileFileName:(NSString*)userName
 {
-    return [NSString stringWithFormat:@"%@.profile",userName];
+    return [NSString stringWithFormat:@"%@.png",userName];
 }
 
 - (NSString *)getUserProfileFullPath:(NSString *)userName
 {
-    return [NSString stringWithFormat:@"/user/%@/%@.profile",userName,userName];
+    return [NSString stringWithFormat:@"/user/%@/%@.png",userName,userName];
 }
 
 
@@ -414,4 +423,9 @@
     }
     return NO;
 }
+
+- (UpperStyledPullableView*) getUpperView {
+    return (UpperStyledPullableView*)[self.mainController.view viewWithTag:2377];
+}
+
 @end

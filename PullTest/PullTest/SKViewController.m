@@ -325,6 +325,7 @@
                                               downloadPath:docPath];
         */
         dbManager.delegate = self;
+        dbManager.mainController=self;
         NSLog(@"linked:%i", [dbManager isLinked]);
     }
     if (![dbManager isLinked]) {
@@ -371,7 +372,9 @@
 {}
 
 - (void)downloadedFile:(NSString *)destPath fromUser:(NSString *)user
-{}
+{
+    
+}
 
 - (void)downloadFileFailedWithError:(NSError *)error
 {}

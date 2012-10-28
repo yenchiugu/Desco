@@ -100,7 +100,9 @@
     
     //NSLog(@"cellForItemAtIndex index:%d",index);
     while (*filename= [dir_enum nextObject]) {
-        
+        if ([self isExclusiveFolders:*filename]) {
+            continue;
+        }
         if ([[*filename pathExtension] isEqualToString:@"png"] ||
             [[*filename pathExtension] isEqualToString:@"jpg"] ) {
             if (index==file_cnt) {
@@ -132,7 +134,9 @@
     
     //NSLog(@"cellForItemAtIndex index:%d",index);
     while (*filename= [dir_enum nextObject]) {
-        
+        if ([self isExclusiveFolders:*filename]) {
+            continue;
+        }
         if ([[*filename pathExtension] isEqualToString:@"png"] ||
             [[*filename pathExtension] isEqualToString:@"jpg"] ) {
             if (index==file_cnt) {
@@ -151,6 +155,14 @@
     return nil;
 }
 
++(BOOL) isExclusiveFolders:(NSString*) path {
+    NSRange range = [path rangeOfString:@"friends"];
+    if (range.location != NSNotFound) {
+        return YES;
+    }
+    return NO;
+}
+
 +(NSInteger) getFileCount {
     NSFileManager *file_mgr = [NSFileManager defaultManager];
     NSDirectoryEnumerator *dir_enum = [file_mgr enumeratorAtPath:
@@ -159,6 +171,9 @@
     int file_cnt = 0;
     NSString *filename;
     while (filename=[dir_enum nextObject]) {
+        if ([self isExclusiveFolders:filename]) {
+            continue;
+        }
         if ([[filename pathExtension] isEqualToString:@"png"] ||
             [[filename pathExtension] isEqualToString:@"jpg"] ) {
             file_cnt++;

@@ -90,6 +90,10 @@
     //NSLog(@"cellForItemAtIndex index:%d",index);
     while (filename= [dir_enum nextObject]) {
         
+        if ([SKThumbnailImgUtils isExclusiveFolders:filename]) {
+            continue;
+        }
+        
         if ([[filename pathExtension] isEqualToString:@"png"] ||
             [[filename pathExtension] isEqualToString:@"jpg"] ) {
             if (cxt.index==file_cnt) {

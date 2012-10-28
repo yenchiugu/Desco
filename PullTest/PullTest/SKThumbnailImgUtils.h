@@ -22,4 +22,5 @@
                                        ImgSize:(CGSize)size
                                    outFileName:(NSString**) filename;
 +(NSInteger) getFileCount;
++(BOOL) isExclusiveFolders:(NSString*) path;
 @end
