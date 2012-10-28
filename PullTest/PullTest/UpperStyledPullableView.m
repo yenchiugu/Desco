@@ -156,6 +156,7 @@
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:20];
+    label.tag = 250;
     [cell.contentView addSubview:label];
     
     return cell;
@@ -247,6 +248,7 @@
     BOOL dropped_to_qrcode = [mainViewControllor.qrCodeShareButton pointInside:qrcode_pt withEvent:nil];
     NSLog(@"pointInside [location]:%d", dropped_to_qrcode);
     
+
     if (dropped_to_qrcode) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
         [mainViewControllor setQrCodeViewController: (QrCodeShareViewController*)
@@ -258,6 +260,23 @@
         [mainViewControllor presentPopupViewController:mainViewControllor.qrCodeViewController animationType:MJPopupViewAnimationSlideBottomTop];
         return;
     }
+
+  
+  CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
+  NSLog(@"converted: [%f,%f]",converted_p.x,converted_p.y);
+  UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];
+  int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
+  
+  NSLog(@"positoin:%d",position);
+  NSLog(@"target:%@",target);
+  
+  if (position!=-1) {
+
+    GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
+    UILabel *user_name_lbl = (UILabel*)[cell viewWithTag:250];
+    NSString *user_name = user_name_lbl.text;
+
+
     
     
     CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
