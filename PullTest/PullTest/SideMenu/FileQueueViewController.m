@@ -28,12 +28,12 @@
         newFile = [[FileProgress alloc] init];
         newFile.fileName = @"test.jpg";
         newFile.friendName = @"Ace Wu";
-        newFile.prograss = 23.43f;
+        newFile.progress = 23.43f;
         [files setObject:newFile forKey:@"test1"];
         newFile = [[FileProgress alloc] init];
         newFile.fileName = @"haha.mp3";
         newFile.friendName = @"Sam Ku";
-        newFile.prograss = 98.10f;
+        newFile.progress = 98.10f;
         [files setObject:newFile forKey:@"test2"];
     }
     return self;
@@ -62,7 +62,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (BOOL)createUploadProgressForFileId:(NSString *)fileId fileName:(NSString *)fileName toUser:(NSString *)
+- (BOOL)createUploadProgressForFileId:(NSString *)fileId fileName:(NSString *)fileName toUser:(NSString *)user
 {
     if ([files objectForKey:fileId]) {
         return NO;
@@ -92,8 +92,8 @@
 
     FileProgress *file = [files objectForKey:[files.allKeys objectAtIndex:indexPath.row]];
     
-    NSString *profilePath = [SKFriendProfileUtils ]
-    cell.fileIconView.image =
+    //NSString *profilePath = [SKFriendProfileUtils ];
+    //cell.fileIconView.image =
     cell.fileNameLabel.text = file.fileName;
     cell.progressView.progress = file.progress/100;
     cell.progressLabel.text = [NSString stringWithFormat:@"%0.2f",file.progress];
