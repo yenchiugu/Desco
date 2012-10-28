@@ -161,11 +161,11 @@ longitude:(double) _longitue keepHours:(int) _keepHours
                               fileId:srcPath];
             [_downloadingFile removeObjectForKey:destPath];
         }
-        [self.mainController showUploadedHud];
+        [self.mainController showDownloadedHud];
     } else if ([self isFriendsFolder:metadata.path]) {
         [[self getUpperView]._gmGridView reloadData];
     } else {
-        [self.mainController showUploadedHud];
+        [self.mainController showDownloadedHud];
     }
 
 

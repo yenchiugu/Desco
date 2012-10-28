@@ -224,7 +224,7 @@
 	hud.labelText = @"Upload Completed";
 	
 	[hud show:YES];
-	[hud hide:YES afterDelay:2];
+	[hud hide:YES afterDelay:3];
 
     
 }
@@ -369,19 +369,19 @@
                                               downloadPath:docPath];
         */
         // Sam
-        
+        /*
         dbManager = [[DropboxManager alloc] initWithAppKey:@"8y9gqq6z8t2qrwe"
                                                  appSecret:@"qhpd03xgpedx2is"
                                                   userName:@"Sam"
                                               downloadPath:docPath];
-        
+        */
         // Smiler
-        /*
+        
         dbManager = [[DropboxManager alloc] initWithAppKey:@"oui0y94htnkexdq"
                                                  appSecret:@"bhakmtcnc4yvvkg" 
                                                   userName:@"Smiler"
                                               downloadPath:docPath];
-        */
+        
         dbManager.delegate = fileQueueViewController;
         dbManager.mainController = self;
         NSLog(@"linked:%i", [dbManager isLinked]);
