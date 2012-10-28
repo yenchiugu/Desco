@@ -1277,8 +1277,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Ku (VJ3D39P4VX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sam Ku (VJ3D39P4VX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ace Wu (2TSNFS5YJ2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ace Wu (2TSNFS5YJ2)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PullTest\"",
@@ -1300,8 +1300,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Ku (VJ3D39P4VX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sam Ku (VJ3D39P4VX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ace Wu (2TSNFS5YJ2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ace Wu (2TSNFS5YJ2)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PullTest\"",
