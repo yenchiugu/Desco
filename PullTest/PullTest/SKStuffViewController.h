@@ -27,6 +27,8 @@
 //@property (nonatomic, strong) GMGridView *_gmGridView;
 //@property (nonatomic, strong) UIButton *photo_btn;
 @property (nonatomic,strong) UIImage *tmp;
+
+- (void)reloadData;
 @end
 
 

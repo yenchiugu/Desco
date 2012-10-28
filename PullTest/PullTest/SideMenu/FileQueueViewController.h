@@ -10,9 +10,9 @@
 #import "FileQueueCellView.h"
 #import "../DropboxManager/DropboxManager.h"
 
-
 @interface FileQueueViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, DropboxManagerDelegate>
 
+@property (weak, nonatomic) SKViewController* mainViewController;
 @property (strong, nonatomic) IBOutlet UITableView *fileQueueTable;
 @property (strong, nonatomic) NSMutableDictionary *files;
 

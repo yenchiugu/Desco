@@ -259,6 +259,7 @@
 {
     if (fileQueueViewController == nil) {
         fileQueueViewController = [[FileQueueViewController alloc] init];
+        fileQueueViewController.mainViewController = self;
     }
 }
 

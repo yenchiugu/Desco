@@ -5,7 +5,6 @@
 //  Created by Sam Ku on 9/9/12.
 //  Copyright (c) 2012 Sam Ku. All rights reserved.
 //
-
 #import <UIKit/UIKit.h>
 #import "PullableView.h"
 #import "StyledPullableView.h"
@@ -54,6 +53,7 @@
 @property (nonatomic,strong) LocationSearchViewController *locationSearchViewController;
 @property (nonatomic,strong) FriendRequestViewController *friendRequestViewController;
 @property (nonatomic,strong) SKStuffViewController *my_stuff_view_controllor;
-@property (nonatomic,strong) DropboxManager *dbManager;
 @property (nonatomic,strong) FileQueueViewController *fileQueueViewController;
+@property (nonatomic,strong) DropboxManager *dbManager;
 @end
+

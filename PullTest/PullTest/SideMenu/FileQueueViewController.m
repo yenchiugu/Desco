@@ -8,6 +8,7 @@
 
 #import "FileQueueViewController.h"
 #import "../SKFriendProfileUtils.h"
+#import "../SKViewController.h"
 
 @interface FileQueueViewController ()
 
@@ -15,6 +16,7 @@
 
 @implementation FileQueueViewController
 
+@synthesize mainViewController;
 @synthesize fileQueueTable;
 @synthesize files;
 
@@ -24,6 +26,8 @@
     if (self) {
         // Custom initialization
         files = [NSMutableDictionary dictionary];
+        /*
+         // dummy queue
         FileProgress *newFile;
         newFile = [[FileProgress alloc] init];
         newFile.fileName = @"test.jpg";
@@ -37,6 +41,7 @@
         newFile.progress = 98.10f;
         newFile.isDownload = NO;
         [files setObject:newFile forKey:@"test2"];
+         */
     }
     return self;
 }
@@ -142,7 +147,8 @@
                 fileId:(NSString *)fileId
 {
     [files removeObjectForKey:fileId];
-    [fileQueueTable reloadData];
+    [fileQueueTable reloadData];    
+    [mainViewController.my_stuff_view_controllor reloadData];
 }
 
 - (void)downloadFileFailedWithError:(NSError *)error
