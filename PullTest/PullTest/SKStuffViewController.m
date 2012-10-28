@@ -363,7 +363,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:12];
     
-    NSLog(@"%@,string:%@",label,str);
+    //NSLog(@"%@,string:%@",label,str);
+    label.tag = 500;
     [cell.contentView addSubview:label];
     
     return cell;
