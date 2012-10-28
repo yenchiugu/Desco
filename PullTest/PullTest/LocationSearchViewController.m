@@ -8,13 +8,15 @@
 
 #import "LocationSearchViewController.h"
 #import "LocationSearchFilePin.h"
+#import "SKLocationFileInfo.h"
+#import "SKViewController.h"
 @interface LocationSearchViewController ()
 
 @end
 
 @implementation LocationSearchViewController
 @synthesize mapView;
-
+@synthesize mainController;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,7 +31,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     mapView.delegate = self;
-  
+        NSString *location_path = @"/user/location_share";
+    [self.mainController.dbManager.restClient loadMetadata:location_path];
+    //[self showCurrentLocation];
+
 }
 
 - (void)viewDidUnload
@@ -45,12 +50,14 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
   [self showCurrentLocation];
-  static int got = 0;
-  
-  if (got==0) {
-    [self setViewMapPin];
-    got=1;
-  }
+    //NSString *location_path = @"/user/location_share";
+    //[self.mainController.dbManager.restClient loadMetadata:location_path];
+//  static int got = 0;
+//  
+//  if (got==0) {
+//    [self setViewMapPin];
+//    got=1;
+//  }
 
   
 }
@@ -88,6 +95,30 @@
   [mapView regionThatFits:mapRegion];
 }
 
+- (void)setViewMapPin:(NSMutableArray*) loc_info_array {
+    NSLog(@"[setViewMapPin] %@",loc_info_array);
+    
+    //宣告一個陣列來存放標籤
+    NSMutableArray *annotations = [[NSMutableArray alloc] init];
+    for (SKLocationFileInfo *loc_info in loc_info_array) {
+        CLLocationCoordinate2D pinCenter;
+        pinCenter.latitude = loc_info.latitude ;
+        pinCenter.longitude = loc_info.longitude;
+        
+        //建立一個地圖標籤並設定內文
+        LocationSearchFilePin *pin = [[LocationSearchFilePin alloc]initWithCoordinate:pinCenter];
+        pin.title = loc_info.filename;
+        
+        NSString *desc= [NSString stringWithFormat:@"Shared by %@, keep for %d hours",loc_info.username,loc_info.keepHours ];
+        pin.subtitle = desc;
+        
+        [annotations addObject:pin];
+    }
+    
+    //將陣列中所有的標籤顯示在地圖上
+    [mapView removeAnnotations:[mapView annotations]];
+    [mapView addAnnotations:annotations];
+}
 
 //自行定義設定地圖標籤的函式
 - (void)setViewMapPin {

@@ -58,6 +58,9 @@
 - (void)linkFromController:(UIViewController *)mainController;
 - (BOOL)isLinked;
 
+- (NSString *)uploadLocationFile:(NSString*) srcPath fileName:(NSString *)filename latitude:(double)_latitude
+                       longitude:(double) _longitue keepHours:(int) _keepHours;
+
 - (NSString *)uploadFile:(NSString *)srcPath toUser:(NSString *)user;
 //- (void)downloadFile:(NSString *)dropboxPath forUser:(NSString *)user;
 //- (void)queryIncomingFileFor:(NSString *)user;

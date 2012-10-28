@@ -167,7 +167,8 @@ SKDoubleTapEvent
     picker.delegate = self;
     //picker.allowsEditing = YES;
     picker.sourceType = sourceType;
-    picker.videoQuality = UIImagePickerControllerQualityTypeMedium;
+    //picker.
+    //picker.videoQuality = UIImagePickerControllerQualityTypeLow;
     popover =
         [[UIPopoverController alloc] initWithContentViewController:picker];
     

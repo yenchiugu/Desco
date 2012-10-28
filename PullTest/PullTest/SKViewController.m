@@ -17,6 +17,8 @@
 #import "QuestionSendViewController.h"
 #import "FriendRequestViewController.h"
 
+#import "SKCommonUtils.h"
+#import "SKLocationFileInfo.h"
 
 @interface SKViewController ()
 {
@@ -216,6 +218,7 @@
         sharingMenu.alpha = 1;
         [UIView commitAnimations];
     } else if (tracker.letter[0] == 'O') {
+        
         hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
         [self.navigationController.view addSubview:hud];
         
@@ -302,10 +305,12 @@
 
 - (void)clickLocationSearchBtn:(id)sender
 {
+    
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     [self setLocationSearchViewController:(LocationSearchViewController *)
     [storyboard instantiateViewControllerWithIdentifier:@"LocationSearchViewController"]];
-    
+    self.locationSearchViewController.mainController = self;
     [self.locationSearchViewController.view setFrame:CGRectMake(0, 0, 500, 570)];
     
     //[mainViewControllor.qrCodeViewController setMainView:mainViewControllor];
@@ -326,21 +331,23 @@
         NSLog(@"init");
         
         // Ace
+        /*
         dbManager = [[DropboxManager alloc] initWithAppKey:@"3or4oa1y8okdbbd"
                                                  appSecret:@"lu2qmice5mv4kgz"
                                                   userName:@"Ace"
                                               downloadPath:docPath];
+        */
         // Sam
-        /*
+        
         dbManager = [[DropboxManager alloc] initWithAppKey:@"8y9gqq6z8t2qrwe"
                                                  appSecret:@"qhpd03xgpedx2is"
                                                   userName:@"Sam"
                                               downloadPath:docPath];
-         */
+        
         // Smiler
         /*
-        dbManager = [[DropboxManager alloc] initWithAppKey:@"8y9gqq6z8t2qrwe" //<---not yet
-                                                 appSecret:@"qhpd03xgpedx2is" //<---not yet
+        dbManager = [[DropboxManager alloc] initWithAppKey:@"oui0y94htnkexdq"
+                                                 appSecret:@"bhakmtcnc4yvvkg" 
                                                   userName:@"Smiler"
                                               downloadPath:docPath];
         */
@@ -398,6 +405,14 @@ sizeOfItemForViewController:(UIViewController *)viewController
 }
 
 - (void)ClickShareNowBtn:(UIViewController*) uiview {
+
+    NSString *srcPath = [[SKCommonUtils getDocPath ] stringByAppendingPathComponent:locationViewController.targetFileName];
+    
+    [dbManager uploadLocationFile:srcPath
+                         fileName:locationViewController.targetFileName
+                         latitude:locationViewController.latitude
+                        longitude:locationViewController.longitude
+                        keepHours:locationViewController.keepHours];
     
     [self dismissPopupViewControllerWithanimationType: MJPopupViewAnimationSlideBottomTop];
     [UIView beginAnimations:nil context:nil];

@@ -145,6 +145,8 @@
 		66B6ECDC160D731E00B81D55 /* Reader.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B6ECD9160D731E00B81D55 /* Reader.png */; };
 		66B6ECDD160D731E00B81D55 /* Word.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B6ECDA160D731E00B81D55 /* Word.png */; };
 		66EB184B163D0C7600C63837 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EB184A163D0C7600C63837 /* MBProgressHUD.m */; };
+		66EB1859163D207400C63837 /* SKLocationFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EB1858163D207400C63837 /* SKLocationFileInfo.m */; };
+		66EB185C163D270400C63837 /* SKCommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EB185B163D270400C63837 /* SKCommonUtils.m */; };
 		66EC6B0C16246008005306FC /* FileQueueCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EC6B0B16246008005306FC /* FileQueueCellView.xib */; };
 		66EC6B1216255A46005306FC /* FileQueueTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EC6B1116255A46005306FC /* FileQueueTableView.xib */; };
 		66EC997416047DF400572EAE /* mybarbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EC997316047DF400572EAE /* mybarbar.png */; };
@@ -409,6 +411,10 @@
 		66B6ECDA160D731E00B81D55 /* Word.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Word.png; sourceTree = "<group>"; };
 		66EB1849163D0C7600C63837 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Hud/MBProgressHUD.h; sourceTree = "<group>"; };
 		66EB184A163D0C7600C63837 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Hud/MBProgressHUD.m; sourceTree = "<group>"; };
+		66EB1857163D207400C63837 /* SKLocationFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKLocationFileInfo.h; sourceTree = "<group>"; };
+		66EB1858163D207400C63837 /* SKLocationFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLocationFileInfo.m; sourceTree = "<group>"; };
+		66EB185A163D270400C63837 /* SKCommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCommonUtils.h; sourceTree = "<group>"; };
+		66EB185B163D270400C63837 /* SKCommonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCommonUtils.m; sourceTree = "<group>"; };
 		66EC6B0B16246008005306FC /* FileQueueCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FileQueueCellView.xib; path = ../FileQueueCellView.xib; sourceTree = "<group>"; };
 		66EC6B1116255A46005306FC /* FileQueueTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileQueueTableView.xib; sourceTree = "<group>"; };
 		66EC997316047DF400572EAE /* mybarbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mybarbar.png; sourceTree = "<group>"; };
@@ -473,6 +479,8 @@
 				50FD787516342AD300CAE25F /* DropboxManager.m */,
 				506785F816381A8300A0D8D9 /* FileInfo.h */,
 				506785F916381A8300A0D8D9 /* FileInfo.m */,
+				66EB1857163D207400C63837 /* SKLocationFileInfo.h */,
+				66EB1858163D207400C63837 /* SKLocationFileInfo.m */,
 			);
 			path = DropboxManager;
 			sourceTree = "<group>";
@@ -480,6 +488,8 @@
 		6603888715FC50E7007EE91B = {
 			isa = PBXGroup;
 			children = (
+				66EB185A163D270400C63837 /* SKCommonUtils.h */,
+				66EB185B163D270400C63837 /* SKCommonUtils.m */,
 				660D964B15FC76DE00721B31 /* Images */,
 				66B6ECD6160CD39300B81D55 /* app icon.png */,
 				66B6ECC6160CB87500B81D55 /* QRCodeGenerator.h */,
@@ -531,17 +541,12 @@
 				660388A515FC50E7007EE91B /* SKAppDelegate.h */,
 				660388A615FC50E7007EE91B /* SKAppDelegate.m */,
 				660388A815FC50E7007EE91B /* MainStoryboard.storyboard */,
-				66B6ECCE160CC2B800B81D55 /* LocationSearchViewController.h */,
-				66B6ECCF160CC2B800B81D55 /* LocationSearchViewController.m */,
-				66B6ECD1160CC76800B81D55 /* LocationSearchFilePin.h */,
-				66B6ECD2160CC76800B81D55 /* LocationSearchFilePin.m */,
+				66EB1856163D19DF00C63837 /* LocationShare */,
 				66A09E5E163BE8B300B88096 /* MainController */,
 				66A09E60163BEAA100B88096 /* UpperPanel */,
 				66A09E5D163BE83B00B88096 /* BottomPanel */,
 				667EF9C8160B57D9003CA809 /* QuestionSendViewController.h */,
 				667EF9C9160B57D9003CA809 /* QuestionSendViewController.m */,
-				66B6ECA9160C9F6B00B81D55 /* LocationShareViewController.h */,
-				66B6ECAA160C9F6B00B81D55 /* LocationShareViewController.m */,
 				66B6ECC9160CBC4500B81D55 /* QrCodeShareViewController.h */,
 				66B6ECCA160CBC4500B81D55 /* QrCodeShareViewController.m */,
 				664DA151160D86A000CC507D /* FriendRequestViewController.h */,
@@ -937,6 +942,19 @@
 			name = MBProgressHud;
 			sourceTree = "<group>";
 		};
+		66EB1856163D19DF00C63837 /* LocationShare */ = {
+			isa = PBXGroup;
+			children = (
+				66B6ECCE160CC2B800B81D55 /* LocationSearchViewController.h */,
+				66B6ECCF160CC2B800B81D55 /* LocationSearchViewController.m */,
+				66B6ECD1160CC76800B81D55 /* LocationSearchFilePin.h */,
+				66B6ECD2160CC76800B81D55 /* LocationSearchFilePin.m */,
+				66B6ECA9160C9F6B00B81D55 /* LocationShareViewController.h */,
+				66B6ECAA160C9F6B00B81D55 /* LocationShareViewController.m */,
+			);
+			name = LocationShare;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1157,6 +1175,8 @@
 				6696B72F163C32FD0059E5BC /* NSMutableArray+QueueAdditions.m in Sources */,
 				6696B733163C465A0059E5BC /* SKFriendProfileUtils.m in Sources */,
 				66EB184B163D0C7600C63837 /* MBProgressHUD.m in Sources */,
+				66EB1859163D207400C63837 /* SKLocationFileInfo.m in Sources */,
+				66EB185C163D270400C63837 /* SKCommonUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1249,8 +1269,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ace Wu (2TSNFS5YJ2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ace Wu (2TSNFS5YJ2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Ku (VJ3D39P4VX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sam Ku (VJ3D39P4VX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PullTest\"",
@@ -1272,8 +1292,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ace Wu (2TSNFS5YJ2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ace Wu (2TSNFS5YJ2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sam Ku (VJ3D39P4VX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sam Ku (VJ3D39P4VX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PullTest\"",
