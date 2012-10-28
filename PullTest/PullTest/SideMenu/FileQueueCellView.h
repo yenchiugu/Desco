@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FileQueueCellView : UITableViewCell
-{}
+
 @property (strong, nonatomic) IBOutlet UIImageView *fileIconView;
 @property (strong, nonatomic) IBOutlet UILabel *fileNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *progressLabel;
@@ -23,7 +23,7 @@
 
 @property (strong, nonatomic) NSString *fileName;
 @property (strong, nonatomic) NSString *friendName;
-@property float prograss;
+@property float progress;
 @property BOOL isDownload;
 
 @end

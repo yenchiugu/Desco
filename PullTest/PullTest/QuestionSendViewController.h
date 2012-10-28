@@ -15,6 +15,8 @@
 @property (weak, nonatomic) id<QuestionSendDelegate> delegate;
 @property (strong, nonatomic) NSString *srcFile;
 @property (strong, nonatomic) NSString *toUser;
+@property (strong, nonatomic) NSString *profilePath;
+@property (strong, nonatomic) UIImage *profileImage;
 //@property  (strong) IBOutlet UIButton *yesBtn;
 
 - (IBAction)ClickYesBtn:(id)sender;

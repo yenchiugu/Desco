@@ -18,6 +18,12 @@
     return [[self getDocPath] stringByAppendingPathComponent:@"friends"];
 }
 
++(NSString*) getProfilePathByName:(NSString *)userName
+{
+    NSString *fileName = [NSString stringWithFormat:@"%@.png",userName];
+    return [[self getFriendPath] stringByAppendingPathComponent:fileName];
+}
+
 +(NSInteger) getProfileCount {
     NSFileManager *file_mgr = [NSFileManager defaultManager];
     NSDirectoryEnumerator *dir_enum = [file_mgr enumeratorAtPath:
@@ -42,6 +48,11 @@
         return [UIImage imageWithContentsOfFile:thumbnail_filepath];
     }
     return nil;
+}
+
++ (UIImage *) openProfileImgByName:(NSString *)userName
+{
+    return [self openProfileImg:[self getProfilePathByName:userName]];
 }
 
 + (UIImage*) openProfileImgFromIndex:(NSInteger) index

@@ -17,6 +17,8 @@
 @synthesize delegate;
 @synthesize srcFile;
 @synthesize toUser;
+@synthesize profilePath;
+@synthesize profileImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,5 +64,7 @@
 {
     srcFile = nil;
     toUser  = nil;
+    profilePath  = nil;
+    profileImage = nil;
 }
 @end

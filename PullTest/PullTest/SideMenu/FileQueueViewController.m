@@ -7,6 +7,7 @@
 //
 
 #import "FileQueueViewController.h"
+#import "../SKFriendProfileUtils.h"
 
 @interface FileQueueViewController ()
 
@@ -61,6 +62,14 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (BOOL)createUploadProgressForFileId:(NSString *)fileId fileName:(NSString *)fileName toUser:(NSString *)
+{
+    if ([files objectForKey:fileId]) {
+        return NO;
+    }
+    
+}
+
 #pragma mark - callbacks for UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -83,10 +92,11 @@
 
     FileProgress *file = [files objectForKey:[files.allKeys objectAtIndex:indexPath.row]];
     
-    //cell.fileIconView
+    NSString *profilePath = [SKFriendProfileUtils ]
+    cell.fileIconView.image =
     cell.fileNameLabel.text = file.fileName;
-    cell.progressView.progress = file.prograss/100;
-    cell.progressLabel.text = [NSString stringWithFormat:@"%0.2f",file.prograss];
+    cell.progressView.progress = file.progress/100;
+    cell.progressLabel.text = [NSString stringWithFormat:@"%0.2f",file.progress];
     
     return cell;
 }

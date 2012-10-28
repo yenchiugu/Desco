@@ -38,7 +38,7 @@
 
 @synthesize fileName;
 @synthesize friendName;
-@synthesize prograss;
+@synthesize progress;
 @synthesize isDownload;
 
 @end

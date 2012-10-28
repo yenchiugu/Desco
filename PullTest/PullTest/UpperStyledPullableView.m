@@ -96,12 +96,10 @@
 }
 
 
-
 //////////////////////////////////////////////////////////////
 #pragma mark GMGridViewDataSource
 //////////////////////////////////////////////////////////////
 
-#pragma mark GMGridViewDataSource
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
 {
   return [SKFriendProfileUtils getProfileCount];
@@ -262,41 +260,36 @@
     }
 
   
-  CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
-  NSLog(@"converted: [%f,%f]",converted_p.x,converted_p.y);
-  UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];
-  int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
-  
-  NSLog(@"positoin:%d",position);
-  NSLog(@"target:%@",target);
-  
-  if (position!=-1) {
-
-    GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
-    UILabel *user_name_lbl = (UILabel*)[cell viewWithTag:250];
-    NSString *user_name = user_name_lbl.text;
-
-
-    
-    
     CGPoint converted_p =[srcView convertPoint:pt toView:_gmGridView];
     NSLog(@"converted: [%f,%f]",converted_p.x,converted_p.y);
     UIView *target=[_gmGridView hitTest:converted_p withEvent:nil];
     int position = [_gmGridView.layoutStrategy itemPositionFromLocation:converted_p];
-    
+  
     NSLog(@"positoin:%d",position);
     NSLog(@"target:%@",target);
-    
-    if (position != -1) {
-        //GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
-        SKViewController *mainViewControllor = (SKViewController*)[self viewController];
+  
+    if (position!=-1) {
+        // get user name
+        GMGridViewCell *cell = [_gmGridView cellForItemAtIndex:position];
+        UILabel *user_name_lbl = (UILabel*)[cell viewWithTag:250];
+        NSString *user_name = user_name_lbl.text;
+
+        // get profile
+        NSString *profilePath;
+        UIImage *profileImage = [SKFriendProfileUtils openProfileImgFromIndex:position outFileName:&profilePath];
         
+        // get file path
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *docPath  = [paths objectAtIndex:0];
+        NSString *docPath = [paths objectAtIndex:0];
         NSString *srcFile = [docPath stringByAppendingPathComponent:text];
 
-        mainViewControllor.questionSendViewController.toUser  = @"test";
-        mainViewControllor.questionSendViewController.srcFile = srcFile;
+        SKViewController *mainViewControllor = (SKViewController*)[self viewController];
+        QuestionSendViewController *qsView = mainViewControllor.questionSendViewController;
+        qsView.toUser  = user_name;
+        qsView.srcFile = srcFile;
+        qsView.profilePath  = profilePath;
+        qsView.profileImage = profileImage;
+        
         [mainViewControllor.questionSendViewController.view setFrame:CGRectMake(0, 0, 400, 250)];
         [mainViewControllor presentPopupViewController:mainViewControllor.questionSendViewController animationType:MJPopupViewAnimationSlideBottomTop];
     }
