@@ -15,6 +15,8 @@
 #import "SKViewController.h"
 #import "TopMenu/AvatarMenuViewController.h"
 
+#import "SKFriendProfileUtils.h"
+
 @interface UpperStyledPullableView ()
 {
     NSArray *user_image_paths;
@@ -94,10 +96,15 @@
 }
 
 
+
+//////////////////////////////////////////////////////////////
+#pragma mark GMGridViewDataSource
+//////////////////////////////////////////////////////////////
+
 #pragma mark GMGridViewDataSource
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
 {
-    return 10;
+  return [SKFriendProfileUtils getProfileCount];
 }
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -123,9 +130,9 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
-    NSString *tmp_img_path = [user_image_paths objectAtIndex:index];
-    
-    imageView.image = [UIImage imageWithContentsOfFile: tmp_img_path];
+    NSString *tmp_profile_path = [user_image_paths objectAtIndex:index];
+
+    imageView.image = [SKFriendProfileUtils openProfileImgFromIndex:index outFileName:&tmp_profile_path];
     
     [view addSubview:imageView];
     //view.backgroundColor =[UIColor greenColor];
@@ -143,30 +150,8 @@
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,size.height,size.width,20)];//cell.contentView.bounds];
     //label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    NSString *str=@"";
-    
-    if (index==0) {
-        str=@"Ace's iPad";
-    } else if (index==1) {
-        str=@"Ace's Laptop1";
-    } else if (index==9) {
-        str=@"SY's iPad";
-    } else if (index==2) {
-        str=@"CC's iPad";
-    } else if (index==3) {
-        str=@"Juliet's iPad";
-    } else if (index==4) {
-        str=@"Ace's Laptop2";
-    } else if (index==5) {
-        str=@"新衣's iPad";
-    } else if (index==6) {
-        str=@"小欄's iPad";
-    } else if (index==7) {
-        str=@"什麼狗's iPad";
-    } else if (index==8) {
-        str=@"海賊王's iPad";
-    }
-    label.text = str;
+    //
+    label.text = [tmp_profile_path stringByDeletingPathExtension];
     label.textAlignment = UITextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
@@ -180,7 +165,7 @@
 {
     if (avatarPopover == nil) {
         AvatarMenuViewController *controller = [[AvatarMenuViewController alloc] init];
-        controller.contentSizeForViewInPopover = CGSizeMake(200.0f, 90.0f);
+        controller.contentSizeForViewInPopover = CGSizeMake(200.0f, 135.0f);
         avatarPopover = [[UIPopoverController alloc] initWithContentViewController:controller];
     }
     
