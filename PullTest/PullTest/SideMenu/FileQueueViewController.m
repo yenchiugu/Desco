@@ -19,6 +19,7 @@
 @synthesize mainViewController;
 @synthesize fileQueueTable;
 @synthesize files;
+@synthesize downloadedFiles;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +27,7 @@
     if (self) {
         // Custom initialization
         files = [NSMutableDictionary dictionary];
+        downloadedFiles = [NSMutableDictionary dictionary];
         /*
          // dummy queue
         FileProgress *newFile;
@@ -102,6 +104,10 @@
         return;
     }
     file.progress = progress;
+/*    if (progress > 99.999f) {
+        [files removeObjectForKey:fileId];
+        [downloadedFiles setObject:fileId forKey:fileId];
+    }*/
     [fileQueueTable reloadData];
 }
 
@@ -110,6 +116,7 @@
               fileId:(NSString *)fileId
 {
     [files removeObjectForKey:fileId];
+    [downloadedFiles setObject:fileId forKey:fileId];
     [fileQueueTable reloadData];
 }
 
@@ -122,7 +129,10 @@
                       fileId:(NSString *)fileId
 {
     NSLog(@"create download:%@", fileId);
-    [self createTransferProgressForFileId:fileId fullPath:localFile userName:fromUser isDownload:YES];
+    NSLog(@"downloaded:%@", downloadedFiles);
+    if (![downloadedFiles objectForKey:fileId]) {
+        [self createTransferProgressForFileId:fileId fullPath:localFile userName:fromUser isDownload:YES];
+    }
 }
 
 - (void)downloadProgress:(CGFloat)progress
@@ -139,6 +149,10 @@
         return;
     }
     file.progress = progress;
+/*    if (progress > 99.999f) {
+        [files removeObjectForKey:fileId];
+        [downloadedFiles setObject:fileId forKey:fileId];
+    }*/
     [fileQueueTable reloadData];
 }
 
@@ -147,7 +161,8 @@
                 fileId:(NSString *)fileId
 {
     [files removeObjectForKey:fileId];
-    [fileQueueTable reloadData];    
+    [downloadedFiles setObject:fileId forKey:fileId];
+    [fileQueueTable reloadData];
     [mainViewController.my_stuff_view_controllor reloadData];
 }
 

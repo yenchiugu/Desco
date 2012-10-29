@@ -15,6 +15,7 @@
 @property (weak, nonatomic) SKViewController* mainViewController;
 @property (strong, nonatomic) IBOutlet UITableView *fileQueueTable;
 @property (strong, nonatomic) NSMutableDictionary *files;
+@property (strong, nonatomic) NSMutableDictionary *downloadedFiles;
 
 - (NSInteger)indexOfFile:(NSString *)fileId;
 - (BOOL)createTransferProgressForFileId:(NSString *)fileId
